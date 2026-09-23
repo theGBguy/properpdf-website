@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tryproperpdf.app/sitemap.xml

@@ -1,0 +1,14 @@
+{
+  "name": "tryproperpdf-site",
+  "private": true,
+  "scripts": {
+    "build": "python3 generate.py",
+    "generate": "python3 generate.py",
+    "dev": "npm run build && wrangler pages dev public",
+    "deploy": "npm run build && wrangler pages deploy public --project-name ${CLOUDFLARE_PAGES_PROJECT:-tryproperpdf}",
+    "check:deploy": "npm run build && test -f public/index.html && test -f public/sitemap.xml && test -f public/robots.txt && test -f public/_headers && test -f public/_redirects"
+  },
+  "devDependencies": {
+    "wrangler": "^4.137.0"
+  }
+}
