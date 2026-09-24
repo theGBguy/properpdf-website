@@ -1,4 +1,5 @@
 /index.html / 301
+/features.html /features 301
 /guides.html /guides 301
 /support.html /support 301
 /privacy-policy.html /privacy-policy 301
@@ -12,3 +13,17 @@
 /offline-pdf-editor-android.html /offline-pdf-editor-android 301
 /private-pdf-compressor.html /private-pdf-compressor 301
 /offline-pdf-merger-android.html /offline-pdf-merger-android 301
+/lock-pdf.html /lock-pdf 301
+/sign-pdf.html /sign-pdf 301
+/fill-pdf.html /fill-pdf 301
+/image-to-pdf.html /image-to-pdf 301
+/scan-to-pdf.html /scan-to-pdf 301
+/privacy /privacy-policy 301
+/privacy/ /privacy-policy 301
+/privacy.html /privacy-policy 301
+/terms /terms-of-service 301
+/terms/ /terms-of-service 301
+/terms.html /terms-of-service 301
+/blog /guides 301
+/blog/ /guides 301
+/blog.html /guides 301

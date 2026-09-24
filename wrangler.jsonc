@@ -1,9 +1,14 @@
 {
   "name": "tryproperpdf",
   "compatibility_date": "2026-09-23",
-  "assets": {
-    "directory": "./public",
-    "html_handling": "drop-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+  "pages_build_output_dir": "./public",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "properpdf-site-data",
+      "database_id": "16a21ee3-6ae1-4de8-81ae-bef19a2289dc",
+      "preview_database_id": "DB",
+      "migrations_dir": "migrations"
+    }
+  ]
 }

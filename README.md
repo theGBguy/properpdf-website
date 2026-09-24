@@ -1,19 +1,43 @@
 # ProperPDF website
 
-Standalone static site for `tryproperpdf.app`. The site is generated with Python's standard library and deployed as static assets to Cloudflare Pages. There is no application server, database, tracking script, or required runtime in production.
+Static pages generated with Python's standard library, hosted on Cloudflare Pages. Two Pages Functions use Cloudflare D1 for development-update signup requests and aggregate analytics. Documents are never uploaded through this website.
 
-## Preview locally
+## Local preview
 
-Run `npm run build` after changing content in `generate.py`. For a simple preview, run `python3 -m http.server 8000 --directory public` and open `http://localhost:8000`. To preview the Cloudflare Pages asset behavior, run `npm run dev`.
+Run `npm install` and `npm run dev`. This builds the pages, applies local D1 migrations, and starts Wrangler Pages. Local signups and analytics stay in `.wrangler/state`; they do not reach the production database. A plain Python static server can display pages but cannot serve the `/api/` endpoints.
 
-## Publish
+After introducing D1 bindings, restart any older `wrangler pages dev` process so it loads the new configuration. `npm test` runs the database/API and carousel regression tests (Node 22.13+ required). `npm run check:deploy` checks generated assets; `npm run check:functions` compiles the Pages Functions.
 
-In Cloudflare Pages, use `npm run build` as the build command and `public` as the output directory. Install dependencies with `npm install`, then authenticate Wrangler with `npx wrangler login`. Set `CLOUDFLARE_PAGES_PROJECT` when the Pages project is not named `tryproperpdf`, and run `npm run deploy`. Attach `tryproperpdf.app` as a custom domain in the Pages project.
+## Cloudflare setup and publishing
 
-The Privacy Policy and Terms of Service are shared by the iOS and Android apps. Their document bodies are stored under `legal-source/` and included in the generated site. Support is available at `hello@tryproperpdf.app`. Pricing shows Free and Pro features without a fixed amount because app offers are localized and configured outside this repository.
+`wrangler.jsonc` uses Pages configuration (`pages_build_output_dir`) and binds `DB` to the `properpdf-site-data` D1 database. The database ID is not a secret. The database and its initial tables have been provisioned; adding a binding in this file takes effect on the next Pages deployment.
 
-## Content structure
+For a fresh account, create a D1 database with `npx wrangler d1 create properpdf-site-data`, replace `database_id` in `wrangler.jsonc`, and run `npm run db:migrate:remote`. Authenticate with `npx wrangler login` if needed. Use `npm run deploy` to publish the site and Functions. Set `CLOUDFLARE_PAGES_PROJECT` if the Pages project is not named `tryproperpdf`. For Git-connected Pages builds, use `npm run build` and `public` as the output directory; the root `functions/` directory is bundled automatically.
 
-Edit the `features` and `guides` lists in `generate.py` to add or update content. The generator emits the tool pages, `/features/`, `/guides/`, `/blog/`, `/support/`, legal route aliases, `sitemap.xml`, `robots.txt`, `_headers`, and `_redirects` into `public/`.
+Migrations are additive and tracked by D1. Run `npm run db:migrate:remote` before deploying code that requires new tables. Never use `--remote` for test signups or analytics fixtures.
 
-The Android store URL and iOS App Store URL are centralized near the top of `generate.py`. Replace the Android placeholder when the official listing changes.
+## Stored data
+
+- `analytics_daily`: UTC date, event (`page_view` or `download_click`), canonical page path, destination store, count. No visitor IDs, IP addresses, cookies, query strings, referrers, or raw user agents. Counts are browser-reported events, not unique visitors or verified installs. QR scans and blocked JavaScript are not counted. The client respects Do Not Track and Global Privacy Control; the server also respects those headers. Counters older than 730 days are deleted as new events arrive.
+- `development_subscribers`: unique normalized email, signup timestamp, consent version, source, and an `email_verified` flag (initially 0). Duplicate submissions do not expose list membership or modify the original consent record. Explicit opt-in is required.
+- `api_limits`: short-lived global per-minute request counts, with no visitor identifier. Limits are 30 signup submissions and 2,000 analytics submissions per minute across the site; excess requests receive HTTP 429. A hidden form field filters basic bots. This is a basic abuse guard, not a guarantee that submitted addresses belong to the visitor.
+
+There are no public subscriber-list or analytics-read endpoints. Only your Cloudflare account can query the database. Frontend code receives no database credentials.
+
+## View analytics and manage signups
+
+Open Cloudflare **Workers & Pages → D1 → properpdf-site-data → Studio**. Run the queries in `scripts/analytics-report.sql`, or run:
+
+```sh
+npx wrangler d1 execute properpdf-site-data --remote --file scripts/analytics-report.sql
+```
+
+For local results, replace `--remote` with `--local`. Inspect or export `development_subscribers` privately in D1 Studio when connecting a mailing provider. Never place a subscriber export in `public/` or source control.
+
+D1 saves requests; it does not send campaigns or verify email ownership. Before sending campaigns, connect an email provider and confirm addresses. The form and website privacy notice direct removal requests to `hello@tryproperpdf.app`. Process those requests by deleting the matching subscriber in D1 Studio and removing it from any future mailing provider. No emails are sent by this code.
+
+## Content
+
+The homepage is maintained in `public/index.html`. Edit the `features`, `guides`, and `article_mockups` lists in `generate.py` for content pages. The generator writes the articles, route aliases, sitemap, security headers, API routing manifest, and analytics path allowlist. `public/site-data.js` handles signups and site events on all canonical pages.
+
+The app Privacy Policy and Terms of Service remain in `legal-source/`. A separate website-specific data notice is generated on the privacy page. Pricing lists reference USD amounts for weekly, monthly, yearly, and lifetime Pro plans; actual offers are shown in the app.

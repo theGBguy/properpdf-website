@@ -61,7 +61,8 @@ a:focus-visible {
 }
 
 .site-header {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 10;
     border-bottom: 1px solid rgba(23, 36, 45, .07);
     background: rgba(248, 247, 243, .92)
@@ -231,19 +232,388 @@ h3 {
     margin-top: 19px
 }
 
+.hero-proof {
+    margin: 18px 0 0;
+    color: #244b5a;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.6
+}
+
+.hero-review {
+    margin: 10px 0 0;
+    color: #66757c;
+    font-size: 14px;
+    font-style: italic
+}
+
+.hero-review span {
+    font-style: normal;
+    color: #87949a
+}
+
+.download-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap
+}
+
+.store-badge {
+    --badge-height: 54px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: var(--badge-height);
+    overflow: hidden;
+    border-radius: 9px;
+    background: transparent
+}
+
+.store-badge img {
+    display: block;
+    flex-shrink: 0;
+    width: auto;
+    height: var(--badge-height);
+    object-fit: contain
+}
+
+/* Google artwork is 646 × 250, with a 564 × 168 badge inside
+   41px transparent margins. Match the visible badge height to Apple's. */
+.android-badge img {
+    height: calc(var(--badge-height) * 250 / 168);
+    margin: calc(var(--badge-height) * -41 / 168)
+}
+
+.hero-qr-pair {
+    display: grid;
+    justify-items: center;
+    width: 100%
+}
+
+.hero-qr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #dce6e7;
+    border-radius: 12px;
+    text-align: left
+}
+
+.hero-qr-details label {
+    display: block;
+    margin-bottom: 6px;
+    color: #536770;
+    font-size: 12px
+}
+
+.hero-qr-details select {
+    max-width: 100%;
+    padding: 8px;
+    border: 1px solid #dce6e7;
+    border-radius: 6px;
+    background: #fff;
+    color: #263f4b;
+    font: inherit;
+    font-size: 13px
+}
+
+.hero-qr img {
+    display: block;
+    width: 132px;
+    height: 132px;
+    margin: auto
+}
+
+.hero-qr span {
+    display: block;
+    margin-top: 7px;
+    color: #536770;
+    font-size: 11px;
+    font-weight: 800
+}
+
+.hero-qr strong {
+    display: block;
+    margin-top: 10px;
+    color: #263f4b;
+    font-size: 12px
+}
+
+.review-section {
+    padding: 92px 0 100px;
+    background: #fff
+}
+
+.review-section .section-heading {
+    margin-bottom: 34px
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px
+}
+
+.review-grid figure {
+    margin: 0;
+    padding: 25px 22px;
+    border: 1px solid #dfe8e6;
+    border-radius: 12px;
+    background: #f8faf9
+}
+
+.review-grid blockquote {
+    margin: 0;
+    color: #334c57;
+    font-size: 15px;
+    line-height: 1.65
+}
+
+.review-grid figcaption {
+    margin-top: 20px;
+    color: #829095;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.review-source {
+    display: inline-block;
+    margin-top: 22px;
+    color: #1671c4;
+    font-size: 13px;
+    font-weight: 800
+}
+
+.demo-section {
+    padding: 78px 0;
+    background: #e9f3f3
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 55px;
+    align-items: center
+}
+
+.demo-grid h2,
+.comparison h2,
+.capture-inner h2 {
+    font-size: clamp(35px, 4vw, 54px);
+    line-height: 1.12;
+    letter-spacing: -.06em;
+    margin: 0
+}
+
+.demo-grid h2 span,
+.comparison h2 span {
+    color: #6c8d93
+}
+
+.demo-grid p:not(.kicker),
+.comparison-grid>div>p:not(.kicker),
+.capture-inner p:not(.kicker) {
+    color: #5c7077;
+    line-height: 1.7
+}
+
+.demo-video {
+    width: min(100%, 330px);
+    height: auto;
+    aspect-ratio: 900 / 1948;
+    justify-self: center;
+    display: block;
+    border-radius: 14px;
+    background: #102936;
+    box-shadow: 0 18px 45px #2a515a27
+}
+
+.comparison {
+    background: #fff
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 70px;
+    align-items: center
+}
+
+.comparison-table {
+    border-top: 1px solid #dce5e5
+}
+
+.comparison-table>div {
+    display: grid;
+    gap: 8px;
+    padding: 24px 0;
+    border-bottom: 1px solid #dce5e5
+}
+
+.comparison-table strong {
+    font-size: 15px
+}
+
+.comparison-table span {
+    color: #687980;
+    font-size: 14px
+}
+
+.comparison-proper strong {
+    color: #148a62
+}
+
+.pricing-offers {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 1100px;
+    margin: 28px auto 0
+}
+
+.plan-option {
+    padding: 22px;
+    border: 1px solid #cfdedd;
+    border-radius: 8px;
+    background: #fff
+}
+
+.plan-option h3 { margin: 0 0 14px; font-size: 18px }
+.plan-option p { margin: 0; font-size: 14px; line-height: 1.6; color: #536770 }
+.plan-option .plan-price { margin-bottom: 14px; font-size: 26px; font-weight: 800; color: #263f4b }
+.plan-price span { font-size: 13px; font-weight: 400; white-space: nowrap }
+.plan-price sup { font-size: 14px }
+.plan-price a { color: inherit; text-decoration: none }
+
+@media (max-width: 980px) {
+    .pricing-offers { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+
+@media (max-width: 480px) {
+    .pricing-offers { grid-template-columns: 1fr }
+}
+
+.pricing-table-wrap {
+    overflow-x: auto;
+    max-width: 900px;
+    margin: auto
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: 1px solid #dce5e3;
+    border-radius: 12px;
+    overflow: hidden
+}
+
+.pricing-table th,
+.pricing-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e3eae8;
+    text-align: center;
+    font-size: 14px
+}
+
+.pricing-table thead th {
+    background: #eaf5fb;
+    color: #277ab0;
+    font-size: 12px;
+    letter-spacing: .12em;
+    text-transform: uppercase
+}
+
+.pricing-table thead th:first-child,
+.pricing-table tbody th {
+    text-align: left
+}
+
+.pricing-table tbody th {
+    color: #354b54;
+    font-weight: 700
+}
+
+.pricing-table tbody td {
+    color: #247e60;
+    font-weight: 800
+}
+
+.pricing-table tfoot td {
+    padding: 20px;
+    border-bottom: 0
+}
+
+.pricing-table .button {
+    width: 100%;
+    min-height: 46px;
+    padding-inline: 12px
+}
+
+
+.capture-section {
+    padding: 75px 0;
+    background: #edf5f1
+}
+
+.capture-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center
+}
+
+.email-capture label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #46636b
+}
+
+.email-capture>div {
+    display: flex;
+    gap: 9px
+}
+
+.email-capture input {
+    min-width: 0;
+    flex: 1;
+    border: 1px solid #c9d9d5;
+    border-radius: 8px;
+    padding: 0 14px;
+    font: inherit;
+    background: #fff
+}
+
+.email-capture small {
+    display: block;
+    margin-top: 10px;
+    color: #82918e;
+    font-size: 11px
+}
+
 .hero-visual {
-    height: 655px;
+    padding: 32px 0;
     position: relative;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
     justify-content: center
 }
 
 .hero-screen {
     width: 330px;
-    height: 510px;
+    height: auto;
+    max-width: 100%;
     overflow: hidden;
-    border-radius: 25px 25px 0 0;
+    border-radius: 25px;
     box-shadow: 0 12px 60px #91b7c247;
     position: relative;
     z-index: 1
@@ -390,6 +760,10 @@ h3 {
 
 .feature-card {
     min-height: 254px;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-content: start;
+    column-gap: 13px;
     background: #fff;
     border: 1px solid #e6ebe9;
     border-radius: 15px;
@@ -430,10 +804,12 @@ h3 {
 .feature-card h3 {
     font-size: 18px;
     letter-spacing: -.04em;
-    margin: 30px 0 11px
+    align-self: center;
+    margin: 0
 }
 
 .feature-card p {
+    grid-column: 1 / -1;
     font-size: 14px;
     line-height: 1.65;
     color: var(--muted);
@@ -736,12 +1112,12 @@ h3 {
     }
 
     .hero-visual {
-        height: 600px
+        height: auto
     }
 
     .hero-screen {
         width: 285px;
-        height: 455px
+        height: auto
     }
 
     .label-top {
@@ -836,13 +1212,72 @@ h3 {
         margin-top: 15px
     }
 
+    .hero-proof {
+        font-size: 12px
+    }
+
+    .hero-review {
+        font-size: 13px
+    }
+
+    .download-buttons {
+        gap: 7px
+    }
+
+    body[data-platform="android"] .ios-badge,
+    body[data-platform="ios"] .android-badge {
+        display: none
+    }
+
+    .store-badge {
+        --badge-height: 49px
+    }
+
+    .hero-qr-pair {
+        display: none
+    }
+
+    .review-section {
+        padding: 65px 0 72px
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+        gap: 11px
+    }
+
     .hero-visual {
-        height: 395px
+        height: auto
     }
 
     .hero-screen {
         width: 230px;
-        height: 340px
+        height: auto
+    }
+
+    .demo-grid,
+    .comparison-grid,
+    .capture-inner {
+        grid-template-columns: 1fr;
+        gap: 28px
+    }
+
+    .demo-section,
+    .capture-section {
+        padding: 60px 0
+    }
+
+    .comparison-grid {
+        gap: 20px
+    }
+
+    .email-capture>div {
+        display: grid;
+        grid-template-columns: 1fr auto
+    }
+
+    .email-capture .button {
+        width: auto
     }
 
     .visual-orbit {
@@ -917,6 +1352,11 @@ h3 {
     .feature-card {
         min-height: 220px;
         padding: 20px 16px
+    }
+
+    .feature-card {
+        grid-template-columns: 40px minmax(0, 1fr);
+        column-gap: 10px
     }
 
     .feature-card h3 {
@@ -1044,11 +1484,11 @@ h3 {
 
 /* Complete feature inventory */
 .feature-card {
-    min-height: 220px
+    min-height: 185px
 }
 
 .feature-card h3 {
-    margin-top: 23px
+    margin: 0
 }
 
 .feature-note {
@@ -1060,7 +1500,7 @@ h3 {
 
 @media(max-width:700px) {
     .feature-card {
-        min-height: 210px
+        min-height: 170px
     }
 }
 
@@ -1289,6 +1729,10 @@ h3 {
         grid-template-columns: 1fr
     }
 
+    .pricing-table {
+        min-width: 620px
+    }
+
     .price-card {
         padding: 26px
     }
@@ -1322,6 +1766,10 @@ h3 {
     gap: 50px
 }
 
+.content-hero-grid-no-image {
+    grid-template-columns: minmax(0, 1fr)
+}
+
 .content-hero h1 {
     font: 800 clamp(42px, 5.6vw, 68px)/1.09 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
     letter-spacing: -.075em;
@@ -1334,6 +1782,18 @@ h3 {
     line-height: 1.6;
     color: #52656e;
     max-width: 640px
+}
+
+.landing-proof {
+    margin: 17px 0 0;
+    color: #216c58 !important;
+    font-size: 13px !important;
+    font-weight: 800;
+    line-height: 1.5 !important
+}
+
+.content-hero .download-buttons {
+    margin-top: 22px
 }
 
 .text-link {
@@ -1370,6 +1830,53 @@ h3 {
 
 .article-body section {
     margin-bottom: 42px
+}
+
+.how-to {
+    padding-bottom: 13px;
+    border-bottom: 1px solid #dce5e5
+}
+
+.how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px
+}
+
+.how-step {
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid #dfe8e7;
+    border-radius: 10px;
+    background: #f7faf9
+}
+
+.how-step img {
+    display: block;
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    object-position: top
+}
+
+.how-step div {
+    padding: 15px
+}
+
+.how-step span {
+    color: #238d70;
+    font-size: 11px;
+    font-weight: 800
+}
+
+.how-step h3 {
+    margin: 8px 0 6px;
+    font-size: 17px
+}
+
+.how-step p {
+    margin: 0;
+    font-size: 13px
 }
 
 .article-body h2 {
@@ -1442,6 +1949,10 @@ h3 {
 
 .content-actions .button {
     min-width: 210px
+}
+
+.content-cta .download-buttons {
+    margin-top: 22px
 }
 
 .guide-hero {
@@ -1611,6 +2122,20 @@ h3 {
 
     .content-actions .button {
         width: 100%
+    }
+
+    .how-steps {
+        grid-template-columns: 1fr
+    }
+
+    .how-step {
+        display: grid;
+        grid-template-columns: 96px 1fr
+    }
+
+    .how-step img {
+        height: 100%;
+        min-height: 118px
     }
 
     .guide-hero {
@@ -1791,9 +2316,9 @@ h3 {
     height: auto;
     max-height: 490px;
     object-fit: contain;
-    object-position: bottom center;
-    align-self: end;
-    justify-self: end
+    object-position: center;
+    align-self: center;
+    justify-self: center
 }
 
 .mockup-card.android img {
@@ -1843,87 +2368,50 @@ h3 {
 }
 
 .journal-heading .text-link {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
     margin-bottom: 8px
 }
 
-.journal-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 36px
-}
-
-.journal-card {
-    display: flex;
-    flex-direction: column;
-    min-height: 245px;
-    padding: 27px;
-    border: 1px solid #dce6e4;
-    border-radius: 14px;
-    background: #fff;
-    transition: transform .2s ease, box-shadow .2s ease
-}
-
-.journal-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 28px #19334212
-}
-
-.journal-card>span {
-    color: #2879a8;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: .13em
-}
-
-.journal-card h3 {
-    font-size: 24px;
-    line-height: 1.14;
-    letter-spacing: -.05em;
-    margin: 24px 0 12px
-}
-
-.journal-card p {
-    color: #63747b;
-    font-size: 14px;
-    line-height: 1.65;
-    margin: 0
-}
-
-.journal-card strong {
-    margin-top: auto;
-    padding-top: 24px;
-    color: #176ca9;
-    font-size: 13px
-}
-
-.journal-card strong span {
-    margin-left: 8px
-}
-
 @media(max-width:700px) {
-    .journal-heading {
-        display: block
-    }
+    .journal-heading { display: block }
+    .journal-heading .text-link { margin-top: 20px }
+}
 
-    .journal-heading .text-link {
-        margin-top: 20px
-    }
+.home-guide-list {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    border-top: 1px solid #dce6e4
+}
 
-    .journal-grid {
-        grid-template-columns: 1fr;
-        gap: 12px
-    }
+.home-guide-list li { border-bottom: 1px solid #dce6e4 }
 
-    .journal-card {
-        min-height: 205px;
-        padding: 23px
-    }
+.home-guide-link {
+    display: grid;
+    grid-template-columns: 108px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: 18px;
+    padding: 15px 8px;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 4px
+}
 
-    .journal-card h3 {
-        font-size: 22px;
-        margin-top: 18px
-    }
+.home-guide-link:hover { background: #e8efed }
+.home-guide-link:focus-visible { outline: 2px solid #176ca9; outline-offset: 3px }
+.home-guide-category { color: #2879a8; font-size: 12px; font-weight: 700 }
+.home-guide-copy h3 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3; letter-spacing: -.02em }
+.home-guide-copy p { margin: 2px 0 0; color: #63747b; font-size: 13px; line-height: 1.45 }
+.home-guide-arrow { color: #176ca9; font-size: 22px; justify-self: end }
+
+@media (max-width: 700px) {
+    .home-guide-link { grid-template-columns: minmax(0, 1fr) 24px; gap: 4px 16px; padding: 14px 4px }
+    .home-guide-category { grid-column: 1; grid-row: 1 }
+    .home-guide-copy { grid-column: 1; grid-row: 2 }
+    .home-guide-arrow { grid-column: 2; grid-row: 1 / 3; align-self: center }
+    .home-guide-copy h3 { font-size: 17px }
 }
 
 /* Type scale inspired by HabitKit's editorial, product-first rhythm. */
@@ -2017,8 +2505,7 @@ body {
     line-height: 1.75
 }
 
-.mockup-copy h3,
-.journal-card h3 {
+.mockup-copy h3 {
     font-weight: 800;
     letter-spacing: -.025em
 }
@@ -2066,8 +2553,7 @@ body {
 .showcase-copy h3,
 .price-card h3,
 .faq-grid h2,
-.mockup-copy h3,
-.journal-card h3 {
+.mockup-copy h3 {
     font-weight: 700
 }
 
@@ -2081,8 +2567,7 @@ body {
 
 .eyebrow,
 .kicker,
-.mockup-copy span,
-.journal-card>span {
+.mockup-copy span {
     font-weight: 700
 }
 
@@ -2203,26 +2688,259 @@ body {
     box-shadow: none
 }
 
-.journal-card {
-    border: 0;
-    border-top: 1px solid #dce6e4;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    transition: none
+@media(prefers-reduced-motion:reduce) {
+    html { scroll-behavior: auto }
+}
+/* The panels orbit a shared vertical axis; each QR stays with its phone. */
+.preview-stage {
+    display: grid;
+    width: 100%;
+    perspective: 1200px;
+    transform-style: preserve-3d
 }
 
-.journal-card:hover {
-    transform: none;
+.preview-panel {
+    grid-area: 1 / 1;
+    position: relative;
+    width: min(330px, 80%);
+    justify-self: center;
+    min-width: 0;
+    will-change: transform, opacity
+}
+
+.preview-panel[aria-hidden="true"] {
+    pointer-events: none
+}
+
+.preview-panel[data-preview-platform="android"] {
+    opacity: 0
+}
+
+.preview-panel .hero-screen {
+    width: 100%;
+    aspect-ratio: 1530 / 3036;
+    height: auto;
+    overflow: visible;
+    border-radius: 0;
     box-shadow: none
 }
 
-@media(prefers-reduced-motion:reduce) {
-    html {
-        scroll-behavior: auto
-    }
-
-    .journal-card {
-        transition: none
-    }
+.preview-panel .hero-screen img {
+    height: 100%;
+    object-fit: contain
 }
+
+.preview-panel .hero-qr-pair {
+    position: absolute;
+    top: 50%;
+    right: -12px;
+    transform: translateY(-50%);
+    width: auto;
+    z-index: 2
+}
+
+.preview-panel .hero-qr {
+    flex-direction: column;
+    gap: 0;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 12px 30px #263f4b20
+}
+
+#platform-preview:focus-visible,
+.preview-panel .hero-qr:focus-visible {
+    outline: 3px solid #1976c9;
+    outline-offset: 4px
+}
+
+@media (max-width: 980px) {
+    .preview-panel { width: min(285px, 80%) }
+}
+
+@media (max-width: 700px) {
+    .preview-panel { width: min(230px, 80%) }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preview-panel { will-change: auto }
+}
+
+.article-mockup {
+    margin: 32px 0;
+    padding: clamp(16px, 4vw, 30px);
+    border: 1px solid #dce6e7;
+    border-radius: 12px;
+    background: #edf5f8;
+    text-align: center
+}
+
+.article-mockup > a {
+    display: block;
+    width: min(100%, 300px);
+    margin-inline: auto
+}
+
+.article-mockup img {
+    display: block;
+    width: 100%;
+    height: auto
+}
+
+.article-mockup figcaption {
+    max-width: 480px;
+    margin: 20px auto 0;
+    color: #536770;
+    font-size: 14px;
+    line-height: 1.6
+}
+
+.article-mockup figcaption a {
+    display: block;
+    margin-top: 8px;
+    color: #176c9f;
+    text-decoration: underline;
+    text-underline-offset: 3px
+}
+
+
+.feature-icon .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: 400;
+    font-style: normal;
+    font-size: 27px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    direction: ltr;
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased
+}
+
+
+.email-capture .updates-status {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #354b54;
+    margin: 14px 0 0
+}
+
+.email-capture small a { text-decoration: underline }
+
+
+.email-capture .updates-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 14px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5
+}
+
+.email-capture .updates-consent input {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    accent-color: #176c9f
+}
+
+.email-capture .signup-trap { display: none }
+.email-capture button:disabled { opacity: .65; cursor: wait }
+
+.demo-player {
+    position: relative;
+    width: min(100%, 330px);
+    justify-self: center;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #102936;
+    box-shadow: 0 18px 45px #2a515a27
+}
+
+.demo-player .demo-video {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none
+}
+
+.demo-player .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-size: 26px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    font-feature-settings: "liga";
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    direction: ltr
+}
+
+.video-start {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 76px;
+    height: 76px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #ffffff70;
+    border-radius: 50%;
+    color: #fff;
+    background: #102936bf;
+    backdrop-filter: blur(14px);
+    cursor: pointer
+}
+
+.video-start .material-symbols-outlined { font-size: 40px }
+.video-start[hidden], .is-playing .video-start, .video-controls[hidden], .video-toolbar button[hidden] { display: none }
+
+.video-controls {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 10px 8px 4px;
+    border: 1px solid #ffffff30;
+    border-radius: 14px;
+    color: #fff;
+    background: #102936e8;
+    backdrop-filter: blur(16px);
+    transition: opacity .2s ease
+}
+
+.is-playing.controls-idle:not(:has(:focus-visible)) .video-controls {
+    opacity: 0;
+    pointer-events: none
+}
+
+.video-toolbar { display: flex; align-items: center; gap: 2px }
+.video-toolbar button {
+    flex: 0 0 44px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    background: transparent;
+    cursor: pointer
+}
+.video-toolbar button:hover { background: #ffffff20 }
+.video-time { flex: 1; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap }
+.video-progress { display: block; width: 100%; margin: 0; height: 18px; accent-color: #85ccff; cursor: pointer }
+.demo-player button:focus-visible, .video-progress:focus-visible, .demo-video:focus-visible { outline: 2px solid #85ccff; outline-offset: -3px }
+.demo-grid .video-status { position: absolute; top: 12px; left: 12px; right: 12px; padding: 12px; margin: 0; border-radius: 8px; background: #102936ed; color: #fff; font-size: 13px }
+.demo-player:fullscreen { width: 100%; height: 100%; border-radius: 0; display: grid; place-items: center; background: #071116 }
+.demo-player:fullscreen .demo-video { width: 100%; height: 100%; object-fit: contain }
+.demo-player:fullscreen .video-controls { max-width: 640px; margin-inline: auto }
+@media (prefers-reduced-motion: reduce) { .video-controls { transition: none } }
