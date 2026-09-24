@@ -263,4 +263,3 @@ print(f"Generated {len(paths)} pages and sitemap.xml")
 server = Path(__file__).parent / "server"
 server.mkdir(exist_ok=True)
 (server / "analytics-paths.js").write_text("export const analyticsPaths = " + json.dumps(paths) + ";\n", encoding="utf-8")
-(PUBLIC / "_routes.json").write_text(json.dumps({"version": 1, "include": ["/api/*"], "exclude": []}, indent=2) + "\n", encoding="utf-8")

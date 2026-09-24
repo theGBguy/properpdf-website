@@ -483,19 +483,50 @@ h3 {
     background: #fff
 }
 
-.plan-option h3 { margin: 0 0 14px; font-size: 18px }
-.plan-option p { margin: 0; font-size: 14px; line-height: 1.6; color: #536770 }
-.plan-option .plan-price { margin-bottom: 14px; font-size: 26px; font-weight: 800; color: #263f4b }
-.plan-price span { font-size: 13px; font-weight: 400; white-space: nowrap }
-.plan-price sup { font-size: 14px }
-.plan-price a { color: inherit; text-decoration: none }
+.plan-option h3 {
+    margin: 0 0 14px;
+    font-size: 18px
+}
+
+.plan-option p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #536770
+}
+
+.plan-option .plan-price {
+    margin-bottom: 14px;
+    font-size: 26px;
+    font-weight: 800;
+    color: #263f4b
+}
+
+.plan-price span {
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap
+}
+
+.plan-price sup {
+    font-size: 14px
+}
+
+.plan-price a {
+    color: inherit;
+    text-decoration: none
+}
 
 @media (max-width: 980px) {
-    .pricing-offers { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+    .pricing-offers {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
 }
 
 @media (max-width: 480px) {
-    .pricing-offers { grid-template-columns: 1fr }
+    .pricing-offers {
+        grid-template-columns: 1fr
+    }
 }
 
 .pricing-table-wrap {
@@ -2375,8 +2406,13 @@ h3 {
 }
 
 @media(max-width:700px) {
-    .journal-heading { display: block }
-    .journal-heading .text-link { margin-top: 20px }
+    .journal-heading {
+        display: block
+    }
+
+    .journal-heading .text-link {
+        margin-top: 20px
+    }
 }
 
 .home-guide-list {
@@ -2386,7 +2422,9 @@ h3 {
     border-top: 1px solid #dce6e4
 }
 
-.home-guide-list li { border-bottom: 1px solid #dce6e4 }
+.home-guide-list li {
+    border-bottom: 1px solid #dce6e4
+}
 
 .home-guide-link {
     display: grid;
@@ -2399,19 +2437,68 @@ h3 {
     border-radius: 4px
 }
 
-.home-guide-link:hover { background: #e8efed }
-.home-guide-link:focus-visible { outline: 2px solid #176ca9; outline-offset: 3px }
-.home-guide-category { color: #2879a8; font-size: 12px; font-weight: 700 }
-.home-guide-copy h3 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.3; letter-spacing: -.02em }
-.home-guide-copy p { margin: 2px 0 0; color: #63747b; font-size: 13px; line-height: 1.45 }
-.home-guide-arrow { color: #176ca9; font-size: 22px; justify-self: end }
+.home-guide-link:hover {
+    background: #e8efed
+}
+
+.home-guide-link:focus-visible {
+    outline: 2px solid #176ca9;
+    outline-offset: 3px
+}
+
+.home-guide-category {
+    color: #2879a8;
+    font-size: 12px;
+    font-weight: 700
+}
+
+.home-guide-copy h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -.02em
+}
+
+.home-guide-copy p {
+    margin: 2px 0 0;
+    color: #63747b;
+    font-size: 13px;
+    line-height: 1.45
+}
+
+.home-guide-arrow {
+    color: #176ca9;
+    font-size: 22px;
+    justify-self: end
+}
 
 @media (max-width: 700px) {
-    .home-guide-link { grid-template-columns: minmax(0, 1fr) 24px; gap: 4px 16px; padding: 14px 4px }
-    .home-guide-category { grid-column: 1; grid-row: 1 }
-    .home-guide-copy { grid-column: 1; grid-row: 2 }
-    .home-guide-arrow { grid-column: 2; grid-row: 1 / 3; align-self: center }
-    .home-guide-copy h3 { font-size: 17px }
+    .home-guide-link {
+        grid-template-columns: minmax(0, 1fr) 24px;
+        gap: 4px 16px;
+        padding: 14px 4px
+    }
+
+    .home-guide-category {
+        grid-column: 1;
+        grid-row: 1
+    }
+
+    .home-guide-copy {
+        grid-column: 1;
+        grid-row: 2
+    }
+
+    .home-guide-arrow {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        align-self: center
+    }
+
+    .home-guide-copy h3 {
+        font-size: 17px
+    }
 }
 
 /* Type scale inspired by HabitKit's editorial, product-first rhythm. */
@@ -2689,8 +2776,11 @@ body {
 }
 
 @media(prefers-reduced-motion:reduce) {
-    html { scroll-behavior: auto }
+    html {
+        scroll-behavior: auto
+    }
 }
+
 /* The panels orbit a shared vertical axis; each QR stays with its phone. */
 .preview-stage {
     display: grid;
@@ -2754,15 +2844,21 @@ body {
 }
 
 @media (max-width: 980px) {
-    .preview-panel { width: min(285px, 80%) }
+    .preview-panel {
+        width: min(285px, 80%)
+    }
 }
 
 @media (max-width: 700px) {
-    .preview-panel { width: min(230px, 80%) }
+    .preview-panel {
+        width: min(230px, 80%)
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .preview-panel { will-change: auto }
+    .preview-panel {
+        will-change: auto
+    }
 }
 
 .article-mockup {
@@ -2774,7 +2870,7 @@ body {
     text-align: center
 }
 
-.article-mockup > a {
+.article-mockup>a {
     display: block;
     width: min(100%, 300px);
     margin-inline: auto
@@ -2829,7 +2925,9 @@ body {
     margin: 14px 0 0
 }
 
-.email-capture small a { text-decoration: underline }
+.email-capture small a {
+    text-decoration: underline
+}
 
 
 .email-capture .updates-consent {
@@ -2850,8 +2948,14 @@ body {
     accent-color: #176c9f
 }
 
-.email-capture .signup-trap { display: none }
-.email-capture button:disabled { opacity: .65; cursor: wait }
+.email-capture .signup-trap {
+    display: none
+}
+
+.email-capture button:disabled {
+    opacity: .65;
+    cursor: wait
+}
 
 .demo-player {
     position: relative;
@@ -2899,8 +3003,16 @@ body {
     cursor: pointer
 }
 
-.video-start .material-symbols-outlined { font-size: 40px }
-.video-start[hidden], .is-playing .video-start, .video-controls[hidden], .video-toolbar button[hidden] { display: none }
+.video-start .material-symbols-outlined {
+    font-size: 40px
+}
+
+.video-start[hidden],
+.is-playing .video-start,
+.video-controls[hidden],
+.video-toolbar button[hidden] {
+    display: none
+}
 
 .video-controls {
     position: absolute;
@@ -2921,7 +3033,12 @@ body {
     pointer-events: none
 }
 
-.video-toolbar { display: flex; align-items: center; gap: 2px }
+.video-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 2px
+}
+
 .video-toolbar button {
     flex: 0 0 44px;
     display: grid;
@@ -2935,12 +3052,69 @@ body {
     background: transparent;
     cursor: pointer
 }
-.video-toolbar button:hover { background: #ffffff20 }
-.video-time { flex: 1; font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap }
-.video-progress { display: block; width: 100%; margin: 0; height: 18px; accent-color: #85ccff; cursor: pointer }
-.demo-player button:focus-visible, .video-progress:focus-visible, .demo-video:focus-visible { outline: 2px solid #85ccff; outline-offset: -3px }
-.demo-grid .video-status { position: absolute; top: 12px; left: 12px; right: 12px; padding: 12px; margin: 0; border-radius: 8px; background: #102936ed; color: #fff; font-size: 13px }
-.demo-player:fullscreen { width: 100%; height: 100%; border-radius: 0; display: grid; place-items: center; background: #071116 }
-.demo-player:fullscreen .demo-video { width: 100%; height: 100%; object-fit: contain }
-.demo-player:fullscreen .video-controls { max-width: 640px; margin-inline: auto }
-@media (prefers-reduced-motion: reduce) { .video-controls { transition: none } }
+
+.video-toolbar button:hover {
+    background: #ffffff20
+}
+
+.video-time {
+    flex: 1;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap
+}
+
+.video-progress {
+    display: block;
+    width: 100%;
+    margin: 0;
+    height: 18px;
+    accent-color: #85ccff;
+    cursor: pointer
+}
+
+.demo-player button:focus-visible,
+.video-progress:focus-visible,
+.demo-video:focus-visible {
+    outline: 2px solid #85ccff;
+    outline-offset: -3px
+}
+
+.demo-grid .video-status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 12px;
+    margin: 0;
+    border-radius: 8px;
+    background: #102936ed;
+    color: #fff;
+    font-size: 13px
+}
+
+.demo-player:fullscreen {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    display: grid;
+    place-items: center;
+    background: #071116
+}
+
+.demo-player:fullscreen .demo-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain
+}
+
+.demo-player:fullscreen .video-controls {
+    max-width: 640px;
+    margin-inline: auto
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .video-controls {
+        transition: none
+    }
+}

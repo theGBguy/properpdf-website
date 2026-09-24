@@ -1,18 +1,29 @@
 # ProperPDF website
 
-Static pages generated with Python's standard library, hosted on Cloudflare Pages. Two Pages Functions use Cloudflare D1 for development-update signup requests and aggregate analytics. Documents are never uploaded through this website.
+Static pages generated with Python's standard library, hosted on Cloudflare Workers with static assets. Two API handlers use Cloudflare D1 for development-update signup requests and aggregate analytics. Documents are never uploaded through this website.
 
 ## Local preview
 
-Run `npm install` and `npm run dev`. This builds the pages, applies local D1 migrations, and starts Wrangler Pages. Local signups and analytics stay in `.wrangler/state`; they do not reach the production database. A plain Python static server can display pages but cannot serve the `/api/` endpoints.
+Run `npm install` and `npm run dev`. This builds the pages, applies local D1 migrations, and starts Wrangler Workers at `http://localhost:8788`. Local signups and analytics stay in `.wrangler/state`; they do not reach the production database. A plain Python static server can display pages but cannot serve the `/api/` endpoints.
 
-After introducing D1 bindings, restart any older `wrangler pages dev` process so it loads the new configuration. `npm test` runs the database/API and carousel regression tests (Node 22.13+ required). `npm run check:deploy` checks generated assets; `npm run check:functions` compiles the Pages Functions.
+After changing the Worker configuration, restart any older development process so it loads the new entry point and bindings. `npm test` runs the database/API and carousel regression tests (Node 22.13+ required). `npm run check:deploy` checks generated assets and performs a Worker deployment dry run. `npm run check:worker` (also available as `check:functions`) bundles the Worker without publishing.
 
 ## Cloudflare setup and publishing
 
-`wrangler.jsonc` uses Pages configuration (`pages_build_output_dir`) and binds `DB` to the `properpdf-site-data` D1 database. The database ID is not a secret. The database and its initial tables have been provisioned; adding a binding in this file takes effect on the next Pages deployment.
+`wrangler.jsonc` targets the existing Worker **properpdf-website**, with `server/worker.js` as its entry point, `public/` as static assets, and `DB` bound to `properpdf-site-data`. API paths invoke the Worker first; content and media are served directly from static assets. The existing handlers under `functions/api/` are explicitly imported by the Worker; they are not deployed as Pages Functions.
 
-For a fresh account, create a D1 database with `npx wrangler d1 create properpdf-site-data`, replace `database_id` in `wrangler.jsonc`, and run `npm run db:migrate:remote`. Authenticate with `npx wrangler login` if needed. Use `npm run deploy` to publish the site and Functions. Set `CLOUDFLARE_PAGES_PROJECT` if the Pages project is not named `tryproperpdf`. For Git-connected Pages builds, use `npm run build` and `public` as the output directory; the root `functions/` directory is bundled automatically.
+The D1 database and initial tables have already been provisioned. The database ID is not a secret. Authenticate with `npx wrangler login` if needed. Use `npm run deploy` to generate the site and deploy both the Worker and assets. Do not use `wrangler pages deploy`: this account's live site is a Worker, not a Pages project.
+
+For the Git-connected Cloudflare **Workers Builds** project, set:
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Root directory: this repository's root
+- Worker name: `properpdf-website` (matches `wrangler.jsonc`)
+
+`npm run deploy` is also a valid deploy command; it repeats the generation step. The Worker configuration supplies the asset directory, so no Pages output-directory setting is needed. Preserve the existing custom domain in Cloudflare.
+
+For a fresh account, create a D1 database with `npx wrangler d1 create properpdf-site-data`, replace `database_id` in `wrangler.jsonc`, and run `npm run db:migrate:remote`.
 
 Migrations are additive and tracked by D1. Run `npm run db:migrate:remote` before deploying code that requires new tables. Never use `--remote` for test signups or analytics fixtures.
 
@@ -38,6 +49,6 @@ D1 saves requests; it does not send campaigns or verify email ownership. Before 
 
 ## Content
 
-The homepage is maintained in `public/index.html`. Edit the `features`, `guides`, and `article_mockups` lists in `generate.py` for content pages. The generator writes the articles, route aliases, sitemap, security headers, API routing manifest, and analytics path allowlist. `public/site-data.js` handles signups and site events on all canonical pages.
+The homepage is maintained in `public/index.html`. Edit the `features`, `guides`, and `article_mockups` lists in `generate.py` for content pages. The generator writes the articles, route aliases, sitemap, security headers, analytics path allowlist. `public/site-data.js` handles signups and site events on all canonical pages.
 
 The app Privacy Policy and Terms of Service remain in `legal-source/`. A separate website-specific data notice is generated on the privacy page. Pricing lists reference USD amounts for weekly, monthly, yearly, and lifetime Pro plans; actual offers are shown in the app.

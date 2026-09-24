@@ -1,14 +1,23 @@
 {
-  "name": "tryproperpdf",
+  "name": "properpdf-website",
   "compatibility_date": "2026-09-23",
-  "pages_build_output_dir": "./public",
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "properpdf-site-data",
       "database_id": "16a21ee3-6ae1-4de8-81ae-bef19a2289dc",
-      "preview_database_id": "DB",
       "migrations_dir": "migrations"
     }
-  ]
+  ],
+  "main": "server/worker.js",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/api",
+      "/api/*"
+    ]
+  }
 }
