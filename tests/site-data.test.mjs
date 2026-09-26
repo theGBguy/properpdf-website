@@ -8,6 +8,7 @@ import { onRequest as events } from '../functions/api/events.js';
 function database() {
   const sql = new DatabaseSync(':memory:');
   sql.exec(readFileSync(new URL('../migrations/0001_site_data.sql', import.meta.url), 'utf8'));
+  sql.exec(readFileSync(new URL('../migrations/0002_analytics_sources.sql', import.meta.url), 'utf8'));
   return { sql, prepare(query) {
     let values = [];
     const statement = {
@@ -86,4 +87,18 @@ test('rejects arbitrary event dimensions, removes old counters, and limits signu
   const signup = () => subscribe({ request: request('subscribe', { email: 'a@example.com', consent: true }), env: { DB } });
   for (let i = 0; i < 30; i++) assert.equal((await signup()).status, 200);
   assert.equal((await signup()).status, 429);
+});
+
+test('attributes store clicks, rejects unbounded source data, and expires source counters', async () => {
+  const DB = database();
+  const body = { event: 'download_click', path: '/', platform: 'ios', source: 'google', landing: '/' };
+  for (let i = 0; i < 2; i++) assert.equal((await events({ request: request('events', body), env: { DB } })).status, 200);
+  const row = DB.sql.prepare('SELECT * FROM analytics_sources_daily').get();
+  assert.equal(row.source, 'google'); assert.equal(row.count, 2); assert.equal(row.landing, '/');
+  for (const extra of [{ source: 'person@example.com' }, { landing: '/?secret=123' }]) {
+    assert.equal((await events({ request: request('events', { ...body, ...extra }), env: { DB } })).status, 400);
+  }
+  DB.sql.exec("INSERT INTO analytics_sources_daily VALUES ('2020-01-01', 'page_view', '/', 'none', 'google', '/', 1)");
+  await events({ request: request('events', body), env: { DB } });
+  assert.equal(DB.sql.prepare("SELECT count(*) AS n FROM analytics_sources_daily WHERE day='2020-01-01'").get().n, 0);
 });
