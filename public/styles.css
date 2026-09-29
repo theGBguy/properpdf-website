@@ -191,6 +191,14 @@ h3 {
     margin: 0
 }
 
+.hero-privacy {
+    max-width: 540px;
+    margin: 16px 0 0;
+    color: #244b5a;
+    font-size: 17px;
+    line-height: 1.5
+}
+
 .hero-actions {
     display: flex;
     gap: 12px;
@@ -1082,8 +1090,25 @@ h3 {
 
 .download-actions {
     display: flex;
-    gap: 12px;
-    flex-wrap: wrap
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap
+}
+
+.hero-actions .store-badge,
+.download-actions .store-badge {
+    --badge-height: 60px
+}
+
+/* The Google artwork includes more transparent space than the Apple badge. */
+.hero-actions .android-badge,
+.download-actions .android-badge {
+    padding-inline: 12px
+}
+
+.hero-actions .android-badge img,
+.download-actions .android-badge img {
+    transform: scale(1.12)
 }
 
 .button-white {
@@ -1177,6 +1202,17 @@ h3 {
 
     .showcase-card img {
         width: 210px
+    }
+
+    .download-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 70px 0
+    }
+
+    .download-actions {
+        margin-top: 28px;
+        flex-wrap: wrap
     }
 }
 
@@ -1466,6 +1502,11 @@ h3 {
 
     .download-actions {
         margin-top: 28px
+    }
+
+    .hero-actions .store-badge,
+    .download-actions .store-badge {
+        --badge-height: 49px
     }
 
     .footer-main,
@@ -2625,7 +2666,7 @@ body {
 
 /* Keep emphasis selective: display type leads, supporting UI stays lighter. */
 .hero h1 {
-    font-size: clamp(52px, 6.2vw, 74px);
+    font-size: clamp(46px, 5.2vw, 66px);
     font-weight: 750
 }
 
@@ -2664,7 +2705,7 @@ body {
 
 @media(max-width:700px) {
     .hero h1 {
-        font-size: clamp(46px, 11vw, 60px)
+        font-size: clamp(38px, 9vw, 52px)
     }
 
     .section-heading h2,

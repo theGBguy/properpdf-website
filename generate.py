@@ -27,14 +27,16 @@ def download_buttons(context: str = "hero") -> str:
 
 def software_schema() -> dict:
     return {"@context": "https://schema.org", "@graph": [{
-        "@type": "SoftwareApplication",
+        "@type": "MobileApplication",
+        "@id": f"{BASE}/#app",
         "name": SITE_NAME,
-        "operatingSystem": "iOS, iPadOS, Android",
-        "applicationCategory": "UtilitiesApplication",
-        "description": "An offline PDF app for merging, splitting, compressing, signing, converting, and organizing documents.",
-        "url": BASE,
+        "operatingSystem": "Android, iOS, iPadOS",
+        "applicationCategory": "ProductivityApplication",
+        "description": "Privacy-first offline PDF editor for Android and iOS. Merge, split, compress, convert, sign, and scan PDFs on your device without uploading your files.",
+        "url": f"{BASE}/",
         "downloadUrl": [IOS, ANDROID],
-    }, {"@type": "Organization", "name": SITE_NAME, "url": BASE, "logo": f"{BASE}/assets/icon.png"}]}
+        "sameAs": [IOS, ANDROID],
+    }, {"@type": "Organization", "name": SITE_NAME, "url": f"{BASE}/", "logo": f"{BASE}/assets/icon.png"}]}
 
 
 def schema_script(data: dict) -> str:
