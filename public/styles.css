@@ -144,7 +144,7 @@ a:focus-visible {
     font-size: 12px;
     font-weight: 800;
     letter-spacing: .13em;
-    color: #1671c4
+    color: #0d5f9b
 }
 
 .eyebrow {
@@ -250,14 +250,14 @@ h3 {
 
 .hero-review {
     margin: 10px 0 0;
-    color: #66757c;
+    color: #52616a;
     font-size: 14px;
     font-style: italic
 }
 
 .hero-review span {
     font-style: normal;
-    color: #87949a
+    color: #52616a
 }
 
 .download-buttons {
@@ -382,7 +382,7 @@ h3 {
 
 .review-grid figcaption {
     margin-top: 20px;
-    color: #829095;
+    color: #52616a;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: .08em;
@@ -473,7 +473,7 @@ h3 {
 }
 
 .comparison-proper strong {
-    color: #148a62
+    color: #0c6a4b
 }
 
 .pricing-offers {
@@ -562,7 +562,7 @@ h3 {
 
 .pricing-table thead th {
     background: #eaf5fb;
-    color: #277ab0;
+    color: #0d5f9b;
     font-size: 12px;
     letter-spacing: .12em;
     text-transform: uppercase
@@ -633,7 +633,7 @@ h3 {
 .email-capture small {
     display: block;
     margin-top: 10px;
-    color: #82918e;
+    color: #52616a;
     font-size: 11px
 }
 
@@ -1135,7 +1135,7 @@ h3 {
 }
 
 .footer-main p {
-    color: #839096;
+    color: #52616a;
     font-size: 13px;
     margin: 10px 0 0
 }
@@ -1154,7 +1154,7 @@ h3 {
     padding: 20px 0 30px;
     display: flex;
     justify-content: space-between;
-    color: #8b969a;
+    color: #52616a;
     font-size: 12px
 }
 
@@ -1565,7 +1565,7 @@ h3 {
 
 .feature-note {
     margin: 20px 0 0;
-    color: #78858b;
+    color: #52616a;
     font-size: 12px;
     line-height: 1.6
 }
@@ -1680,7 +1680,7 @@ h3 {
 
 .pricing-note {
     text-align: center;
-    color: #7a888e;
+    color: #52616a;
     font-size: 12px;
     margin-top: 20px
 }
@@ -2361,7 +2361,7 @@ h3 {
 }
 
 .mockup-copy span {
-    color: #2879a8;
+    color: #0d5f9b;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: .13em
@@ -2376,7 +2376,7 @@ h3 {
 
 .mockup-copy p {
     max-width: 245px;
-    color: #63747b;
+    color: #52616a;
     font-size: 14px;
     line-height: 1.65;
     margin: 0
@@ -2488,7 +2488,7 @@ h3 {
 }
 
 .home-guide-category {
-    color: #2879a8;
+    color: #0d5f9b;
     font-size: 12px;
     font-weight: 700
 }

@@ -14,14 +14,24 @@
   let keyboardInput = false;
   let resumeAfter = 0;
   let active = initial;
+  let radius = Math.min(100, root.clientWidth * 0.2);
+
+  function loadPanelImage(panel) {
+    const image = panel.querySelector?.('img[data-src]');
+    if (!image) return;
+    image.src = image.dataset.src;
+    delete image.dataset.src;
+  }
+
+  loadPanelImage(panels[initial]);
 
   function render() {
     const step = Math.floor(elapsed / cycle);
     const progress = Math.max(0, (elapsed % cycle - hold) / travel);
     const eased = progress * progress * (3 - 2 * progress);
     const angle = (step + eased) * Math.PI;
-    // Scale the orbit to the column so it remains inside narrow viewports.
-    const radius = Math.min(100, root.clientWidth * 0.2);
+    // Start the small alternate screenshot shortly before its first rotation.
+    if (elapsed % cycle >= hold - 700) loadPanelImage(panels[(step + 1) % panels.length]);
     active = (step + (eased >= 0.5 ? 1 : 0)) % 2;
     panels.forEach((panel, index) => {
       const phase = angle + index * Math.PI;
@@ -91,7 +101,10 @@
     if (!root.contains(event.relatedTarget)) { focused = false; update(); }
   });
   document.addEventListener('visibilitychange', update);
-  window.addEventListener('resize', render);
+  window.addEventListener('resize', () => {
+    radius = Math.min(100, root.clientWidth * 0.2);
+    render();
+  });
   render();
   update();
 })();

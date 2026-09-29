@@ -9,6 +9,10 @@ function setup({ platform = 'ios', reduced = false } = {}) {
   }
   const root = element();
   const panels = ['ios', 'android'].map(previewPlatform => element({ previewPlatform }));
+  const images = [element(), element({ src: 'assets/mockups/android/8home1-portrait-660.webp' })];
+  panels.forEach((panel, index) => {
+    panel.querySelector = () => images[index].dataset.src ? images[index] : null;
+  });
   root.clientWidth = 500;
   root.querySelectorAll = () => panels;
   root.contains = () => false;
@@ -26,7 +30,7 @@ function setup({ platform = 'ios', reduced = false } = {}) {
     requestAnimationFrame(callback) { next = callback; return 1; },
     cancelAnimationFrame() { next = null; }
   });
-  return { root, panels, document, motion, pending: () => Boolean(next), advance(ms) {
+  return { root, panels, images, document, motion, pending: () => Boolean(next), advance(ms) {
     for (let i = 0; i < ms; i += 16) {
       time += 16;
       if (next) { const callback = next; next = null; callback(time); }
@@ -36,12 +40,19 @@ function setup({ platform = 'ios', reduced = false } = {}) {
 
 test('starts rotating automatically and pairs the active panel with its platform', () => {
   const view = setup();
+  assert.equal(view.images[1].src, undefined);
   view.advance(2500);
+  assert.equal(view.images[1].src, 'assets/mockups/android/8home1-portrait-660.webp');
   assert.notEqual(view.panels[0].style.transform, 'translate3d(0px, 0, 0px) rotateY(0deg)');
   view.advance(1000);
   assert.equal(view.root.dataset.active, 'android');
   assert.equal(view.panels[0].inert, true);
   assert.equal(view.panels[1].inert, false);
+});
+
+test('loads the Android screenshot immediately when Android is the initial platform', () => {
+  const view = setup({ platform: 'android' });
+  assert.equal(view.images[1].src, 'assets/mockups/android/8home1-portrait-660.webp');
 });
 
 test('pointer focus does not permanently pause after clicking and leaving', () => {
