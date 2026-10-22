@@ -1140,6 +1140,17 @@ h3 {
     margin: 10px 0 0
 }
 
+.footer-peerpush {
+    display: inline-block;
+    margin-top: 18px
+}
+
+.footer-peerpush img {
+    display: block;
+    width: 230px;
+    height: auto
+}
+
 .footer-links {
     display: flex;
     gap: 32px;
