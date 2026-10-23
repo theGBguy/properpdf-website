@@ -123,7 +123,7 @@ def page(title: str, description: str, path: str, content: str, extra_schema: li
     <a class="nav-cta smart-download" href="{IOS_UTM}" data-ios-href="{IOS_UTM}" data-android-href="{ANDROID_UTM}">Download on iPhone <span aria-hidden="true">↗</span></a>
 </div></header>
 <main id="main">{content}</main>
-<footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="/"><img src="/assets/icon.png" alt="" width="34" height="34"><span>ProperPDF</span></a><p>Offline PDF tools for iPhone and Android.</p></div><div class="footer-links"><a href="/guides">Guides</a><a href="/pricing">Pricing</a><a href="/support">Support</a><a href="{IOS_UTM}">App Store</a><a href="{ANDROID_UTM}">Google Play</a><a href="/privacy-policy">Privacy policy</a><a href="/terms-of-service">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 ProperPDF</span><span>PDF processing on your device.</span></div></footer>
+<footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="/"><img src="/assets/icon.png" alt="" width="34" height="34"><span>ProperPDF</span></a><p>Offline PDF tools for iPhone and Android.</p></div><div class="footer-links"><a href="/guides">Guides</a><a href="/pricing">Pricing</a><a href="/support">Support</a><a href="/how-offline-works">How offline works</a><a href="/changelog">Changelog</a><a href="/about">About</a><a href="/privacy-policy">Privacy policy</a><a href="/terms-of-service">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 ProperPDF</span><span>PDF processing on your device.</span></div></footer>
 <script>(function () {{ var ua = navigator.userAgent; var platform = /Android/i.test(ua) ? 'android' : /iPhone|iPad|iPod/i.test(ua) ? 'ios' : 'desktop'; document.body.dataset.platform = platform; document.querySelectorAll('.smart-download').forEach(function (link) {{ if (platform === 'android') {{ link.href = link.dataset.androidHref; link.innerHTML = 'Get it on Google Play <span aria-hidden="true">↗</span>'; }} }}); }}());</script>
 <script src="/site-data.js?v=1" defer></script>
 </body></html>'''
@@ -216,13 +216,13 @@ features = [
          steps=["Open ProperPDF and tap Compress PDF.", "Select the PDF.", "Move the image resolution slider. Lower means a smaller file and softer images. The app shows the current size and an estimate of the new one.", "Save. ProperPDF writes a new, smaller copy and keeps the original.", "Open the copy and zoom in on small text and signatures before you send it."],
          sections=[
              ("Why compress on the device", ["Online compressors have to receive your file before they can shrink it. That is fine for a flyer, less fine for a payslip, a medical letter or a signed contract. ProperPDF does the same job without the upload."]),
-             ("Getting a smaller file", ["Scans and photo-heavy PDFs shrink the most; a 20-page text export from Word has very little to give. If the file is still too big, split off or delete the pages the recipient doesn't need, which cuts size without touching quality.", "On iPhone, stronger compression turns each page into an image. Text in the copy can no longer be selected or searched, and form fields and links are removed, so keep the original if you need those."]),
+             ("Getting a smaller file", ["Scans and photo-heavy PDFs shrink the most; a 20-page text export from Word has very little to give. If the file is still too big, split off or delete the pages the recipient doesn't need, which cuts size without touching quality.", "On iPhone, compression currently turns each page into an image. Text in the copy can no longer be selected or searched, and form fields, links and annotations are removed, so keep the original if you need those. On Android, only the images inside the PDF are shrunk."]),
          ],
          faq=[
              ("Is PDF compression free in ProperPDF?", "No. Compress PDF is part of Pro on both iPhone and Android."),
              ("How much smaller will my PDF get?", "It depends on the file. Scans and photo-heavy PDFs often shrink a lot; text-only PDFs may hardly change. The app shows an estimated size before you save."),
              ("Will compression make my PDF blurry?", "Lower resolutions soften images and scanned text. Save, zoom in on the smallest text, and pick a higher setting if it's hard to read."),
-             ("Will I still be able to select text after compressing?", "On Android, yes. On iPhone, stronger compression turns pages into images, so text can't be selected and form fields and links are removed. ProperPDF keeps your original file."),
+             ("Will I still be able to select text after compressing?", "On Android, yes. On iPhone, compression currently turns pages into images, so text can't be selected and form fields and links are removed. ProperPDF keeps your original file."),
          ], related=["split-pdf", "merge-pdf"]),
     dict(slug="pdf-to-image", title="Convert PDF pages to images offline",
          description="Export PDF pages as PNG or JPEG images on iPhone, iPad or Android, offline and without uploading the document.",
@@ -359,7 +359,7 @@ guides = [
          steps=["Open ProperPDF and tap Compress PDF.", "Select the PDF.", "Lower the image resolution until the estimated size is small enough.", "Save the copy, then zoom in on small text and signatures to check them."],
          sections=[
              ("Why not an online compressor?", ["Sites like Smallpdf and iLovePDF process your file on their servers. Smallpdf says it deletes uploads after one hour, and for most documents that's fine. For a payslip, a medical letter or a signed contract, skipping the upload removes the question."]),
-             ("If the file is still too big", ["Text-heavy PDFs have little to compress. Remove the pages the recipient doesn't need with Split PDF or Organize Pages, which cuts size without touching quality.", "On iPhone, stronger compression turns pages into images, so the copy loses selectable text, form fields and links. Keep the original if you need them."]),
+             ("If the file is still too big", ["Text-heavy PDFs have little to compress. Remove the pages the recipient doesn't need with Split PDF or Organize Pages, which cuts size without touching quality.", "On iPhone, compression currently turns pages into images, so the copy loses selectable text, form fields and links. Keep the original if you need them."]),
          ],
          faq=[
              ("Can I compress a PDF offline?", "Yes. ProperPDF compresses PDFs on iPhone, iPad and Android without an internet connection."),
@@ -410,18 +410,18 @@ guides = [
              ("Is my signature uploaded?", "No. The signature and the document stay on your phone."),
          ], related=["fill-pdf", "lock-pdf"]),
     dict(slug="fill-pdf", title="Fill PDF forms on your phone",
-         description="Type into fillable PDF forms on iPhone, iPad or Android with ProperPDF, offline, and save the completed copy.",
+         description="Fill PDF forms on iPhone, iPad or Android with ProperPDF, offline: type into form fields, or add text to a scanned or flat form, and save a copy.",
          lead="Type into form fields, tick checkboxes and save the finished PDF.",
-         answer="To fill a PDF form on your phone, open Fill PDF in ProperPDF, pick the form, type into its fields, tick the checkboxes and save a completed copy. It works offline on iPhone, iPad and Android and is a Pro tool. It fills forms that have built-in fields. A scanned or flat form with no fields can't be typed into this way.",
+         answer="To fill a PDF form on your phone, open Fill PDF in ProperPDF, pick the form, type into its fields, tick the checkboxes and save a completed copy. It works offline on iPhone, iPad and Android and is a Pro tool. If the PDF has no form fields, such as a scanned form, ProperPDF switches to placing text where you tap instead.",
          steps_title="How to fill a PDF form in ProperPDF",
-         steps=["Open ProperPDF and tap Fill Forms.", "Select the PDF form.", "Tap each field to type, and tap checkboxes to tick them.", "Save. The completed form is a new copy, so the blank original stays available.", "If it needs a signature, open the completed copy in Sign PDF."],
+         steps=["Open ProperPDF and tap Fill Forms.", "Select the PDF form.", "Tap each field to type, and tap checkboxes to tick them. On a form without fields, tap where the text should go and type it.", "Save. The completed form is a new copy, so the blank original stays available.", "If it needs a signature, open the completed copy in Sign PDF."],
          sections=[
-             ("Which forms work", ["Government, school and HR forms are often made with fillable fields, and those work. If tapping the page does nothing, the PDF is probably a flat scan without fields."]),
+             ("Forms with and without fields", ["Many government, school and HR forms have built-in fields; ProperPDF finds them and you type straight into them. A scanned or flat form has no fields, so ProperPDF lets you place text on the page instead. That works, but the text isn't a form field, so check it lines up with the boxes before you send it."]),
              ("Before sending", ["Check names, dates and numbers, then remove any pages the recipient doesn't need."]),
          ],
          faq=[
              ("Is filling PDF forms free?", "No. Fill Forms is a Pro tool in ProperPDF."),
-             ("Can I fill a scanned form?", "Not with Fill Forms, because a scan has no form fields to type into."),
+             ("Can I fill a scanned form?", "Yes. When a PDF has no form fields, ProperPDF lets you tap anywhere on the page and type, so you can fill in scanned or flat forms."),
          ], related=["sign-pdf", "split-pdf"]),
     dict(slug="image-to-pdf", title="Turn photos into a PDF on your phone",
          description="Combine photos, screenshots and scans into one PDF on iPhone, iPad or Android with ProperPDF, offline. Free to use.",
@@ -702,8 +702,76 @@ pricing_faq = [
     ("Do I need an account?", "No. ProperPDF doesn't have accounts. Purchases go through your Apple or Google account."),
 ]
 
-slugs = ["features", "guides", "support", "pricing", "privacy-policy", "terms-of-service"] + [item["slug"] for item in features + guides + comparisons]
+slugs = ["features", "guides", "support", "pricing", "privacy-policy", "terms-of-service", "how-offline-works", "changelog", "about"] + [item["slug"] for item in features + guides + comparisons]
 write_static_files(slugs)
+
+
+# Trust pages: how offline processing works, the release history, and who makes the app.
+# Network facts come from the shipped apps' dependencies (Firebase Analytics, Crashlytics
+# and Messaging, RevenueCat, and the AI model download). Keep them in step with the code.
+NETWORK_USES = [
+    ("Buying Pro", "Your purchase and its status go through the App Store or Google Play, with RevenueCat checking whether Pro is active. No document data is involved."),
+    ("Usage statistics", "Firebase Analytics records which tools are used and when something fails, so we know what to improve. It never receives the contents of your documents."),
+    ("Crash reports", "Firebase Crashlytics sends a technical report when the app crashes. It contains no document content."),
+    ("Notifications", "Firebase Cloud Messaging delivers the occasional tip or update notice. You can turn notifications off in your phone's settings."),
+    ("The AI chat model", "AI chat runs on the device. On iPhones with Apple Intelligence it uses Apple's built-in model. On other iPhones and on Android, the app downloads a small open model once, then works offline."),
+]
+
+CHANGELOG = [
+    # (version, month label, platform, [changes]). Newest first; user-facing changes only.
+    ("1.4.2", "September 2026", "iPhone, iPad and Android", ["Open the ProperPDF website from Settings.", "Updated the support email and the Privacy Policy and Terms links."]),
+    ("1.4.1", "September 2026", "Android", ["A new design that matches the iPhone app.", "A shorter first-run setup.", "The scanner no longer fails to open on phones without certified Google Play services."]),
+    ("1.4.1", "September 2026", "iPhone and iPad", ["Performance and stability improvements."]),
+    ("1.4.0", "June 2026", "iPhone and iPad", ["A redesigned app, from the home screen to every tool.", "A shorter first-run setup.", "Text you add in Fill Forms now looks and edits correctly."]),
+    ("1.4.0", "May 2026", "Android", ["Merge, split and compress handle large PDFs without running out of memory.", "Split shows a full page preview.", "Pages render correctly in dark theme."]),
+    ("1.3.0", "June 2026", "iPhone and iPad", ["AI chat rebuilt on Apple's on-device models, and you can start a chat from the library.", "Compression no longer makes already-optimized PDFs bigger."]),
+    ("1.3.0", "April 2026", "Android", ["Place signatures on each page separately.", "A new first-run setup.", "Large PDFs no longer run out of memory."]),
+    ("1.2.0", "May 2026", "iPhone and iPad", ["Redeem App Store offer codes from Settings."]),
+    ("1.2.0", "March 2026", "Android", ["Organize Pages: reorder, rotate and delete pages.", "When locking a PDF, you can restrict printing and editing instead of requiring a password to open it.", "Stability fixes for large files and Image to PDF (1.2.1 and 1.2.2)."]),
+    ("1.1.0", "May 2026", "iPhone and iPad", ["Sign several pages in one go.", "Five more languages.", "Runs on iOS 17 and later (previously a newer version was required).", "Better answers from AI chat."]),
+    ("1.1.0", "February 2026", "Android", ["Fill forms that have no form fields by placing text on the page.", "Improved signing."]),
+    ("1.0", "April 2026", "iPhone and iPad", ["First release: scan, merge, split, compress, organize, sign, fill, lock, convert, edit metadata and on-device AI chat, in six languages."]),
+]
+
+
+def info_page(slug: str, kicker: str, title: str, description: str, lead: str, body: str, faq: list | None = None) -> None:
+    item = {"title": title, "lead": lead}
+    faq_block = faq_html(faq) if faq else ""
+    content = f'''{hero(kicker, item)}<div class="container content-layout"><article class="article-body">{body}{faq_block}{cta()}</article><aside class="related-links"><p class="kicker">KEEP EXPLORING</p><a href="/how-offline-works">How offline works <span aria-hidden="true">↗</span></a><a href="/changelog">Changelog <span aria-hidden="true">↗</span></a><a href="/about">About ProperPDF <span aria-hidden="true">↗</span></a><a href="/pricing">Free vs Pro <span aria-hidden="true">↗</span></a></aside></div>'''
+    write(slug, title, description, content, article_schema(title, description, f"/{slug}", "Guides", faq))
+
+
+network_rows = "".join(f'<tr><th scope="row">{escape(name)}</th><td>{escape(text)}</td></tr>' for name, text in NETWORK_USES)
+offline_faq = [
+    ("Does ProperPDF upload my PDFs?", "No. Every PDF tool runs on your phone or tablet. ProperPDF has no server that receives documents."),
+    ("Does ProperPDF collect any data?", "Anonymous usage statistics and crash reports through Firebase, and purchase status through the App Store or Google Play. None of it includes the contents of your documents."),
+    ("Can I check this myself?", "Yes. Turn on airplane mode and use any PDF tool. On iPhone you can also turn on App Privacy Report in Settings, Privacy & Security, to see every domain an app contacts."),
+]
+info_page("how-offline-works", "PRIVACY", "How ProperPDF works offline",
+          "Every ProperPDF tool runs on your phone, so PDFs are never uploaded. Here is what does use the internet, what is collected, and how to check it yourself.",
+          "What happens on your phone, what uses the internet, and how to check both.",
+          f'''<p class="answer">ProperPDF does all PDF work on your phone or tablet: merging, splitting, compressing, signing, filling, locking, scanning and converting. Your documents never go to a ProperPDF server, because there isn't one that receives files. The app does use the internet for a few things that don't involve your documents: purchases, anonymous usage statistics, crash reports, notifications and a one-time AI model download.</p>
+<section><h2>What happens on your phone</h2><p>On iPhone and iPad, ProperPDF uses Apple's own PDF and camera frameworks. On Android, it uses the open-source PDFBox library and Google's on-device document scanner. Files you create are saved in ProperPDF's library on the device and leave it only when you share them.</p><p>Because nothing is uploaded, every PDF tool works in airplane mode, and a large file takes the same time on a slow connection as on a fast one.</p></section>
+<section><h2>What does use the internet</h2><table class="facts-table"><tbody>{network_rows}</tbody></table></section>
+<section><h2>Check it yourself</h2><ol class="steps"><li>Turn on airplane mode.</li><li>Open ProperPDF and merge, compress or sign a PDF.</li><li>It works the same as online. Nothing could have been uploaded.</li></ol><p>On iPhone, Settings, then Privacy & Security, then App Privacy Report lists every domain each app contacts, so you can see for yourself what ProperPDF connects to.</p></section>
+<section><h2>What offline doesn't cover</h2><p>When you share a PDF by email, WhatsApp or a cloud drive, it goes wherever you send it. Device backups, such as iCloud Backup or Google's backup, may include ProperPDF's library, depending on your backup settings. If a file needs protecting in transit, lock it with a password and send the password separately.</p><p>The full details are in the <a href="/privacy-policy">privacy policy</a>.</p></section>''',
+          offline_faq)
+
+changelog_html = "".join(
+    f'<section class="release"><h2>{escape(version)} <span>{escape(platform)} · {escape(month)}</span></h2><ul>' + "".join(f"<li>{escape(change)}</li>" for change in changes) + "</ul></section>"
+    for version, month, platform, changes in CHANGELOG) + '<p class="table-note">Android versions before 1.1.0 and minor bug-fix releases are not listed.</p>'
+info_page("changelog", "CHANGELOG", "What's new in ProperPDF",
+          "Release history for ProperPDF on iPhone, iPad and Android: new tools, fixes and changes in each version.",
+          "Every release on iPhone, iPad and Android, newest first.",
+          f'''<p class="answer">ProperPDF is updated on both platforms. The iPhone and Android apps are built separately, so a version number can arrive on each at a different time, with different changes.</p>{changelog_html}''')
+
+info_page("about", "ABOUT", "About ProperPDF",
+          "ProperPDF is an offline PDF app for iPhone, iPad and Android, made by an independent developer. Why it exists, how it's built and how it makes money.",
+          "An offline PDF app made by one independent developer.",
+          '''<p class="answer">ProperPDF is made by one independent developer. It started from a simple annoyance: most phone PDF tools want you to upload a document, make an account, or watch an ad before they'll merge two files. ProperPDF does the everyday PDF jobs on the phone instead, with no account, no ads and no uploads.</p>
+<section><h2>How it's built</h2><p>There are two native apps rather than one shared codebase. The iPhone and iPad app is written in Swift with Apple's PDFKit. The Android app is written in Kotlin with Jetpack Compose and the PDFBox library. They share a design and a feature list, so a tool works the same way on both.</p></section>
+<section><h2>How it makes money</h2><p>Pro unlocks compress, sign, fill forms and password protection, and removes the watermark from free exports. That's the only income: no ads, and no selling of data. You can pay once for lifetime access instead of subscribing.</p></section>
+<section><h2>Contact</h2><p>Bug reports, feature requests and questions go to <a href="mailto:hello@tryproperpdf.app">hello@tryproperpdf.app</a>, and a person reads every one.</p></section>''')
 
 for item in features:
     write(item["slug"], item["title"], item["description"], feature_html(item), article_schema(item["title"], item["description"], f"/{item['slug']}", "PDF tools", item.get("faq")))
@@ -767,10 +835,13 @@ page_lines = "\n".join(f"- [{item['title']}]({BASE}/{item['slug']}): {item['desc
 ## Pages
 
 - [Pricing]({BASE}/pricing): what's free, what's Pro, prices.
+- [How ProperPDF works offline]({BASE}/how-offline-works): what runs on the device and what uses the internet.
+- [Changelog]({BASE}/changelog): release history for iPhone and Android.
+- [About]({BASE}/about): who makes ProperPDF and how it makes money.
 {page_lines}
 """, encoding="utf-8")
 
-paths = ["/", "/features", "/guides", "/pricing", "/support", "/privacy-policy", "/terms-of-service"] + [f"/{item['slug']}" for item in features + guides + comparisons]
+paths = ["/", "/features", "/guides", "/pricing", "/how-offline-works", "/changelog", "/about", "/support", "/privacy-policy", "/terms-of-service"] + [f"/{item['slug']}" for item in features + guides + comparisons]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{xml_escape(BASE + path)}</loc><lastmod>{UPDATED}</lastmod></url>\n" for path in paths) + "</urlset>\n"
 (PUBLIC / "sitemap.xml").write_text(sitemap, encoding="utf-8")
 print(f"Generated {len(paths)} pages and sitemap.xml")

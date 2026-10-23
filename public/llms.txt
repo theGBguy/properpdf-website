@@ -30,6 +30,9 @@
 ## Pages
 
 - [Pricing](https://tryproperpdf.app/pricing): what's free, what's Pro, prices.
+- [How ProperPDF works offline](https://tryproperpdf.app/how-offline-works): what runs on the device and what uses the internet.
+- [Changelog](https://tryproperpdf.app/changelog): release history for iPhone and Android.
+- [About](https://tryproperpdf.app/about): who makes ProperPDF and how it makes money.
 - [Merge PDFs on iPhone and Android without uploading](https://tryproperpdf.app/merge-pdf): Combine PDF files into one on iPhone, iPad or Android. ProperPDF merges them on your phone, offline, with no account. Free to use.
 - [Split a PDF on iPhone and Android without uploading](https://tryproperpdf.app/split-pdf): Extract pages from a PDF on iPhone, iPad or Android. Split by page range or every few pages, offline, with no account. Free to use.
 - [Compress a PDF on iPhone and Android without uploading](https://tryproperpdf.app/compress-pdf): Reduce PDF file size on iPhone, iPad or Android. ProperPDF compresses on the device, offline, so the document is never uploaded.
@@ -41,7 +44,7 @@
 - [Merge PDFs offline on Android](https://tryproperpdf.app/offline-pdf-merger-android): Combine PDF files on Android without uploading them. ProperPDF merges scans, receipts, forms and reports on the phone. Free to use.
 - [Password protect a PDF on your phone](https://tryproperpdf.app/lock-pdf): Add a password to a PDF on iPhone, iPad or Android with ProperPDF, offline. Also restrict printing and editing, or remove a password you know.
 - [Sign a PDF on your phone without uploading it](https://tryproperpdf.app/sign-pdf): Draw your signature and place it on a PDF on iPhone, iPad or Android. ProperPDF signs documents offline, with no account.
-- [Fill PDF forms on your phone](https://tryproperpdf.app/fill-pdf): Type into fillable PDF forms on iPhone, iPad or Android with ProperPDF, offline, and save the completed copy.
+- [Fill PDF forms on your phone](https://tryproperpdf.app/fill-pdf): Fill PDF forms on iPhone, iPad or Android with ProperPDF, offline: type into form fields, or add text to a scanned or flat form, and save a copy.
 - [Turn photos into a PDF on your phone](https://tryproperpdf.app/image-to-pdf): Combine photos, screenshots and scans into one PDF on iPhone, iPad or Android with ProperPDF, offline. Free to use.
 - [Scan documents to PDF on your phone](https://tryproperpdf.app/scan-to-pdf): Scan paper documents into PDFs with your phone camera on iPhone, iPad or Android. ProperPDF finds the page edges and saves offline.
 - [The best PDF apps that work offline on iPhone and Android](https://tryproperpdf.app/best-offline-pdf-apps): Six PDF apps compared for working offline, without uploads: ProperPDF, PDFgear, Apple Preview, Files by Google, Foxit and Xodo. Prices and limits included.
