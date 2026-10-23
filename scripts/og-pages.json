@@ -14,6 +14,48 @@
  "compress-pdf": {
   "title": "Compress a PDF on iPhone and Android without uploading"
  },
+ "de": {
+  "title": "ProperPDF: PDF-Tools, die deine Dateien nie hochladen"
+ },
+ "de/bild-in-pdf": {
+  "title": "Fotos in PDF umwandeln auf dem Handy"
+ },
+ "de/pdf-teilen": {
+  "title": "PDF teilen auf iPhone und Android, ohne Upload"
+ },
+ "de/pdf-unterschreiben": {
+  "title": "PDF unterschreiben auf dem Handy, ohne Upload"
+ },
+ "de/pdf-verkleinern": {
+  "title": "PDF verkleinern auf iPhone und Android, ohne Upload"
+ },
+ "de/pdf-zusammenfuegen": {
+  "title": "PDF zusammenf\u00fcgen auf iPhone und Android, ohne Upload"
+ },
+ "de/preise": {
+  "title": "ProperPDF Preise: Was kostenlos ist und was Pro kostet"
+ },
+ "es": {
+  "title": "ProperPDF: herramientas PDF que nunca suben tus archivos"
+ },
+ "es/comprimir-pdf": {
+  "title": "Comprimir un PDF en iPhone y Android sin subirlo"
+ },
+ "es/dividir-pdf": {
+  "title": "Dividir un PDF en iPhone y Android sin subirlo"
+ },
+ "es/firmar-pdf": {
+  "title": "Firmar un PDF en el m\u00f3vil sin subirlo"
+ },
+ "es/imagen-a-pdf": {
+  "title": "Convertir fotos a PDF en el m\u00f3vil"
+ },
+ "es/precios": {
+  "title": "Precios de ProperPDF: qu\u00e9 es gratis y qu\u00e9 es Pro"
+ },
+ "es/unir-pdf": {
+  "title": "Unir PDF en iPhone y Android sin subirlos"
+ },
  "features": {
   "title": "PDF tools for iPhone, iPad, and Android"
  },
@@ -31,6 +73,27 @@
  },
  "image-to-pdf": {
   "title": "Turn photos into a PDF on your phone"
+ },
+ "ja": {
+  "title": "ProperPDF\uff1a\u30d5\u30a1\u30a4\u30eb\u3092\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u3057\u306a\u3044PDF\u30a2\u30d7\u30ea"
+ },
+ "ja/jpg-pdf-henkan": {
+  "title": "\u5199\u771f\u3092PDF\u306b\u5909\u63db\u3059\u308b\u65b9\u6cd5\uff1a\u30b9\u30de\u30db\u3067\u7c21\u5358\u306b"
+ },
+ "ja/pdf-asshuku": {
+  "title": "PDF\u3092\u5727\u7e2e\u3059\u308b\u65b9\u6cd5\uff1aiPhone\u30fbAndroid\u3067\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u306a\u3057"
+ },
+ "ja/pdf-bunkatsu": {
+  "title": "PDF\u3092\u5206\u5272\u3059\u308b\u65b9\u6cd5\uff1aiPhone\u30fbAndroid\u3067\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u306a\u3057"
+ },
+ "ja/pdf-ketsugo": {
+  "title": "PDF\u3092\u7d50\u5408\u3059\u308b\u65b9\u6cd5\uff1aiPhone\u30fbAndroid\u3067\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u306a\u3057"
+ },
+ "ja/pdf-shomei": {
+  "title": "PDF\u306b\u7f72\u540d\u3059\u308b\u65b9\u6cd5\uff1a\u30b9\u30de\u30db\u3067\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9\u306a\u3057"
+ },
+ "ja/ryokin": {
+  "title": "ProperPDF\u306e\u6599\u91d1\uff1a\u7121\u6599\u306e\u6a5f\u80fd\u3068Pro\u306e\u9055\u3044"
  },
  "lock-pdf": {
   "title": "Password protect a PDF on your phone"
@@ -70,6 +133,27 @@
  },
  "properpdf-vs-pdf-expert": {
   "title": "ProperPDF vs PDF Expert on iPhone and iPad"
+ },
+ "pt-br": {
+  "title": "ProperPDF: ferramentas de PDF que nunca enviam seus arquivos"
+ },
+ "pt-br/assinar-pdf": {
+  "title": "Assinar PDF no celular sem enviar o arquivo"
+ },
+ "pt-br/comprimir-pdf": {
+  "title": "Comprimir PDF no iPhone e no Android sem enviar arquivos"
+ },
+ "pt-br/dividir-pdf": {
+  "title": "Dividir PDF no iPhone e no Android sem enviar arquivos"
+ },
+ "pt-br/jpg-para-pdf": {
+  "title": "Transformar fotos em PDF no celular"
+ },
+ "pt-br/juntar-pdf": {
+  "title": "Juntar PDF no iPhone e no Android sem enviar arquivos"
+ },
+ "pt-br/precos": {
+  "title": "Pre\u00e7os do ProperPDF: o que \u00e9 gr\u00e1tis e o que \u00e9 Pro"
  },
  "scan-to-pdf": {
   "title": "Scan documents to PDF on your phone"

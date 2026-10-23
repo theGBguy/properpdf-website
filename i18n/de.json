@@ -1,0 +1,431 @@
+{
+ "ui": {
+  "lang_name": "Deutsch",
+  "nav_features": "Funktionen",
+  "nav_pricing": "Preise",
+  "nav_guides": "Anleitungen",
+  "download_ios": "Auf dem iPhone laden",
+  "download_android": "Jetzt bei Google Play",
+  "footer_tagline": "Offline-PDF-Tools für iPhone und Android.",
+  "footer_bottom": "PDFs werden auf deinem Gerät verarbeitet.",
+  "footer_english": "Weitere Anleitungen (auf Englisch)",
+  "cta_kicker": "ZUR APP",
+  "cta_title": "ProperPDF laden",
+  "cta_text": "Kostenlos im App Store und bei Google Play. Kein Konto nötig.",
+  "updated": "Aktualisiert am {date}",
+  "date": "22. Oktober 2026",
+  "proof": "Offline verarbeitet · Kein Konto nötig",
+  "kicker_tool": "PROPERPDF-ANLEITUNG",
+  "faq_title": "Fragen",
+  "related_kicker": "WEITERE PDF-TOOLS",
+  "all_tools_en": "Alle Tools (auf Englisch)",
+  "free_vs_pro": "Kostenlos vs. Pro",
+  "full_screenshot": "Screenshot in voller Größe ansehen",
+  "facts_caption": "{name} in ProperPDF im Überblick",
+  "row_ios": "iPhone und iPad",
+  "row_android": "Android",
+  "row_offline": "Funktioniert offline",
+  "row_offline_v": "Ja",
+  "row_uploads": "Dateien werden hochgeladen",
+  "row_uploads_v": "Nein, die Verarbeitung läuft auf dem Gerät",
+  "row_account": "Konto nötig",
+  "row_account_v": "Nein",
+  "row_requires": "Voraussetzung",
+  "requirements": "iOS 17 oder neuer auf iPhone und iPad; Android 8.0 oder neuer",
+  "free": "Kostenlos",
+  "free_wm": "Kostenlos, mit Wasserzeichen",
+  "free_wm_long": "Kostenlos, mit ProperPDF-Wasserzeichen in der gespeicherten Datei (Pro entfernt es)",
+  "pro": "Pro",
+  "watermark_note": "„Mit Wasserzeichen“ heißt: Dateien, die mit diesem Tool gespeichert werden, tragen ein ProperPDF-Wasserzeichen. Pro entfernt es.",
+  "col_tool": "Tool",
+  "col_ios": "iPhone und iPad",
+  "col_android": "Android",
+  "tool_names": {
+   "Scan to PDF": "Dokument scannen",
+   "Merge PDF": "PDF zusammenführen",
+   "Split PDF": "PDF teilen",
+   "Organize pages (reorder, rotate, delete)": "Seiten organisieren (neu anordnen, drehen, löschen)",
+   "Image to PDF": "Bild zu PDF",
+   "PDF to image (PNG or JPEG)": "PDF zu Bild (PNG oder JPEG)",
+   "Edit metadata": "Metadaten bearbeiten",
+   "PDF viewer and document library": "PDF-Viewer und Dokumentenbibliothek",
+   "Compress PDF": "PDF komprimieren",
+   "Sign PDF": "PDF unterschreiben",
+   "Fill PDF forms": "Formulare ausfüllen",
+   "Lock and unlock PDF (password)": "PDF sperren/entsperren (Passwort)",
+   "AI chat and summary (on-device)": "KI-Chat und Zusammenfassung (auf dem Gerät)"
+  }
+ },
+ "home": {
+  "title": "ProperPDF: PDF-Tools, die deine Dateien nie hochladen",
+  "description": "ProperPDF führt PDFs zusammen, teilt, komprimiert, unterschreibt und scannt sie auf iPhone oder Android. Offline, ohne Upload und ohne Konto.",
+  "h1_a": "PDF-Tools, die",
+  "h1_em": "nichts hochladen.",
+  "lede": "PDFs zusammenführen, teilen, komprimieren, unterschreiben und scannen, direkt auf deinem iPhone oder Android-Handy. Alles läuft auf dem Gerät, deshalb funktioniert es offline und du brauchst kein Konto.",
+  "proof": "Kostenlos laden · Keine Werbung · Kein Konto",
+  "tools_title": "Die täglichen PDF-Aufgaben, direkt auf dem Handy.",
+  "tools": {
+   "merge-pdf": [
+    "Zusammenführen",
+    "Dateien auswählen, in die richtige Reihenfolge ziehen, als ein PDF speichern."
+   ],
+   "split-pdf": [
+    "Teilen",
+    "Einen Seitenbereich herauslösen oder alle paar Seiten eine neue Datei anlegen."
+   ],
+   "compress-pdf": [
+    "Komprimieren",
+    "Die geschätzte Größe sehen, bevor du eine kleinere Kopie speicherst."
+   ],
+   "fill-pdf": [
+    "Formulare ausfüllen",
+    "In Formularfelder tippen und Kästchen ankreuzen."
+   ],
+   "lock-pdf": [
+    "Sperren",
+    "Ein Passwort setzen, bevor du etwas Privates verschickst."
+   ]
+  },
+  "tools_more": "Außerdem in der App: Dokumente scannen, unterschreiben, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Metadaten bearbeiten und ein KI-Chat auf dem Gerät.",
+  "demo_title": "Ein PDF in einer halben Minute unterschreiben.",
+  "demo_text": "Zeichne deine Unterschrift einmal, platziere sie, speichere. Das ist die echte App auf einem iPhone, von Anfang bis Ende.",
+  "demo_link": "So funktioniert das Unterschreiben",
+  "offline_title": "Deine Dateien bleiben auf deinem Handy.",
+  "offline_p1": "Online-PDF-Tools müssen deine Datei erst hochladen, bevor sie damit arbeiten können. ProperPDF erledigt dieselben Aufgaben auf dem Gerät. Das zählt bei Steuerformularen, Verträgen, Ausweisen und Arztbriefen.",
+  "offline_p2": "Glaub es nicht einfach so: Schalte den Flugmodus ein und führe ein PDF zusammen.",
+  "facts": [
+   [
+    "Wo Dateien verarbeitet werden",
+    "Auf deinem Handy oder Tablet"
+   ],
+   [
+    "Uploads",
+    "Keine"
+   ],
+   [
+    "Internet",
+    "Nicht nötig (der KI-Chat lädt sein Modell einmalig herunter)"
+   ],
+   [
+    "Konto",
+    "Keins"
+   ],
+   [
+    "Werbung",
+    "Keine"
+   ]
+  ],
+  "pricing_title": "Kostenlos starten. Einmal zahlen, wenn du mehr brauchst.",
+  "free_h": "Kostenlos",
+  "free_text": "Scannen, zusammenführen, teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern und die Dokumentenbibliothek. Beim Zusammenführen und Teilen kommt ein ProperPDF-Wasserzeichen dazu; unter Android gilt das für die meisten kostenlosen Tools.",
+  "pro_h": "Pro",
+  "pro_price_suffix": "einmalig, für immer deins",
+  "pro_text": "Schaltet Komprimieren, Unterschreiben, Formulare ausfüllen und Passwortschutz frei und entfernt jedes Wasserzeichen. Lieber ein Abo? $3.99 im Monat oder $19.99 im Jahr (auch $1.99 pro Woche).",
+  "pricing_note": "US-Preise. ProperPDF nutzt regionale Preise, daher ist Pro in vielen Ländern günstiger; der App Store oder Google Play zeigt dir deinen lokalen Preis.",
+  "pricing_link": "Alle Tools nach Plattform",
+  "faq": [
+   [
+    "Werden meine PDFs hochgeladen?",
+    "Nein. ProperPDF verarbeitet jede Datei auf deinem Handy oder Tablet. Es gibt keinen ProperPDF-Server, der deine Dokumente empfängt."
+   ],
+   [
+    "Funktioniert die App ohne Internet?",
+    "Ja. Jedes PDF-Tool funktioniert offline. Der KI-Chat auf dem Gerät braucht auf manchen Geräten einen einmaligen Modell-Download, bevor er offline läuft."
+   ],
+   [
+    "Was ist kostenlos und was braucht Pro?",
+    "Scannen, zusammenführen, teilen, Seiten organisieren und konvertieren sind kostenlos. Zusammenführen und Teilen fügen ohne Pro ein Wasserzeichen hinzu, unter Android gilt das für die meisten kostenlosen Tools. Komprimieren, Unterschreiben, Formulare ausfüllen und Sperren brauchen Pro."
+   ],
+   [
+    "Auf welchen Geräten läuft die App?",
+    "Auf iPhone und iPad mit iOS 17 oder neuer sowie auf Android-Handys und -Tablets mit Android 8.0 oder neuer."
+   ]
+  ],
+  "download_title_a": "Behalte deine PDFs",
+  "download_title_em": "auf deinem Gerät.",
+  "download_text": "ProperPDF für iPhone, iPad und Android."
+ },
+ "pricing": {
+  "slug": "preise",
+  "title": "ProperPDF Preise: Was kostenlos ist und was Pro kostet",
+  "description": "ProperPDF ist kostenlos ladbar. Welche Tools auf iPhone und Android kostenlos sind, was Pro braucht und was Pro kostet: pro Woche, Monat, Jahr oder einmalig.",
+  "h1": "Was kostenlos ist und was Pro bietet",
+  "lead": "ProperPDF ist kostenlos ladbar. Pro schaltet Komprimieren, Unterschreiben, Ausfüllen und Sperren frei und entfernt Wasserzeichen.",
+  "answer": "ProperPDF ist kostenlos im App Store und bei Google Play, ohne Werbung und ohne Konto. Scannen, Zusammenführen, Teilen, Seiten organisieren und die Umwandlung zwischen PDF und Bildern sind kostenlos; manche kostenlosen Exporte tragen ein ProperPDF-Wasserzeichen. Pro kostet $3.99 im Monat, $19.99 im Jahr oder $29.99 einmalig für lebenslangen Zugang (US-Preise; in vielen Ländern günstiger) und schaltet Komprimieren, Unterschreiben, Formulare ausfüllen und Passwortschutz frei.",
+  "tools_heading": "Tools nach Plattform",
+  "plans_heading": "Pro-Tarife",
+  "plans": [
+   [
+    "Wöchentlich",
+    "$1.99 pro Woche"
+   ],
+   [
+    "Monatlich",
+    "$3.99 pro Monat"
+   ],
+   [
+    "Jährlich",
+    "$19.99 pro Jahr"
+   ],
+   [
+    "Lebenslang",
+    "$29.99 einmalig"
+   ]
+  ],
+  "regional_note": "Das sind US-Preise. ProperPDF nutzt regionale Preise, daher ist Pro in vielen Ländern günstiger. Der App Store oder Google Play zeigt dir den Preis in deiner Währung, bevor du kaufst.",
+  "renew_note": "Abos verlängern sich über dein Apple- oder Google-Konto, bis du kündigst.",
+  "faq": [
+   [
+    "Ist ProperPDF kostenlos?",
+    "Ja, die App ist im App Store und bei Google Play kostenlos ladbar. Scannen, zusammenführen, teilen, Seiten organisieren und konvertieren sind kostenlos. Manche kostenlosen Exporte tragen ein ProperPDF-Wasserzeichen. Komprimieren, Unterschreiben, Formulare ausfüllen und Sperren brauchen Pro."
+   ],
+   [
+    "Was kostet ProperPDF Pro?",
+    "In den USA: $1.99 pro Woche, $3.99 pro Monat, $19.99 pro Jahr oder $29.99 einmalig für lebenslangen Zugang. ProperPDF nutzt regionale Preise, daher ist es in vielen Ländern günstiger; der Store zeigt dir den lokalen Preis, bevor du kaufst."
+   ],
+   [
+    "Gibt es einen Einmalkauf?",
+    "Ja. Lifetime Pro ist eine einmalige Zahlung von $29.99 in den USA, etwa anderthalb Jahre des Jahrestarifs, und in vielen Ländern weniger. Es gibt kein Abo, das du kündigen musst."
+   ],
+   [
+    "Hat ProperPDF Werbung?",
+    "Nein. Statt Werbung fügt die kostenlose Version bei manchen Tools ein Wasserzeichen zu gespeicherten Dateien hinzu."
+   ],
+   [
+    "Brauche ich ein Konto?",
+    "Nein. ProperPDF hat keine Konten. Käufe laufen über dein Apple- oder Google-Konto."
+   ]
+  ]
+ },
+ "pages": {
+  "merge-pdf": {
+   "slug": "pdf-zusammenfuegen",
+   "title": "PDF zusammenfügen auf iPhone und Android, ohne Upload",
+   "description": "PDF-Dateien auf iPhone, iPad oder Android zu einer zusammenfügen. ProperPDF führt sie auf deinem Handy zusammen, offline und ohne Konto. Kostenlos nutzbar.",
+   "lead": "Dateien auswählen, Reihenfolge festlegen, als ein PDF speichern. Nichts verlässt dein Handy.",
+   "answer": "Um PDFs auf dem Handy zusammenzuführen, ohne sie hochzuladen, öffne in ProperPDF „PDF zusammenführen“, wähle zwei oder mehr Dateien, ziehe sie in die gewünschte Reihenfolge und speichere. Die App fügt sie auf dem Gerät zusammen, daher funktioniert es offline und du brauchst kein Konto. Zusammenführen ist auf iPhone, iPad und Android kostenlos. Kostenlose Exporte tragen ein ProperPDF-Wasserzeichen, das Pro entfernt.",
+   "steps_title": "So führst du PDFs in ProperPDF zusammen",
+   "steps": [
+    "Öffne ProperPDF und tippe auf „PDF zusammenführen“.",
+    "Wähle zwei oder mehr PDFs aus.",
+    "Drücke lange auf eine Datei und ziehe sie, um die Reihenfolge zu ändern.",
+    "Speichere. Das zusammengeführte PDF erscheint in deiner Bibliothek, die Originaldateien bleiben unverändert.",
+    "Öffne das Ergebnis zur Kontrolle und teile es dann über das Teilen-Menü."
+   ],
+   "sections": [
+    [
+     "Wann sich Zusammenführen lohnt",
+     [
+      "Ein Vertrag mit Anlagen, ein Visumantrag mit Nachweisen, die Belege eines Monats: Ein PDF ist leichter zu verschicken und später leichter zu finden als fünf einzelne Dateien.",
+      "Beim Zusammenführen werden die Seiten unverändert kopiert. Sie werden nicht neu komprimiert, Text und Scans sehen also aus wie in den Originalen."
+     ]
+    ],
+    [
+     "Nach dem Zusammenführen",
+     [
+      "Mit „Seiten organisieren“ kannst du Seiten in der zusammengeführten Datei neu anordnen, drehen oder löschen. Ist sie zu groß für eine E-Mail, speichert „PDF komprimieren“ (Pro) eine kleinere Kopie."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "Ist das Zusammenführen von PDFs in ProperPDF kostenlos?",
+     "Ja, auf iPhone und Android. Die gespeicherte Datei bekommt ohne Pro ein ProperPDF-Wasserzeichen."
+    ],
+    [
+     "Werden meine PDFs beim Zusammenführen hochgeladen?",
+     "Nein. ProperPDF führt die Dateien auf deinem Handy zusammen und sendet sie nicht an einen Server. Es funktioniert auch im Flugmodus."
+    ],
+    [
+     "Verschlechtert das Zusammenführen die Qualität meines PDFs?",
+     "Nein. Die Seiten werden ohne neue Komprimierung in die neue Datei kopiert."
+    ],
+    [
+     "Kann ich PDFs auf dem iPhone ohne App zusammenführen?",
+     "Mit iOS 26 und neuer ja: Die Vorschau-App von Apple kann Seiten aus einem anderen PDF einfügen. Siehe unsere Anleitung zum Zusammenführen von PDFs auf dem iPhone ohne App."
+    ]
+   ],
+   "mockup_alt": "PDF zusammenführen auf Android",
+   "mockup_caption": "Der Bildschirm „PDF zusammenführen“ in ProperPDF für Android."
+  },
+  "split-pdf": {
+   "slug": "pdf-teilen",
+   "title": "PDF teilen auf iPhone und Android, ohne Upload",
+   "description": "Seiten aus einem PDF extrahieren auf iPhone, iPad oder Android. Nach Seitenbereich oder alle paar Seiten teilen, offline und ohne Konto. Kostenlos nutzbar.",
+   "lead": "Behalte die Seiten, die du brauchst, als neues PDF. Das Original bleibt unberührt.",
+   "answer": "Um ein PDF auf dem Handy zu teilen, öffne in ProperPDF „PDF teilen“, wähle das Dokument und gib einen Seitenbereich ein oder teile es alle paar Seiten. Die App speichert die extrahierten Seiten als neues PDF und lässt das Original unverändert. Sie läuft offline auf iPhone, iPad und Android und ist kostenlos. Kostenlose Exporte tragen ein ProperPDF-Wasserzeichen, das Pro entfernt.",
+   "steps_title": "So teilst du ein PDF in ProperPDF",
+   "steps": [
+    "Öffne ProperPDF und tippe auf „PDF teilen“.",
+    "Wähle das PDF aus, das du teilen willst.",
+    "Wähle die Teilungsart: einen Bereich (zum Beispiel Seite 3 bis 7) oder ein Intervall (alle N Seiten eine neue Datei). Unter Android kannst du auch einzelne Seiten ankreuzen.",
+    "Speichere. Das neue PDF erscheint in deiner Bibliothek, das Original bleibt erhalten."
+   ],
+   "sections": [
+    [
+     "Nur die wichtigen Seiten weitergeben",
+     [
+      "Ein langes PDF enthält oft mehr, als die Person am anderen Ende braucht: ein Kapitel eines Berichts, die unterschriebenen Seiten eines Vertrags, ein einzelner Kontoauszug aus einem ganzen Jahr. Wenn du nur diese Seiten schickst, bleibt die Datei klein und der Rest privat."
+     ]
+    ],
+    [
+     "Stattdessen neu anordnen?",
+     [
+      "Mit „Seiten organisieren“ ziehst du Seiten in eine andere Reihenfolge, drehst oder löschst sie. Mit „PDF zusammenführen“ bringst du Seiten aus getrennten Dateien zusammen."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "Kann ich eine einzelne Seite aus einem PDF extrahieren?",
+     "Ja. Gib dieselbe Seite als Anfang und Ende des Bereichs ein, dann speichert ProperPDF diese Seite als eigenes PDF."
+    ],
+    [
+     "Verändert das Teilen das Original-PDF?",
+     "Nein. ProperPDF schreibt die extrahierten Seiten in eine neue Datei."
+    ],
+    [
+     "Ist das Teilen kostenlos?",
+     "Ja, auf iPhone und Android. Ohne Pro hat die gespeicherte Datei ein ProperPDF-Wasserzeichen."
+    ]
+   ],
+   "mockup_alt": "PDF teilen auf Android",
+   "mockup_caption": "Der Bildschirm „PDF teilen“ in ProperPDF für Android."
+  },
+  "compress-pdf": {
+   "slug": "pdf-verkleinern",
+   "title": "PDF verkleinern auf iPhone und Android, ohne Upload",
+   "description": "PDF-Dateigröße auf iPhone, iPad oder Android verringern. ProperPDF komprimiert auf dem Gerät, offline, das Dokument wird nie hochgeladen.",
+   "lead": "Mach ein großes PDF klein genug für eine E-Mail, ohne es an einen Online-Kompressor zu schicken.",
+   "answer": "ProperPDF komprimiert PDFs direkt auf dem Handy: Datei wählen, die Bildauflösung senken, die geschätzte Größe prüfen und eine kleinere Kopie speichern. Nichts wird hochgeladen, deshalb funktioniert es offline. Komprimieren ist auf iPhone, iPad und Android eine Pro-Funktion. Am stärksten schrumpfen gescannte und bildlastige PDFs. Ein PDF, das fast nur aus Text besteht, ändert sich kaum, weil Text schon kompakt ist.",
+   "steps_title": "So komprimierst du ein PDF in ProperPDF",
+   "steps": [
+    "Öffne ProperPDF und tippe auf „PDF komprimieren“.",
+    "Wähle das PDF aus.",
+    "Bewege den Regler für die Bildauflösung. Niedriger heißt kleinere Datei und weichere Bilder. Die App zeigt die aktuelle Größe und eine Schätzung der neuen.",
+    "Speichere. ProperPDF schreibt eine neue, kleinere Kopie und behält das Original.",
+    "Öffne die Kopie und zoome auf kleinen Text und Unterschriften, bevor du sie verschickst."
+   ],
+   "sections": [
+    [
+     "Warum auf dem Gerät komprimieren",
+     [
+      "Online-Kompressoren müssen deine Datei erst empfangen, bevor sie sie verkleinern können. Bei einem Flyer ist das egal, bei einer Gehaltsabrechnung, einem Arztbrief oder einem unterschriebenen Vertrag eher nicht. ProperPDF erledigt dasselbe ohne Upload."
+     ]
+    ],
+    [
+     "So wird die Datei kleiner",
+     [
+      "Scans und bildlastige PDFs schrumpfen am meisten; ein 20-seitiger Text-Export aus Word hat kaum Spielraum. Ist die Datei noch zu groß, teile Seiten ab oder lösche die, die der Empfänger nicht braucht. Das verringert die Größe, ohne die Qualität anzutasten.",
+      "Auf dem iPhone wandelt die Komprimierung derzeit jede Seite in ein Bild um. Text in der Kopie lässt sich dann nicht mehr markieren oder durchsuchen, und Formularfelder, Links und Anmerkungen werden entfernt. Behalte also das Original, wenn du sie brauchst. Unter Android werden nur die Bilder im PDF verkleinert."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "Ist die PDF-Komprimierung in ProperPDF kostenlos?",
+     "Nein. „PDF komprimieren“ gehört auf iPhone und Android zu Pro."
+    ],
+    [
+     "Wie viel kleiner wird mein PDF?",
+     "Das hängt von der Datei ab. Scans und bildlastige PDFs schrumpfen oft stark; reine Text-PDFs ändern sich kaum. Die App zeigt vor dem Speichern eine geschätzte Größe."
+    ],
+    [
+     "Wird mein PDF durch die Komprimierung unscharf?",
+     "Niedrigere Auflösungen machen Bilder und gescannten Text weicher. Speichere, zoome auf den kleinsten Text und wähle eine höhere Einstellung, wenn er schwer lesbar ist."
+    ],
+    [
+     "Kann ich nach dem Komprimieren noch Text markieren?",
+     "Unter Android ja. Auf dem iPhone wandelt die Komprimierung derzeit Seiten in Bilder um, daher lässt sich Text nicht markieren, und Formularfelder und Links werden entfernt. ProperPDF behält deine Originaldatei."
+    ]
+   ],
+   "mockup_alt": "PDF-Komprimierungseinstellungen auf Android",
+   "mockup_caption": "Die Bildauflösung im Android-Komprimierungsbildschirm anpassen. Das Ergebnis hängt vom Quell-PDF ab."
+  },
+  "sign-pdf": {
+   "slug": "pdf-unterschreiben",
+   "title": "PDF unterschreiben auf dem Handy, ohne Upload",
+   "description": "Unterschrift zeichnen und auf einem PDF platzieren, auf iPhone, iPad oder Android. ProperPDF unterschreibt Dokumente offline und ohne Konto.",
+   "lead": "Unterschreibe ein Formular oder einen Vertrag auf dem Handy, ohne ihn an eine E-Signatur-Website zu schicken.",
+   "answer": "Um ein PDF auf dem Handy zu unterschreiben, öffne in ProperPDF „PDF unterschreiben“, wähle das Dokument, zeichne deine Unterschrift mit dem Finger (oder nimm eine gespeicherte), platziere sie auf der Seite, passe die Größe an und speichere. Das Unterschreiben läuft auf dem Gerät, offline und ohne Konto. Es ist auf iPhone, iPad und Android ein Pro-Tool. Dabei wird eine gezeichnete Unterschrift auf die Seite gesetzt; es ist keine zertifikatsbasierte digitale Signatur.",
+   "steps_title": "So unterschreibst du ein PDF in ProperPDF",
+   "steps": [
+    "Öffne ProperPDF und tippe auf „PDF unterschreiben“.",
+    "Wähle das Dokument aus.",
+    "Zeichne deine Unterschrift oder wähle eine gespeicherte.",
+    "Tippe auf die Stelle der Seite, an die sie gehört, und verschiebe sie oder ändere die Größe.",
+    "Speichere eine unterschriebene Kopie und prüfe vor dem Versand jede Seite."
+   ],
+   "sections": [
+    [
+     "Gezeichnete Unterschrift oder digitale Signatur",
+     [
+      "ProperPDF setzt ein Bild deiner handschriftlichen Unterschrift auf die Seite. Das verlangen die meisten Formulare, Mietverträge und Einverständniserklärungen. Manche rechtlichen und behördlichen Verfahren brauchen stattdessen eine zertifikatsbasierte digitale Signatur, wie sie etwa der kostenpflichtige Tarif von Foxit PDF Editor erstellt. ProperPDF tut das nicht."
+     ]
+    ],
+    [
+     "Erst ausfüllen, dann unterschreiben",
+     [
+      "Ist das Dokument ein Formular, fülle zuerst die Felder mit „Formulare ausfüllen“ aus und füge dann deine Unterschrift hinzu."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "Ist das Unterschreiben von PDFs in ProperPDF kostenlos?",
+     "Nein. „PDF unterschreiben“ ist auf iPhone und Android ein Pro-Tool."
+    ],
+    [
+     "Kann ich meine Unterschrift wiederverwenden?",
+     "Ja. Auf dem iPhone kannst du eine früher erstellte Unterschrift wählen, statt sie neu zu zeichnen."
+    ],
+    [
+     "Wird meine Unterschrift hochgeladen?",
+     "Nein. Unterschrift und Dokument bleiben auf deinem Handy."
+    ]
+   ],
+   "mockup_alt": "Bildschirm „PDF unterschreiben“ auf dem iPhone",
+   "mockup_caption": "Der Bildschirm „PDF unterschreiben“ in ProperPDF für das iPhone. Der Android-Bildschirm sieht anders aus."
+  },
+  "image-to-pdf": {
+   "slug": "bild-in-pdf",
+   "title": "Fotos in PDF umwandeln auf dem Handy",
+   "description": "Fotos, Screenshots und Scans mit ProperPDF auf iPhone, iPad oder Android zu einem PDF zusammenfassen, offline. Kostenlos nutzbar.",
+   "lead": "Mach aus ein paar Fotos oder Screenshots ein einziges PDF.",
+   "answer": "Um Fotos in ein PDF umzuwandeln, öffne in ProperPDF „Bild zu PDF“, wähle die Bilder aus, bring sie in die richtige Reihenfolge und speichere. Jedes Bild wird zu einer Seite, und das PDF entsteht auf dem Gerät, offline. Auf iPhone und iPad ist es kostenlos, unter Android kostenlos mit einem ProperPDF-Wasserzeichen, das Pro entfernt.",
+   "steps_title": "So erstellst du ein PDF aus Bildern",
+   "steps": [
+    "Öffne ProperPDF und tippe auf „Bild zu PDF“.",
+    "Wähle die Fotos oder Screenshots aus.",
+    "Ordne die Seiten in der gewünschten Reihenfolge an.",
+    "Speichere und öffne das PDF zur Kontrolle."
+   ],
+   "sections": [
+    [
+     "Praktisch für den Alltagskram",
+     [
+      "Belege für die Spesenabrechnung, Fotos von einem Whiteboard, Screenshots einer Buchung, Seiten handschriftlicher Notizen. Ein PDF lässt sich leichter verschicken als zwölf Fotos."
+     ]
+    ],
+    [
+     "Wenn das PDF groß ist",
+     [
+      "Handyfotos sind groß, und ein daraus erstelltes PDF kann es auch sein. „PDF komprimieren“ (Pro) erstellt eine kleinere Kopie."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "Ist „Bild zu PDF“ kostenlos?",
+     "Ja. Unter Android trägt das PDF ohne Pro ein ProperPDF-Wasserzeichen."
+    ],
+    [
+     "Werden meine Fotos hochgeladen?",
+     "Nein. ProperPDF erstellt das PDF auf deinem Handy."
+    ]
+   ],
+   "mockup_alt": "Bildschirm „Bild zu PDF“ in ProperPDF auf dem iPhone mit zwei Bildern in Seitenreihenfolge",
+   "mockup_caption": "Ziehe am Griff, um Bilder neu anzuordnen. Jedes Bild wird eine Seite des PDFs."
+  }
+ }
+}

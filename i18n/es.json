@@ -1,0 +1,431 @@
+{
+ "ui": {
+  "lang_name": "Español",
+  "nav_features": "Funciones",
+  "nav_pricing": "Precios",
+  "nav_guides": "Guías",
+  "download_ios": "Descargar en iPhone",
+  "download_android": "Disponible en Google Play",
+  "footer_tagline": "Herramientas PDF sin conexión para iPhone y Android.",
+  "footer_bottom": "El PDF se procesa en tu dispositivo.",
+  "footer_english": "Más guías (en inglés)",
+  "cta_kicker": "DESCARGA LA APP",
+  "cta_title": "Descarga ProperPDF",
+  "cta_text": "Gratis en la App Store y Google Play. No necesitas cuenta.",
+  "updated": "Actualizado el {date}",
+  "date": "22 de octubre de 2026",
+  "proof": "Procesamiento sin conexión · Sin cuenta",
+  "kicker_tool": "GUÍA DE PROPERPDF",
+  "faq_title": "Preguntas",
+  "related_kicker": "MÁS HERRAMIENTAS PDF",
+  "all_tools_en": "Todas las herramientas (en inglés)",
+  "free_vs_pro": "Gratis frente a Pro",
+  "full_screenshot": "Ver la captura en tamaño completo",
+  "facts_caption": "{name} en ProperPDF de un vistazo",
+  "row_ios": "iPhone y iPad",
+  "row_android": "Android",
+  "row_offline": "Funciona sin conexión",
+  "row_offline_v": "Sí",
+  "row_uploads": "Archivos subidos",
+  "row_uploads_v": "No, el procesamiento se hace en el dispositivo",
+  "row_account": "Requiere cuenta",
+  "row_account_v": "No",
+  "row_requires": "Requisitos",
+  "requirements": "iOS 17 o posterior en iPhone y iPad; Android 8.0 o posterior",
+  "free": "Gratis",
+  "free_wm": "Gratis, con marca de agua",
+  "free_wm_long": "Gratis, con una marca de agua de ProperPDF en el archivo guardado (Pro la quita)",
+  "pro": "Pro",
+  "watermark_note": "\"Con marca de agua\" significa que los archivos guardados con esa herramienta llevan una marca de agua de ProperPDF. Pro la quita.",
+  "col_tool": "Herramienta",
+  "col_ios": "iPhone y iPad",
+  "col_android": "Android",
+  "tool_names": {
+   "Scan to PDF": "Escanear documentos a PDF",
+   "Merge PDF": "Combinar PDF",
+   "Split PDF": "Dividir PDF",
+   "Organize pages (reorder, rotate, delete)": "Organizar páginas (reordenar, rotar, eliminar)",
+   "Image to PDF": "Imagen a PDF",
+   "PDF to image (PNG or JPEG)": "PDF a imagen (PNG o JPEG)",
+   "Edit metadata": "Editar metadatos",
+   "PDF viewer and document library": "Visor de PDF y biblioteca de documentos",
+   "Compress PDF": "Comprimir PDF",
+   "Sign PDF": "Firmar PDF",
+   "Fill PDF forms": "Rellenar formularios PDF",
+   "Lock and unlock PDF (password)": "Bloquear y desbloquear PDF (contraseña)",
+   "AI chat and summary (on-device)": "Chat y resumen con IA (en el dispositivo)"
+  }
+ },
+ "home": {
+  "title": "ProperPDF: herramientas PDF que nunca suben tus archivos",
+  "description": "ProperPDF une, divide, comprime, firma y escanea PDF en tu iPhone o móvil Android. Los archivos no salen del dispositivo, funciona sin conexión y sin cuenta.",
+  "h1_a": "Herramientas PDF que nunca suben",
+  "h1_em": "tus archivos.",
+  "lede": "Une, divide, comprime, firma y escanea PDF en tu iPhone o móvil Android. Todo ocurre en el dispositivo, así que funciona sin conexión y no necesitas cuenta.",
+  "proof": "Descarga gratis · Sin anuncios · Sin cuenta",
+  "tools_title": "Las tareas de PDF de cada día, desde tu móvil.",
+  "tools": {
+   "merge-pdf": [
+    "Combinar",
+    "Elige los archivos, arrástralos al orden que quieras y guarda un solo PDF."
+   ],
+   "split-pdf": [
+    "Dividir",
+    "Extrae un rango de páginas o crea un archivo nuevo cada pocas páginas."
+   ],
+   "compress-pdf": [
+    "Comprimir",
+    "Mira el tamaño estimado antes de guardar una copia más ligera."
+   ],
+   "fill-pdf": [
+    "Rellenar formularios",
+    "Escribe en los campos del formulario y marca las casillas."
+   ],
+   "lock-pdf": [
+    "Bloquear",
+    "Añade una contraseña antes de enviar algo privado."
+   ]
+  },
+  "tools_more": "También en la app: escanear a PDF, firmar, organizar páginas, imágenes a PDF, PDF a imágenes, editar metadatos y un chat con IA en el dispositivo.",
+  "demo_title": "Firma un PDF en medio minuto.",
+  "demo_text": "Dibuja tu firma una vez, colócala y guarda. Es la app real en un iPhone, de principio a fin.",
+  "demo_link": "Cómo funciona la firma",
+  "offline_title": "Tus archivos se quedan en tu móvil.",
+  "offline_p1": "Las herramientas PDF en línea tienen que subir tu archivo antes de trabajar con él. ProperPDF hace lo mismo en el dispositivo, algo importante con declaraciones de impuestos, contratos, documentos de identidad y informes médicos.",
+  "offline_p2": "No te fíes solo de nuestra palabra: activa el modo avión y combina un PDF.",
+  "facts": [
+   [
+    "Dónde se procesan los archivos",
+    "En tu móvil o tablet"
+   ],
+   [
+    "Subidas",
+    "Ninguna"
+   ],
+   [
+    "Internet",
+    "No hace falta (el chat con IA descarga su modelo una sola vez)"
+   ],
+   [
+    "Cuenta",
+    "Ninguna"
+   ],
+   [
+    "Anuncios",
+    "Ninguno"
+   ]
+  ],
+  "pricing_title": "Gratis para empezar. Paga una vez si necesitas más.",
+  "free_h": "Gratis",
+  "free_text": "Escanear, combinar, dividir, organizar páginas, imágenes a PDF, PDF a imágenes y la biblioteca de documentos. Combinar y dividir añaden una marca de agua de ProperPDF; en Android, la mayoría de las herramientas gratuitas la llevan.",
+  "pro_h": "Pro",
+  "pro_price_suffix": "pago único, tuyo para siempre",
+  "pro_text": "Añade comprimir, firmar, rellenar formularios y protección con contraseña, y quita todas las marcas de agua. ¿Prefieres una suscripción? $3.99 al mes o $19.99 al año (también $1.99 a la semana).",
+  "pricing_note": "Precios en EE. UU. ProperPDF usa precios regionales, así que Pro cuesta menos en muchos países; la App Store o Google Play muestra tu precio local.",
+  "pricing_link": "Todas las herramientas, por plataforma",
+  "faq": [
+   [
+    "¿Se suben mis PDF?",
+    "No. ProperPDF procesa cada archivo en tu móvil o tablet. No hay ningún servidor de ProperPDF que reciba tus documentos."
+   ],
+   [
+    "¿Funciona sin internet?",
+    "Sí. Todas las herramientas PDF funcionan sin conexión. El chat con IA en el dispositivo necesita descargar un modelo una vez en algunos dispositivos antes de funcionar sin conexión."
+   ],
+   [
+    "¿Qué es gratis y qué requiere Pro?",
+    "Escanear, combinar, dividir, organizar y convertir son gratis. Combinar y dividir añaden una marca de agua si no tienes Pro, y en Android la mayoría de las herramientas gratuitas también. Comprimir, firmar, rellenar formularios y bloquear requieren Pro."
+   ],
+   [
+    "¿En qué dispositivos funciona?",
+    "En iPhone y iPad con iOS 17 o posterior, y en móviles y tablets Android con Android 8.0 o posterior."
+   ]
+  ],
+  "download_title_a": "Guarda tus PDF",
+  "download_title_em": "en tu dispositivo.",
+  "download_text": "ProperPDF para iPhone, iPad y Android."
+ },
+ "pricing": {
+  "slug": "precios",
+  "title": "Precios de ProperPDF: qué es gratis y qué es Pro",
+  "description": "ProperPDF se descarga gratis. Mira qué herramientas son gratuitas en iPhone y Android, cuáles requieren Pro y sus precios: semanal, mensual, anual o de por vida.",
+  "h1": "Qué es gratis y qué es Pro",
+  "lead": "ProperPDF se descarga gratis. Pro desbloquea comprimir, firmar, rellenar y bloquear, y quita las marcas de agua.",
+  "answer": "ProperPDF es gratis en la App Store y Google Play, sin anuncios y sin cuenta. Escanear, combinar, dividir, organizar páginas y convertir entre PDF e imágenes es gratis; algunas exportaciones gratuitas llevan una marca de agua de ProperPDF. Pro cuesta $3.99 al mes, $19.99 al año o $29.99 una sola vez para acceso de por vida (precios en EE. UU.; menores en muchos países), y desbloquea comprimir, firmar, rellenar formularios y protección con contraseña.",
+  "tools_heading": "Herramientas por plataforma",
+  "plans_heading": "Planes Pro",
+  "plans": [
+   [
+    "Semanal",
+    "$1.99 a la semana"
+   ],
+   [
+    "Mensual",
+    "$3.99 al mes"
+   ],
+   [
+    "Anual",
+    "$19.99 al año"
+   ],
+   [
+    "De por vida",
+    "$29.99 una sola vez"
+   ]
+  ],
+  "regional_note": "Estos son precios de EE. UU. ProperPDF usa precios regionales, así que Pro cuesta menos en muchos países, y la App Store o Google Play muestra el precio en tu moneda antes de comprar.",
+  "renew_note": "Las suscripciones se renuevan a través de tu cuenta de Apple o Google hasta que las canceles.",
+  "faq": [
+   [
+    "¿ProperPDF es gratis?",
+    "Sí, la app se descarga gratis en la App Store y Google Play. Escanear, combinar, dividir, organizar y convertir son gratis. Algunas exportaciones gratuitas llevan una marca de agua de ProperPDF. Comprimir, firmar, rellenar formularios y bloquear requieren Pro."
+   ],
+   [
+    "¿Cuánto cuesta ProperPDF Pro?",
+    "En EE. UU.: $1.99 a la semana, $3.99 al mes, $19.99 al año o $29.99 una sola vez para acceso de por vida. ProperPDF usa precios regionales, así que cuesta menos en muchos países; la tienda muestra tu precio local antes de comprar."
+   ],
+   [
+    "¿Hay un pago único?",
+    "Sí. Pro de por vida es un solo pago de $29.99 en EE. UU., aproximadamente año y medio del plan anual, y menos en muchos países. No hay suscripción que cancelar."
+   ],
+   [
+    "¿ProperPDF tiene anuncios?",
+    "No. En lugar de mostrar anuncios, la versión gratuita añade una marca de agua a los archivos guardados con algunas herramientas."
+   ],
+   [
+    "¿Necesito una cuenta?",
+    "No. ProperPDF no tiene cuentas. Las compras se hacen con tu cuenta de Apple o Google."
+   ]
+  ]
+ },
+ "pages": {
+  "merge-pdf": {
+   "slug": "unir-pdf",
+   "title": "Unir PDF en iPhone y Android sin subirlos",
+   "description": "Une archivos PDF en uno solo en iPhone, iPad o Android. ProperPDF los combina en tu móvil, sin conexión y sin cuenta. Uso gratuito.",
+   "lead": "Elige los archivos, define el orden y guarda un solo PDF. Nada sale de tu móvil.",
+   "answer": "Para unir PDF en el móvil sin subirlos, abre Combinar PDF en ProperPDF, elige dos o más archivos, arrástralos al orden que quieras y guarda. La app los une en el dispositivo, así que funciona sin conexión y no necesitas cuenta. Combinar es gratis en iPhone, iPad y Android. Las exportaciones gratuitas llevan una marca de agua de ProperPDF, que Pro quita.",
+   "steps_title": "Cómo unir PDF en ProperPDF",
+   "steps": [
+    "Abre ProperPDF y toca Combinar PDF.",
+    "Selecciona dos o más PDF.",
+    "Mantén pulsado un archivo y arrástralo para cambiar el orden.",
+    "Guarda. El PDF combinado aparece en tu biblioteca y los archivos originales quedan como estaban.",
+    "Abre el resultado para revisarlo y compártelo desde el menú de compartir."
+   ],
+   "sections": [
+    [
+     "Cuándo conviene unir PDF",
+     [
+      "Un contrato con sus anexos, una solicitud de visado con los documentos de apoyo, las facturas de un mes: un solo PDF es más fácil de enviar y de encontrar después que cinco archivos sueltos.",
+      "Al combinar, las páginas se copian tal cual. No se vuelven a comprimir, así que el texto y los escaneos se ven igual que en los originales."
+     ]
+    ],
+    [
+     "Después de combinar",
+     [
+      "Usa Organizar páginas para reordenar, rotar o eliminar páginas del archivo combinado. Si pesa demasiado para enviarlo por correo, Comprimir PDF (Pro) guarda una copia más ligera."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "¿Combinar PDF es gratis en ProperPDF?",
+     "Sí, tanto en iPhone como en Android. El archivo guardado lleva una marca de agua de ProperPDF si no tienes Pro."
+    ],
+    [
+     "¿Se suben mis PDF al combinarlos?",
+     "No. ProperPDF combina los archivos en tu móvil y no los envía a ningún servidor, así que también funciona en modo avión."
+    ],
+    [
+     "¿Combinar baja la calidad de mi PDF?",
+     "No. Las páginas se copian al archivo nuevo sin volver a comprimirse."
+    ],
+    [
+     "¿Puedo unir PDF en iPhone sin una app?",
+     "Con iOS 26 o posterior, sí: la app Vista Previa de Apple puede insertar páginas de otro PDF. Consulta nuestra guía para unir PDF en iPhone sin una app."
+    ]
+   ],
+   "mockup_alt": "Combinar PDF en Android",
+   "mockup_caption": "La pantalla Combinar PDF de ProperPDF para Android."
+  },
+  "split-pdf": {
+   "slug": "dividir-pdf",
+   "title": "Dividir un PDF en iPhone y Android sin subirlo",
+   "description": "Extrae páginas de un PDF en iPhone, iPad o Android. Divide por rango de páginas o cada cierto número de páginas, sin conexión y sin cuenta. Gratis.",
+   "lead": "Quédate con las páginas que necesitas en un PDF nuevo. El original no se toca.",
+   "answer": "Para dividir un PDF en el móvil, abre Dividir PDF en ProperPDF, elige el documento e indica un rango de páginas o divídelo cada cierto número de páginas. La app guarda las páginas extraídas como un PDF nuevo y deja el original como estaba. Funciona sin conexión en iPhone, iPad y Android, y es gratis. Las exportaciones gratuitas llevan una marca de agua de ProperPDF, que Pro quita.",
+   "steps_title": "Cómo dividir un PDF en ProperPDF",
+   "steps": [
+    "Abre ProperPDF y toca Dividir PDF.",
+    "Selecciona el PDF que quieres dividir.",
+    "Elige cómo dividirlo: un rango (por ejemplo, de la página 3 a la 7) o un intervalo (un archivo nuevo cada N páginas). En Android también puedes marcar páginas sueltas.",
+    "Guarda. El PDF nuevo aparece en tu biblioteca y el original sigue disponible."
+   ],
+   "sections": [
+    [
+     "Comparte solo las páginas que importan",
+     [
+      "Un PDF largo suele tener más de lo que necesita quien lo recibe: un capítulo de un informe, las páginas firmadas de un contrato, un solo extracto bancario de todo un año. Si envías solo esas páginas, el archivo pesa menos y el resto se mantiene privado."
+     ]
+    ],
+    [
+     "¿Necesitas reorganizar en lugar de dividir?",
+     [
+      "Usa Organizar páginas para arrastrar páginas a otro orden, rotarlas o eliminarlas. Usa Combinar PDF para juntar páginas de archivos distintos."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "¿Puedo extraer una sola página de un PDF?",
+     "Sí. Indica la misma página como inicio y fin del rango, y ProperPDF la guarda como un PDF independiente."
+    ],
+    [
+     "¿Dividir modifica el PDF original?",
+     "No. ProperPDF escribe las páginas extraídas en un archivo nuevo."
+    ],
+    [
+     "¿Dividir es gratis?",
+     "Sí, en iPhone y Android. Sin Pro, el archivo guardado lleva una marca de agua de ProperPDF."
+    ]
+   ],
+   "mockup_alt": "Dividir PDF en Android",
+   "mockup_caption": "La pantalla Dividir PDF de ProperPDF para Android."
+  },
+  "compress-pdf": {
+   "slug": "comprimir-pdf",
+   "title": "Comprimir un PDF en iPhone y Android sin subirlo",
+   "description": "Reduce el tamaño de un PDF en iPhone, iPad o Android. ProperPDF comprime en el dispositivo, sin conexión, y el documento nunca se sube.",
+   "lead": "Haz que un PDF grande pese lo bastante poco para enviarlo por correo, sin pasarlo por un compresor en línea.",
+   "answer": "ProperPDF comprime los PDF en el propio móvil: elige el archivo, baja la resolución de las imágenes, revisa el tamaño estimado y guarda una copia más ligera. No se sube nada, así que funciona sin conexión. Comprimir es una función Pro en iPhone, iPad y Android. Reduce más los PDF escaneados o con muchas fotos. Un PDF que es sobre todo texto puede cambiar muy poco, porque el texto ya ocupa poco.",
+   "steps_title": "Cómo comprimir un PDF en ProperPDF",
+   "steps": [
+    "Abre ProperPDF y toca Comprimir PDF.",
+    "Selecciona el PDF.",
+    "Mueve el control de resolución de las imágenes. Más bajo significa un archivo más pequeño e imágenes menos nítidas. La app muestra el tamaño actual y una estimación del nuevo.",
+    "Guarda. ProperPDF crea una copia nueva y más ligera, y conserva el original.",
+    "Abre la copia y acerca el zoom a los textos pequeños y las firmas antes de enviarla."
+   ],
+   "sections": [
+    [
+     "Por qué comprimir en el dispositivo",
+     [
+      "Los compresores en línea tienen que recibir tu archivo antes de reducirlo. Eso no importa con un folleto, pero sí con una nómina, un informe médico o un contrato firmado. ProperPDF hace el mismo trabajo sin subir nada."
+     ]
+    ],
+    [
+     "Cómo conseguir un archivo más pequeño",
+     [
+      "Los escaneos y los PDF con muchas fotos son los que más se reducen; un texto de 20 páginas exportado desde Word da muy poco de sí. Si el archivo sigue siendo demasiado grande, separa o elimina las páginas que el destinatario no necesita: así baja el tamaño sin afectar a la calidad.",
+      "En iPhone, la compresión convierte por ahora cada página en una imagen. El texto de la copia ya no se puede seleccionar ni buscar, y se eliminan los campos de formulario, los enlaces y las anotaciones, así que conserva el original si los necesitas. En Android, solo se reducen las imágenes del PDF."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "¿Comprimir PDF es gratis en ProperPDF?",
+     "No. Comprimir PDF forma parte de Pro, tanto en iPhone como en Android."
+    ],
+    [
+     "¿Cuánto va a reducirse mi PDF?",
+     "Depende del archivo. Los escaneos y los PDF con muchas fotos suelen reducirse bastante; los PDF solo de texto pueden cambiar apenas. La app muestra un tamaño estimado antes de guardar."
+    ],
+    [
+     "¿La compresión dejará mi PDF borroso?",
+     "Las resoluciones bajas suavizan las imágenes y el texto escaneado. Guarda, acerca el zoom al texto más pequeño y elige un ajuste más alto si cuesta leerlo."
+    ],
+    [
+     "¿Podré seguir seleccionando texto después de comprimir?",
+     "En Android, sí. En iPhone, la compresión convierte por ahora las páginas en imágenes, así que no se puede seleccionar el texto y se eliminan los campos de formulario y los enlaces. ProperPDF conserva tu archivo original."
+    ]
+   ],
+   "mockup_alt": "Ajustes de compresión de PDF en Android",
+   "mockup_caption": "Ajusta la resolución de las imágenes en la pantalla de compresión de Android. El resultado depende del PDF de origen."
+  },
+  "sign-pdf": {
+   "slug": "firmar-pdf",
+   "title": "Firmar un PDF en el móvil sin subirlo",
+   "description": "Dibuja tu firma y colócala en un PDF en iPhone, iPad o Android. ProperPDF firma documentos sin conexión y sin cuenta.",
+   "lead": "Firma un formulario o un acuerdo en tu móvil sin enviarlo a una web de firma electrónica.",
+   "answer": "Para firmar un PDF en el móvil, abre Firmar PDF en ProperPDF, elige el documento, dibuja tu firma con el dedo (o elige una guardada antes), colócala en la página, ajusta su tamaño y guarda. La firma se hace en el dispositivo, sin conexión y sin cuenta. Es una herramienta Pro en iPhone, iPad y Android. Esto añade una firma dibujada a la página; no es una firma digital con certificado.",
+   "steps_title": "Cómo firmar un PDF en ProperPDF",
+   "steps": [
+    "Abre ProperPDF y toca Firmar PDF.",
+    "Selecciona el documento.",
+    "Dibuja tu firma o elige una guardada.",
+    "Toca la página donde va, y luego muévela y ajusta su tamaño.",
+    "Guarda una copia firmada y revisa todas las páginas antes de enviarla."
+   ],
+   "sections": [
+    [
+     "Firma dibujada o firma digital",
+     [
+      "ProperPDF coloca en la página una imagen de tu firma manuscrita, que es lo que piden la mayoría de los formularios, contratos de alquiler y autorizaciones. Algunos trámites legales o administrativos exigen en cambio una firma digital con certificado, que crean herramientas como el plan de pago de Foxit PDF Editor. ProperPDF no lo hace."
+     ]
+    ],
+    [
+     "Primero rellena, después firma",
+     [
+      "Si el documento es un formulario, completa los campos con Rellenar formularios y luego añade tu firma."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "¿Firmar un PDF es gratis en ProperPDF?",
+     "No. Firmar PDF es una herramienta Pro, tanto en iPhone como en Android."
+    ],
+    [
+     "¿Puedo reutilizar mi firma?",
+     "Sí. En iPhone puedes elegir una firma creada antes en lugar de dibujarla de nuevo."
+    ],
+    [
+     "¿Se sube mi firma?",
+     "No. La firma y el documento se quedan en tu móvil."
+    ]
+   ],
+   "mockup_alt": "Pantalla Firmar PDF en iPhone",
+   "mockup_caption": "La pantalla Firmar PDF de ProperPDF para iPhone. La de Android es distinta."
+  },
+  "image-to-pdf": {
+   "slug": "imagen-a-pdf",
+   "title": "Convertir fotos a PDF en el móvil",
+   "description": "Junta fotos, capturas y escaneos en un solo PDF en iPhone, iPad o Android con ProperPDF, sin conexión. Uso gratuito.",
+   "lead": "Convierte unas cuantas fotos o capturas de pantalla en un solo PDF.",
+   "answer": "Para convertir fotos a PDF, abre Imagen a PDF en ProperPDF, selecciona las imágenes, ponlas en orden y guarda. Cada imagen se convierte en una página y el PDF se crea en el dispositivo, sin conexión. Es gratis en iPhone y iPad, y gratis en Android con una marca de agua de ProperPDF que Pro quita.",
+   "steps_title": "Cómo crear un PDF a partir de imágenes",
+   "steps": [
+    "Abre ProperPDF y toca Imagen a PDF.",
+    "Selecciona las fotos o capturas de pantalla.",
+    "Ordena las páginas como quieras.",
+    "Guarda y abre el PDF para revisarlo."
+   ],
+   "sections": [
+    [
+     "Útil para los trámites del día a día",
+     [
+      "Facturas para un reembolso de gastos, fotos de una pizarra, capturas de una reserva, páginas de apuntes escritos a mano. Un solo PDF es más fácil de enviar que doce fotos."
+     ]
+    ],
+    [
+     "Si el PDF pesa mucho",
+     [
+      "Las fotos del móvil son grandes, así que un PDF hecho con ellas también puede serlo. Comprimir PDF (Pro) crea una copia más ligera."
+     ]
+    ]
+   ],
+   "faq": [
+    [
+     "¿Imagen a PDF es gratis?",
+     "Sí. En Android, el PDF lleva una marca de agua de ProperPDF si no tienes Pro."
+    ],
+    [
+     "¿Se suben mis fotos?",
+     "No. ProperPDF crea el PDF en tu móvil."
+    ]
+   ],
+   "mockup_alt": "Pantalla Imagen a PDF en ProperPDF para iPhone con dos imágenes en orden de página",
+   "mockup_caption": "Arrastra el control para reordenar las imágenes. Cada imagen se convierte en una página del PDF."
+  }
+ }
+}

@@ -81,3 +81,9 @@ Each week:
 4. Compare actual downloads in App Store Connect and Play Console separately. Website store clicks are only a proxy for app acquisition and do not prove an installation.
 
 Search Console provides search query data; this site's browser analytics does not collect search terms. See [Google's guide to combining Search Console and analytics](https://developers.google.com/search/docs/monitor-debug/google-analytics-search-console).
+
+## Translations
+
+Spanish (`/es/`), Brazilian Portuguese (`/pt-br/`), German (`/de/`) and Japanese (`/ja/`) each have a homepage, a pricing page and five tool guides (merge, split, compress, sign, image to PDF). The English source of that content is `i18n/en.json`; each language is `i18n/<code>.json` with the same keys, plus a localized URL slug per page. `generate.py` renders them, adds `hreflang` alternates to the English and translated pages, and puts a language switcher in every footer (the hand-written homepage gets it between the `<!-- i18n:... -->` markers).
+
+When English copy for these pages changes, regenerate `i18n/en.json` from `generate.py` and update every language file the same way: app labels in steps must match the app's own strings (iOS `Localizable.xcstrings`, Android `values-<lang>/strings.xml`), and prices, OS versions and Free/Pro facts must stay identical. To add a language, add it to `LOCALES` and create its JSON. Run `npm run og` afterwards for the share cards.

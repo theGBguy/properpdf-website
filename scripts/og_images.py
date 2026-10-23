@@ -44,7 +44,8 @@ def font_size(title: str) -> int:
 
 
 def render(slug: str, title: str, workdir: Path) -> None:
-    page = workdir / f"{slug}.html"
+    page = workdir / f"{slug.replace('/', '_')}.html"
+    (OUT / slug).parent.mkdir(parents=True, exist_ok=True)
     page.write_text(TEMPLATE.format(title=escape(title), size=font_size(title), icon=ICON), encoding="utf-8")
     subprocess.run([BROWSER, "--headless=new", "--disable-gpu", "--hide-scrollbars", f"--user-data-dir={workdir / 'profile'}",
                     "--window-size=1200,630", "--force-device-scale-factor=1", f"--screenshot={OUT / (slug + '.png')}", page.as_uri()],

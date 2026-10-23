@@ -2029,3 +2029,17 @@ body {
     font-size: 13px;
     color: #52636c
 }
+
+.language-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px
+}
+
+.language-links a:hover {
+    color: #166ca9
+}
+
+.language-links [aria-current] {
+    font-weight: 700
+}

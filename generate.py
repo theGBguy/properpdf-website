@@ -56,11 +56,29 @@ TOOLS = [
 ]
 TOOL_BY_SLUG = {slug: (name, ios, android) for name, slug, ios, android in TOOLS if slug}
 
+# Interface strings. Translated pages pass their own copy (i18n/<lang>.json "ui").
+EN_UI = {
+    "lang": "en", "lang_name": "English", "home": "/",
+    "nav_features": "Features", "nav_pricing": "Pricing", "nav_guides": "Guides",
+    "download_ios": "Download on iPhone", "download_android": "Get it on Google Play",
+    "footer_tagline": "Offline PDF tools for iPhone and Android.", "footer_bottom": "PDF processing on your device.",
+    "cta_kicker": "GET THE APP", "cta_title": "Download ProperPDF", "cta_text": "Free on the App Store and Google Play. No account needed.",
+    "updated": "Updated {date}", "date": UPDATED_LABEL, "proof": "Offline processing · No account required",
+    "faq_title": "Questions", "full_screenshot": "View full-size screenshot",
+    "facts_caption": "{name} in ProperPDF at a glance", "row_ios": "iPhone and iPad", "row_android": "Android",
+    "row_offline": "Works offline", "row_offline_v": "Yes", "row_uploads": "Files uploaded", "row_uploads_v": "No, processing happens on the device",
+    "row_account": "Account needed", "row_account_v": "No", "row_requires": "Requires", "requirements": REQUIREMENTS,
+    "free": FREE, "free_wm": FREE_WM, "free_wm_long": "Free, with a ProperPDF watermark on the saved file (Pro removes it)", "pro": PRO,
+    "watermark_note": WATERMARK_NOTE, "col_tool": "Tool", "col_ios": "iPhone and iPad", "col_android": "Android",
+    "tool_names": {}, "google_badge": GOOGLE_BADGE, "app_store_alt": "Download on the App Store", "google_play_alt": "Get it on Google Play",
+}
 
-def download_buttons(context: str = "hero") -> str:
+
+def download_buttons(context: str = "hero", ui: dict | None = None) -> str:
+    ui = ui or EN_UI
     return f'''<div class="download-buttons" data-download-context="{escape(context)}">
-  <a class="store-badge ios-badge" href="{IOS_UTM}" target="_blank" rel="noopener noreferrer"><img src="{APPLE_BADGE}" alt="Download on the App Store" width="180" height="60"></a>
-  <a class="store-badge android-badge" href="{ANDROID_UTM}" target="_blank" rel="noopener noreferrer"><img src="{GOOGLE_BADGE}" alt="Get it on Google Play" width="203" height="60"></a>
+  <a class="store-badge ios-badge" href="{IOS_UTM}" target="_blank" rel="noopener noreferrer"><img src="{APPLE_BADGE}" alt="{escape(ui["app_store_alt"])}" width="180" height="60"></a>
+  <a class="store-badge android-badge" href="{ANDROID_UTM}" target="_blank" rel="noopener noreferrer"><img src="{ui["google_badge"]}" alt="{escape(ui["google_play_alt"])}" width="203" height="60"></a>
 </div>'''
 
 
@@ -110,34 +128,72 @@ def article_schema(title: str, description: str, path: str, section: str, faq: l
     return [{"@context": "https://schema.org", "@graph": graph}]
 
 
-def page(title: str, description: str, path: str, content: str, extra_schema: list[dict] | None = None) -> str:
+# Translated versions of a page: English path -> {lang: path}. Filled by load_locales().
+ALTERNATES: dict[str, dict[str, str]] = {}
+LOCALE_NAMES: dict[str, str] = {"en": "English"}
+
+
+def alternates_html(en_path: str | None) -> str:
+    group = ALTERNATES.get(en_path or "")
+    if not group:
+        return ""
+    links = [f'<link rel="alternate" hreflang="en" href="{BASE}{en_path}">']
+    links += [f'<link rel="alternate" hreflang="{lang}" href="{BASE}{path}">' for lang, path in group.items()]
+    links.append(f'<link rel="alternate" hreflang="x-default" href="{BASE}{en_path}">')
+    return "".join(links)
+
+
+def language_links(en_path: str | None, current: str) -> str:
+    """Footer switcher: the same page in each language, or that language's homepage."""
+    group = {"en": en_path or "/", **ALTERNATES.get(en_path or "", {})}
+    homes = {"en": "/", **ALTERNATES.get("/", {})}
+    if len(homes) < 2:
+        return ""
+    items = []
+    for lang, name in LOCALE_NAMES.items():
+        href = group.get(lang, homes.get(lang, "/"))
+        items.append(f'<span aria-current="true">{escape(name)}</span>' if lang == current else f'<a href="{href}" hreflang="{lang}" lang="{lang}">{escape(name)}</a>')
+    return '<nav class="language-links" aria-label="Language">' + "".join(items) + "</nav>"
+
+
+def page(title: str, description: str, path: str, content: str, extra_schema: list[dict] | None = None,
+         ui: dict | None = None, en_path: str | None = None, nav: list | None = None, footer: list | None = None,
+         full_title: bool = False, scripts: str = "") -> str:
+    """Wrap content in the site chrome. Translated pages pass ui, en_path (for hreflang) and their own nav/footer links."""
+    ui = ui or EN_UI
     e_title, e_description = escape(title), escape(description)
     path = {"/privacy": "/privacy-policy", "/terms": "/terms-of-service", "/blog": "/guides"}.get(path, path)
+    en_path = en_path or (path if ui["lang"] == "en" else None)
+    nav = nav or [("/features", ui["nav_features"]), ("/pricing", ui["nav_pricing"]), ("/guides", ui["nav_guides"])]
+    footer = footer or [("/guides", "Guides"), ("/pricing", "Pricing"), ("/support", "Support"), ("/how-offline-works", "How offline works"), ("/changelog", "Changelog"), ("/about", "About"), ("/press", "Press"), ("/privacy-policy", "Privacy policy"), ("/terms-of-service", "Terms")]
+    nav_html = "".join(f'<a href="{href}">{escape(label)}</a>' for href, label in nav)
+    footer_html = "".join(f'<a href="{href}">{escape(label)}</a>' for href, label in footer)
+    page_title = e_title if full_title else f"{e_title} — ProperPDF"
     og_type = "article" if extra_schema else "website"
     image = share_image(path)
     if path not in {"/privacy-policy", "/terms-of-service"}:
         OG_PAGES[path.strip("/")] = {"title": title}
     schemas = "".join(schema_script(data) for data in [software_schema()] + (extra_schema or []))
     return f'''<!doctype html>
-<html lang="en"><head>
+<html lang="{ui["lang"]}"><head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f8f7f3"><meta name="description" content="{e_description}"><meta name="robots" content="index, follow"><meta name="apple-itunes-app" content="app-id=6760956540, app-argument={BASE}{path}">
     <meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{SITE_NAME}"><meta property="og:title" content="{e_title}">
     <meta property="og:description" content="{e_description}"><meta property="og:url" content="{BASE}{path}"><meta property="og:image" content="{image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
         <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e_title}"><meta name="twitter:description" content="{e_description}"><meta name="twitter:image" content="{image}">
     {schemas}
-  <link rel="canonical" href="{BASE}{path}"><link rel="icon" href="/assets/icon.png" type="image/png">
-  <link rel="stylesheet" href="/styles.css"><title>{e_title} — ProperPDF</title>
+  <link rel="canonical" href="{BASE}{path}">{alternates_html(en_path)}<link rel="icon" href="/assets/icon.png" type="image/png">
+  <link rel="stylesheet" href="/styles.css"><title>{page_title}</title>
 </head><body><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="container nav-inner">
-  <a class="brand" href="/"><img src="/assets/icon.png" alt="" width="38" height="38"><span>ProperPDF</span></a>
-  <nav aria-label="Main navigation"><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/guides">Guides</a></nav>
-    <a class="nav-cta smart-download" href="{IOS_UTM}" data-ios-href="{IOS_UTM}" data-android-href="{ANDROID_UTM}">Download on iPhone <span aria-hidden="true">↗</span></a>
+  <a class="brand" href="{ui["home"]}"><img src="/assets/icon.png" alt="" width="38" height="38"><span>ProperPDF</span></a>
+  <nav aria-label="Main navigation">{nav_html}</nav>
+    <a class="nav-cta smart-download" href="{IOS_UTM}" data-ios-href="{IOS_UTM}" data-android-href="{ANDROID_UTM}" data-android-label="{escape(ui["download_android"])}">{escape(ui["download_ios"])} <span aria-hidden="true">↗</span></a>
 </div></header>
 <main id="main">{content}</main>
-<footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="/"><img src="/assets/icon.png" alt="" width="34" height="34"><span>ProperPDF</span></a><p>Offline PDF tools for iPhone and Android.</p></div><div class="footer-links"><a href="/guides">Guides</a><a href="/pricing">Pricing</a><a href="/support">Support</a><a href="/how-offline-works">How offline works</a><a href="/changelog">Changelog</a><a href="/about">About</a><a href="/press">Press</a><a href="/privacy-policy">Privacy policy</a><a href="/terms-of-service">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 ProperPDF</span><span>PDF processing on your device.</span></div></footer>
-<script>(function () {{ var ua = navigator.userAgent; var platform = /Android/i.test(ua) ? 'android' : /iPhone|iPad|iPod/i.test(ua) ? 'ios' : 'desktop'; document.body.dataset.platform = platform; document.querySelectorAll('.smart-download').forEach(function (link) {{ if (platform === 'android') {{ link.href = link.dataset.androidHref; link.innerHTML = 'Get it on Google Play <span aria-hidden="true">↗</span>'; }} }}); }}());</script>
-<script src="/site-data.js?v=1" defer></script>
+<footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="{ui["home"]}"><img src="/assets/icon.png" alt="" width="34" height="34"><span>ProperPDF</span></a><p>{escape(ui["footer_tagline"])}</p></div><div class="footer-links">{footer_html}</div></div><div class="container footer-bottom"><span>© 2026 ProperPDF</span>{language_links(en_path, ui["lang"])}<span>{escape(ui["footer_bottom"])}</span></div></footer>
+<script>(function () {{ var ua = navigator.userAgent; var platform = /Android/i.test(ua) ? 'android' : /iPhone|iPad|iPod/i.test(ua) ? 'ios' : 'desktop'; document.body.dataset.platform = platform; document.querySelectorAll('.smart-download').forEach(function (link) {{ if (platform === 'android') {{ link.href = link.dataset.androidHref; link.innerHTML = link.dataset.androidLabel + ' <span aria-hidden="true">↗</span>'; }} }}); }}());</script>
+<script src="/site-data.js?v=1" defer></script>{scripts}
 </body></html>'''
 
 
@@ -147,7 +203,7 @@ def write_static_files(slugs: list[str]) -> None:
         encoding="utf-8",
     )
     aliases = {"privacy": "privacy-policy", "terms": "terms-of-service", "blog": "guides"}
-    redirects = ["/index.html / 301"]
+    redirects = ["/index.html / 301"] + [f"/{code}/index.html /{code}/ 301" for code, *_ in LOCALES]
     redirects += [f"/{slug}.html /{slug} 301" for slug in slugs]
     for alias, target in aliases.items():
         redirects += [f"/{alias} /{target} 301", f"/{alias}/ /{target} 301", f"/{alias}.html /{target} 301"]
@@ -159,33 +215,43 @@ def paragraph(text: str) -> str:
     return f"<p>{escape(text)}</p>"
 
 
-def cta() -> str:
-    return f'''<aside class="content-cta"><p class="kicker">GET THE APP</p><h2>Download ProperPDF</h2><p>Free on the App Store and Google Play. No account needed.</p>{download_buttons("landing-page")}</aside>'''
+def cta(ui: dict | None = None) -> str:
+    ui = ui or EN_UI
+    return f'''<aside class="content-cta"><p class="kicker">{escape(ui["cta_kicker"])}</p><h2>{escape(ui["cta_title"])}</h2><p>{escape(ui["cta_text"])}</p>{download_buttons("landing-page", ui)}</aside>'''
 
 
-def facts_table(slug: str) -> str:
+def tier(value: str, ui: dict, long: bool = False) -> str:
+    return {FREE: ui["free"], PRO: ui["pro"], FREE_WM: ui["free_wm_long"] if long else ui["free_wm"]}[value]
+
+
+def facts_table(slug: str, ui: dict | None = None) -> str:
     """Plain at-a-glance table for one tool, so the price and limits are stated, not implied."""
+    ui = ui or EN_UI
     name, ios, android = TOOL_BY_SLUG[slug]
-    long = lambda v: "Free, with a ProperPDF watermark on the saved file (Pro removes it)" if v == FREE_WM else v
-    rows = [("iPhone and iPad", long(ios)), ("Android", long(android)), ("Works offline", "Yes"),
-            ("Files uploaded", "No, processing happens on the device"), ("Account needed", "No"), ("Requires", REQUIREMENTS)]
+    name = ui["tool_names"].get(name, name)
+    rows = [(ui["row_ios"], tier(ios, ui, True)), (ui["row_android"], tier(android, ui, True)), (ui["row_offline"], ui["row_offline_v"]),
+            (ui["row_uploads"], ui["row_uploads_v"]), (ui["row_account"], ui["row_account_v"]), (ui["row_requires"], ui["requirements"])]
     body = "".join(f'<tr><th scope="row">{escape(k)}</th><td>{escape(v)}</td></tr>' for k, v in rows)
-    return f'<table class="facts-table"><caption>{escape(name)} in ProperPDF at a glance</caption><tbody>{body}</tbody></table>'
+    return f'<table class="facts-table"><caption>{escape(ui["facts_caption"].format(name=name))}</caption><tbody>{body}</tbody></table>'
 
 
-def tools_table() -> str:
-    """Every tool with its Free/Pro status on each platform."""
+def tools_table(ui: dict | None = None, links: dict | None = None) -> str:
+    """Every tool with its Free/Pro status on each platform. `links` maps English slugs to page paths."""
+    ui = ui or EN_UI
+    links = links if links is not None else {slug: f"/{slug}" for slug in TOOL_BY_SLUG}
     rows = []
     for name, slug, ios, android in TOOLS:
-        label = f'<a href="/{slug}">{escape(name)}</a>' if slug else escape(name)
-        rows.append(f'<tr><th scope="row">{label}</th><td>{escape(ios)}</td><td>{escape(android)}</td></tr>')
+        label = escape(ui["tool_names"].get(name, name))
+        if slug in links:
+            label = f'<a href="{links[slug]}">{label}</a>'
+        rows.append(f'<tr><th scope="row">{label}</th><td>{escape(tier(ios, ui))}</td><td>{escape(tier(android, ui))}</td></tr>')
     rows = "".join(rows)
-    return f'<table class="facts-table tools-table"><thead><tr><th scope="col">Tool</th><th scope="col">iPhone and iPad</th><th scope="col">Android</th></tr></thead><tbody>{rows}</tbody></table><p class="table-note">{escape(WATERMARK_NOTE)}</p>'
+    return f'<table class="facts-table tools-table"><thead><tr><th scope="col">{escape(ui["col_tool"])}</th><th scope="col">{escape(ui["col_ios"])}</th><th scope="col">{escape(ui["col_android"])}</th></tr></thead><tbody>{rows}</tbody></table><p class="table-note">{escape(ui["watermark_note"])}</p>'
 
 
-def faq_html(faq: list) -> str:
+def faq_html(faq: list, ui: dict | None = None) -> str:
     items = "".join(f"<h3>{escape(q)}</h3><p>{escape(a)}</p>" for q, a in faq)
-    return f'<section class="article-faq"><h2>Questions</h2>{items}</section>'
+    return f'<section class="article-faq"><h2>{escape((ui or EN_UI)["faq_title"])}</h2>{items}</section>'
 
 
 features = [
@@ -276,7 +342,8 @@ article_mockups = {
 }
 
 
-def mockup_figure(image: str, alt: str, caption: str) -> str:
+def mockup_figure(image: str, alt: str, caption: str, ui: dict | None = None) -> str:
+    ui = ui or EN_UI
     asset = PUBLIC / "assets" / "mockups" / image
     # PNG's IHDR stores the intrinsic dimensions; reserve the correct ratio.
     header = asset.read_bytes()[:24]
@@ -286,34 +353,36 @@ def mockup_figure(image: str, alt: str, caption: str) -> str:
     # Show the 480px WebP (about 25 KB) and link the full-size PNG.
     small = image.removesuffix(".png") + "-480.webp"
     src = f"/assets/mockups/{small}" if (PUBLIC / "assets" / "mockups" / small).exists() else full
-    return f'''<figure class="article-mockup"><a href="{escape(full)}" target="_blank" rel="noopener" aria-label="{escape('View full-size screenshot: ' + alt)}"><img src="{escape(src)}" alt="{escape(alt)}" width="480" height="{round(height * 480 / width)}" loading="lazy" decoding="async"></a><figcaption>{escape(caption)} <a href="{escape(full)}" target="_blank" rel="noopener">View full-size screenshot</a></figcaption></figure>'''
+    return f'''<figure class="article-mockup"><a href="{escape(full)}" target="_blank" rel="noopener" aria-label="{escape(ui['full_screenshot'] + ': ' + alt)}"><img src="{escape(src)}" alt="{escape(alt)}" width="480" height="{round(height * 480 / width)}" loading="lazy" decoding="async"></a><figcaption>{escape(caption)} <a href="{escape(full)}" target="_blank" rel="noopener">{escape(ui['full_screenshot'])}</a></figcaption></figure>'''
 
-def article_body(item: dict) -> str:
+def article_body(item: dict, ui: dict | None = None, illustration: tuple | None = None) -> str:
     """Answer first, then the facts, numbered steps, supporting sections and FAQ."""
     blocks = [f'<p class="answer">{escape(item["answer"])}</p>']
+    key = item.get("en_slug", item["slug"])
     if item.get("tool_table"):
-        blocks.append(tools_table())
-    elif item["slug"] in TOOL_BY_SLUG:
-        blocks.append(facts_table(item["slug"]))
+        blocks.append(tools_table(ui))
+    elif key in TOOL_BY_SLUG:
+        blocks.append(facts_table(key, ui))
     sections = list(item["sections"])
     if item.get("steps"):
         sections.insert(0, (item["steps_title"], {"steps": item["steps"]}))
-    illustration = article_mockups.get(item["slug"])
+    illustration = illustration or article_mockups.get(item["slug"])
     for index, (title, body) in enumerate(sections):
         if isinstance(body, dict):
             html = "<ol class=\"steps\">" + "".join(f"<li>{escape(step)}</li>" for step in body["steps"]) + "</ol>"
         else:
             html = "".join(map(paragraph, body))
         if illustration and illustration[0] == index:
-            html += mockup_figure(*illustration[1:])
+            html += mockup_figure(*illustration[1:], ui=ui)
         blocks.append(f"<section><h2>{escape(title)}</h2>{html}</section>")
     if item.get("faq"):
-        blocks.append(faq_html(item["faq"]))
+        blocks.append(faq_html(item["faq"], ui))
     return "".join(blocks)
 
 
-def hero(kicker: str, item: dict) -> str:
-    return f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">{kicker}</p><h1>{escape(item["title"])}</h1><p>{escape(item["lead"])}</p><p class="landing-proof">Offline processing · No account required</p>{download_buttons("tool-header")}<p class="updated">Updated {UPDATED_LABEL}</p></div></div>'''
+def hero(kicker: str, item: dict, ui: dict | None = None) -> str:
+    ui = ui or EN_UI
+    return f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">{kicker}</p><h1>{escape(item["title"])}</h1><p>{escape(item["lead"])}</p><p class="landing-proof">{escape(ui["proof"])}</p>{download_buttons("tool-header", ui)}<p class="updated">{escape(ui["updated"].format(date=ui["date"]))}</p></div></div>'''
 
 
 def feature_html(item: dict) -> str:
@@ -720,7 +789,36 @@ pricing_faq = [
 ]
 
 slugs = ["features", "guides", "support", "pricing", "privacy-policy", "terms-of-service", "how-offline-works", "changelog", "about", "press"] + [item["slug"] for item in features + guides + comparisons]
-write_static_files(slugs)
+# Translated pages. Each i18n/<code>.json holds the homepage, pricing and a few tool guides,
+# translated from i18n/en.json. English pages link them with hreflang; see render_locales().
+LOCALES = [
+    # (file code / URL folder, hreflang code, Google Play badge language)
+    ("es", "es", "es"), ("pt-br", "pt-BR", "pt-br"), ("de", "de", "de"), ("ja", "ja", "ja"),
+]
+LOCALE_DATA: dict[str, dict] = {}
+
+
+def load_locales() -> None:
+    for code, hreflang, badge in LOCALES:
+        source = Path(__file__).parent / "i18n" / f"{code}.json"
+        if not source.exists():
+            continue
+        data = json.loads(source.read_text(encoding="utf-8"))
+        ui = {**EN_UI, **data["ui"], "lang": hreflang, "home": f"/{code}/",
+              "google_badge": f"https://play.google.com/intl/en_us/badges/static/images/badges/{badge}_badge_web_generic.png"}
+        data["ui"] = ui
+        data["code"] = code
+        data["paths"] = {"/": f"/{code}/", "/pricing": f"/{code}/{data['pricing']['slug']}"}
+        data["paths"].update({f"/{en_slug}": f"/{code}/{item['slug']}" for en_slug, item in data["pages"].items()})
+        LOCALE_DATA[code] = data
+        LOCALE_NAMES[hreflang] = ui["lang_name"]
+        for en_path, path in data["paths"].items():
+            ALTERNATES.setdefault(en_path, {})[hreflang] = path
+
+
+load_locales()
+LOCALE_SLUGS = [path.strip("/") for data in LOCALE_DATA.values() for path in data["paths"].values() if path.count("/") > 1 and not path.endswith("/")]
+write_static_files(slugs + LOCALE_SLUGS)
 
 
 # Trust pages: how offline processing works, the release history, and who makes the app.
@@ -920,7 +1018,91 @@ page_lines = "\n".join(f"- [{item['title']}]({BASE}/{item['slug']}): {item['desc
 {page_lines}
 """, encoding="utf-8")
 
+def localized_chrome(data: dict) -> dict:
+    ui = data["ui"]
+    paths = data["paths"]
+    return dict(ui=ui,
+                nav=[(f"{paths['/']}#features", ui["nav_features"]), (paths["/pricing"], ui["nav_pricing"]), ("/guides", ui["nav_guides"])],
+                footer=[(paths["/pricing"], ui["nav_pricing"])] + [(paths[f"/{slug}"], ui["tool_names"].get(TOOL_BY_SLUG[slug][0], TOOL_BY_SLUG[slug][0])) for slug in data["pages"]] + [("/guides", ui["footer_english"])])
+
+
+def localized_home(data: dict) -> None:
+    ui, home, paths = data["ui"], data["home"], data["paths"]
+    href = lambda en_slug: paths.get(f"/{en_slug}", f"/{en_slug}")
+    shots = {"merge-pdf": "merge", "split-pdf": "split", "compress-pdf": "compress", "fill-pdf": "fill", "lock-pdf": "lock"}
+    tiers = {"merge-pdf": ui["free"], "split-pdf": ui["free"], "compress-pdf": ui["pro"], "fill-pdf": ui["pro"], "lock-pdf": ui["pro"]}
+    tools = "".join(f'''<li><img src="/assets/mockups/ios/{shots[slug]}-portrait-480.webp" alt="" width="480" height="953" loading="lazy" decoding="async"><h3><a href="{href(slug)}">{escape(name)}</a></h3><p>{escape(line)}</p><span class="tool-tier">{escape(tiers[slug])}</span></li>''' for slug, (name, line) in home["tools"].items())
+    facts = "".join(f"<div><dt>{escape(k)}</dt><dd>{escape(v)}</dd></div>" for k, v in home["facts"])
+    faq = "".join(f"<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>" for q, a in home["faq"])
+    content = f'''<section class="hero" id="top" aria-labelledby="hero-title"><div class="container hero-grid"><div class="hero-copy">
+<h1 id="hero-title">{escape(home["h1_a"])} <em>{escape(home["h1_em"])}</em></h1><p class="hero-lede">{escape(home["lede"])}</p>
+<div class="hero-actions">{download_buttons("hero", ui)}</div><p class="hero-proof">{escape(home["proof"])}</p></div>
+<div class="hero-visual" id="platform-preview" tabindex="0" role="region" aria-roledescription="carousel" aria-label="ProperPDF" data-active="ios"><div class="preview-stage">
+<div class="preview-panel" data-preview-platform="ios"><div class="hero-screen"><img src="/assets/mockups/ios/home-portrait-660.webp" alt="ProperPDF iPhone" width="660" height="1310" fetchpriority="high"></div><div class="hero-qr-pair"><a class="hero-qr" href="{IOS_UTM}"><img src="/assets/qr-app-store.png" alt="" width="132" height="132" loading="lazy"><div><strong>iPhone &amp; iPad</strong><span>App Store</span></div></a></div></div>
+<div class="preview-panel" data-preview-platform="android" inert aria-hidden="true"><div class="hero-screen"><img data-src="/assets/mockups/android/8home1-portrait-660.webp" alt="ProperPDF Android" width="660" height="1251" decoding="async"></div><div class="hero-qr-pair"><a class="hero-qr" href="{ANDROID_UTM}"><img src="/assets/qr-google-play.png" alt="" width="132" height="132" loading="lazy"><div><strong>Android</strong><span>Google Play</span></div></a></div></div>
+</div></div></div></section>
+<section class="home-tools" id="features" aria-labelledby="features-title"><div class="container"><h2 id="features-title">{escape(home["tools_title"])}</h2><ul class="home-tool-row">{tools}</ul><p class="home-tools-more">{escape(home["tools_more"])}</p></div></section>
+<section class="demo-section" aria-labelledby="demo-title"><div class="container demo-grid"><div><h2 id="demo-title">{escape(home["demo_title"])}</h2><p>{escape(home["demo_text"])}</p><p><a class="text-link" href="{href("sign-pdf")}">{escape(home["demo_link"])}</a></p></div>
+<div class="demo-player" data-video-player><video id="signing-demo" class="demo-video" width="900" height="1948" preload="none" controls muted playsinline poster="/assets/sign-pdf-demo-poster-660.jpg" aria-labelledby="demo-title"><source src="/assets/sign-pdf-demo.mp4" type="video/mp4"></video>
+<button class="video-start" type="button" aria-label="Play" aria-controls="signing-demo" hidden><span class="material-symbols-outlined" aria-hidden="true">play_arrow</span></button><div class="video-controls" role="group" hidden><input class="video-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek" disabled><div class="video-toolbar"><button type="button" data-video-play aria-label="Play" aria-controls="signing-demo"><span class="material-symbols-outlined" aria-hidden="true">play_arrow</span></button><span class="video-time">0:00 / 0:33</span><button type="button" data-video-mute aria-label="Unmute"><span class="material-symbols-outlined" aria-hidden="true">volume_off</span></button><button type="button" data-video-fullscreen aria-label="Fullscreen"><span class="material-symbols-outlined" aria-hidden="true">fullscreen</span></button></div></div><p class="video-status" role="status" hidden></p></div></div></section>
+<section class="home-offline" id="privacy" aria-labelledby="privacy-title"><div class="container home-offline-grid"><div><h2 id="privacy-title">{escape(home["offline_title"])}</h2><p>{escape(home["offline_p1"])}</p><p>{escape(home["offline_p2"])}</p></div><dl class="home-facts">{facts}</dl></div></section>
+<section class="home-pricing" id="pricing" aria-labelledby="pricing-title"><div class="container"><h2 id="pricing-title">{escape(home["pricing_title"])}</h2><div class="home-pricing-grid">
+<div><h3>{escape(home["free_h"])}</h3><p class="home-price">$0</p><p>{escape(home["free_text"])}</p></div>
+<div><h3>{escape(home["pro_h"])}</h3><p class="home-price">$29.99 <span>{escape(home["pro_price_suffix"])}</span></p><p>{escape(home["pro_text"])}</p></div></div>
+<p class="home-pricing-note">{escape(home["pricing_note"])} <a href="{paths["/pricing"]}">{escape(home["pricing_link"])}</a></p></div></section>
+<section class="section faq" id="faq" aria-labelledby="faq-title"><div class="container faq-grid"><div><h2 id="faq-title">{escape(ui["faq_title"])}</h2></div><div class="faq-list">{faq}</div></div></section>
+<section class="download-section" id="download" aria-labelledby="download-title"><div class="container download-inner"><div><h2 id="download-title">{escape(home["download_title_a"])}<br><em>{escape(home["download_title_em"])}</em></h2><p>{escape(home["download_text"])}</p></div><div class="download-actions">{download_buttons("footer", ui)}</div></div></section>'''
+    icons = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;icon_names=fullscreen,fullscreen_exit,pause,play_arrow,volume_off,volume_up&amp;display=swap">'
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in home["faq"]]}
+    html = page(home["title"], home["description"], paths["/"], content, None, en_path="/", full_title=True,
+                scripts=icons + '<script src="/preview.js?v=4" defer></script><script src="/video-player.js?v=1" defer></script>', **localized_chrome(data))
+    out = PUBLIC / data["code"]
+    out.mkdir(exist_ok=True)
+    (out / "index.html").write_text(html.replace('<link rel="stylesheet" href="/styles.css">', '<link rel="stylesheet" href="/styles.css">' + schema_script(faq_schema)), encoding="utf-8")
+
+
+def localized_pricing(data: dict) -> None:
+    ui, pr, paths = data["ui"], data["pricing"], data["paths"]
+    links = {slug.strip("/"): path for slug, path in paths.items() if slug.strip("/") in TOOL_BY_SLUG}
+    links.update({slug: f"/{slug}" for slug in TOOL_BY_SLUG if slug not in links})
+    rows = "".join(f'<tr><th scope="row">{escape(plan)}</th><td>{escape(price)}</td></tr>' for plan, price in pr["plans"])
+    item = {"title": pr["h1"], "lead": pr["lead"]}
+    content = f'''{hero(ui["nav_pricing"].upper(), item, ui)}<div class="container content-layout"><article class="article-body"><p class="answer">{escape(pr["answer"])}</p><section><h2>{escape(pr["tools_heading"])}</h2>{tools_table(ui, links)}</section><section><h2>{escape(pr["plans_heading"])}</h2><table class="facts-table"><tbody>{rows}</tbody></table><p>{escape(pr["regional_note"])} {escape(pr["renew_note"])}</p></section>{faq_html(pr["faq"], ui)}{cta(ui)}</article><aside class="related-links"><p class="kicker">{escape(ui["related_kicker"])}</p>''' + "".join(f'<a href="{paths[f"/{slug}"]}">{escape(page["title"])} <span aria-hidden="true">↗</span></a>' for slug, page in data["pages"].items()) + "</aside></div>"
+    schema = [{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in pr["faq"]]}]
+    path = paths["/pricing"]
+    (PUBLIC / f"{path.strip('/')}.html").write_text(page(pr["title"], pr["description"], path, content, schema, en_path="/pricing", **localized_chrome(data)), encoding="utf-8")
+
+
+def localized_guides(data: dict) -> None:
+    ui, paths = data["ui"], data["paths"]
+    for en_slug, item in data["pages"].items():
+        item = {**item, "en_slug": en_slug, "sections": [tuple(section) for section in item["sections"]], "faq": [tuple(qa) for qa in item["faq"]]}
+        index, image, *_ = article_mockups[en_slug]
+        illustration = (index, image, item["mockup_alt"], item["mockup_caption"])
+        others = "".join(f'<a href="{paths[f"/{slug}"]}">{escape(other["title"])} <span aria-hidden="true">↗</span></a>' for slug, other in data["pages"].items() if slug != en_slug)
+        content = f'''{hero(ui["kicker_tool"], item, ui)}<div class="container content-layout"><article class="article-body">{article_body(item, ui, illustration)}{cta(ui)}</article><aside class="related-links"><p class="kicker">{escape(ui["related_kicker"])}</p>{others}<a href="{paths["/pricing"]}">{escape(ui["free_vs_pro"])} <span aria-hidden="true">↗</span></a><a href="/features">{escape(ui["all_tools_en"])} <span aria-hidden="true">↗</span></a></aside></div>'''
+        path = paths[f"/{en_slug}"]
+        (PUBLIC / f"{path.strip('/')}.html").write_text(page(item["title"], item["description"], path, content, article_schema(item["title"], item["description"], path, ui["nav_guides"], item["faq"]), en_path=f"/{en_slug}", **localized_chrome(data)), encoding="utf-8")
+
+
+for data in LOCALE_DATA.values():
+    (PUBLIC / data["code"]).mkdir(exist_ok=True)
+    localized_home(data)
+    localized_pricing(data)
+    localized_guides(data)
+
+# The hand-written homepage gets its hreflang links and language switcher between markers.
+index_path = PUBLIC / "index.html"
+index_html = index_path.read_text(encoding="utf-8")
+for marker, html in (("alternates", alternates_html("/")), ("languages", language_links("/", "en"))):
+    start, end = f"<!-- i18n:{marker} -->", f"<!-- /i18n:{marker} -->"
+    if start in index_html:
+        head, rest = index_html.split(start, 1)
+        index_html = head + start + html + end + rest.split(end, 1)[1]
+index_path.write_text(index_html, encoding="utf-8")
+
 paths = ["/", "/features", "/guides", "/pricing", "/how-offline-works", "/changelog", "/about", "/press", "/support", "/privacy-policy", "/terms-of-service"] + [f"/{item['slug']}" for item in features + guides + comparisons]
+paths += [path for data in LOCALE_DATA.values() for path in data["paths"].values()]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{xml_escape(BASE + path)}</loc><lastmod>{UPDATED}</lastmod></url>\n" for path in paths) + "</urlset>\n"
 (PUBLIC / "sitemap.xml").write_text(sitemap, encoding="utf-8")
 # Titles for scripts/og_images.py, which renders /og/<slug>.png locally (it needs a browser,
