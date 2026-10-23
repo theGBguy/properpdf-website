@@ -2002,6 +2002,131 @@ h3 {
     color: #1476b6
 }
 
+.article-body p.answer {
+    font-size: 18px;
+    line-height: 1.75;
+    color: #2c3d45;
+    margin: 0 0 32px
+}
+
+.content-hero p.updated {
+    margin: 18px 0 0;
+    font-size: 13px;
+    color: #7a8a91
+}
+
+.facts-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 48px;
+    font-size: 14px;
+    line-height: 1.5
+}
+
+.facts-table caption {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #6a7b82;
+    padding-bottom: 10px
+}
+
+.facts-table th,
+.facts-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 11px 14px 11px 0;
+    border-bottom: 1px solid #dce5e5
+}
+
+.facts-table tbody th {
+    font-weight: 700;
+    color: #354b54;
+    width: 34%
+}
+
+.facts-table td {
+    color: #52636c
+}
+
+.facts-table thead th {
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #6a7b82;
+    border-bottom: 1px solid #b9c8ca
+}
+
+.facts-table a {
+    color: #166ca9
+}
+
+.guide-index .tools-table {
+    max-width: 900px;
+    margin-bottom: 12px
+}
+
+.table-note {
+    font-size: 13px !important;
+    color: #7a8a91 !important;
+    margin: -36px 0 48px !important
+}
+
+.guide-index .table-note {
+    margin: 0 0 20px !important
+}
+
+.article-body ol.steps {
+    margin: 0 0 16px;
+    padding-left: 22px;
+    color: #52636c;
+    font-size: 16px;
+    line-height: 1.75
+}
+
+.article-body ol.steps li {
+    margin-bottom: 8px;
+    padding-left: 4px
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin: 0 0 48px
+}
+
+.table-wrap .facts-table {
+    margin: 0;
+    min-width: 560px
+}
+
+.compare-table tbody th {
+    width: auto
+}
+
+.article-body p.disclosure {
+    font-size: 13px;
+    color: #7a8a91;
+    margin: -16px 0 32px
+}
+
+.sources ol {
+    padding-left: 20px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #52636c
+}
+
+.sources a {
+    color: #166ca9
+}
+
+.article-faq h3 {
+    font-size: 17px;
+    margin: 24px 0 6px
+}
+
 .article-body .content-disclaimer {
     font-size: 12px;
     color: #86959b;

@@ -1,0 +1,52 @@
+# ProperPDF
+
+> Offline PDF app for iPhone, iPad and Android. Scans, merges, splits, compresses, signs, fills, locks and converts PDFs on the device. Files are not uploaded and there is no account.
+
+- Platforms: iOS 17 or later on iPhone and iPad; Android 8.0 or later.
+- App Store: https://apps.apple.com/app/id6760956540
+- Google Play: https://play.google.com/store/apps/details?id=io.github.thegbguy.pdfmate
+- Price: free download, no ads. Pro: Weekly $1.99 a week, Monthly $3.99 a month, Yearly $29.99 a year, Lifetime $29.99 once (US prices; regional pricing makes Pro cheaper in many countries).
+- Limits: does not edit existing PDF text, convert PDF to Word, or add highlights/annotations.
+- Contact: hello@tryproperpdf.app
+
+## Tools: free or Pro
+
+- Scan to PDF: iPhone/iPad: Free. Android: Free, with watermark. Guide: https://tryproperpdf.app/scan-to-pdf
+- Merge PDF: iPhone/iPad: Free, with watermark. Android: Free, with watermark. Guide: https://tryproperpdf.app/merge-pdf
+- Split PDF: iPhone/iPad: Free, with watermark. Android: Free, with watermark. Guide: https://tryproperpdf.app/split-pdf
+- Organize pages (reorder, rotate, delete): iPhone/iPad: Free. Android: Free, with watermark.
+- Image to PDF: iPhone/iPad: Free. Android: Free, with watermark. Guide: https://tryproperpdf.app/image-to-pdf
+- PDF to image (PNG or JPEG): iPhone/iPad: Free. Android: Free, with watermark. Guide: https://tryproperpdf.app/pdf-to-image
+- Edit metadata: iPhone/iPad: Free. Android: Free.
+- PDF viewer and document library: iPhone/iPad: Free. Android: Free.
+- Compress PDF: iPhone/iPad: Pro. Android: Pro. Guide: https://tryproperpdf.app/compress-pdf
+- Sign PDF: iPhone/iPad: Pro. Android: Pro. Guide: https://tryproperpdf.app/sign-pdf
+- Fill PDF forms: iPhone/iPad: Pro. Android: Pro. Guide: https://tryproperpdf.app/fill-pdf
+- Lock and unlock PDF (password): iPhone/iPad: Pro. Android: Pro. Guide: https://tryproperpdf.app/lock-pdf
+- AI chat and summary (on-device): iPhone/iPad: Free. Android: Pro.
+
+"With watermark" means files saved with that tool carry a ProperPDF watermark. Pro removes it.
+
+## Pages
+
+- [Pricing](https://tryproperpdf.app/pricing): what's free, what's Pro, prices.
+- [Merge PDFs on iPhone and Android without uploading](https://tryproperpdf.app/merge-pdf): Combine PDF files into one on iPhone, iPad or Android. ProperPDF merges them on your phone, offline, with no account. Free to use.
+- [Split a PDF on iPhone and Android without uploading](https://tryproperpdf.app/split-pdf): Extract pages from a PDF on iPhone, iPad or Android. Split by page range or every few pages, offline, with no account. Free to use.
+- [Compress a PDF on iPhone and Android without uploading](https://tryproperpdf.app/compress-pdf): Reduce PDF file size on iPhone, iPad or Android. ProperPDF compresses on the device, offline, so the document is never uploaded.
+- [Convert PDF pages to images offline](https://tryproperpdf.app/pdf-to-image): Export PDF pages as PNG or JPEG images on iPhone, iPad or Android, offline and without uploading the document.
+- [Offline PDF editor for iPhone and iPad](https://tryproperpdf.app/offline-pdf-editor-iphone): ProperPDF scans, merges, splits, compresses, signs, fills and locks PDFs offline on iPhone and iPad, with no uploads and no account.
+- [Is it safe to upload PDFs to online PDF tools?](https://tryproperpdf.app/private-pdf-workflow): What happens to a PDF when you upload it to an online converter, and how to merge, compress and sign documents on your phone instead.
+- [Offline PDF editor for Android](https://tryproperpdf.app/offline-pdf-editor-android): ProperPDF scans, merges, splits, compresses, signs, fills and locks PDFs offline on Android 8.0 and later, with no uploads and no account.
+- [Compress a PDF without uploading it](https://tryproperpdf.app/private-pdf-compressor): Shrink a PDF privately on iPhone, iPad or Android. ProperPDF compresses on the device instead of sending the file to an online compressor.
+- [Merge PDFs offline on Android](https://tryproperpdf.app/offline-pdf-merger-android): Combine PDF files on Android without uploading them. ProperPDF merges scans, receipts, forms and reports on the phone. Free to use.
+- [Password protect a PDF on your phone](https://tryproperpdf.app/lock-pdf): Add a password to a PDF on iPhone, iPad or Android with ProperPDF, offline. Also restrict printing and editing, or remove a password you know.
+- [Sign a PDF on your phone without uploading it](https://tryproperpdf.app/sign-pdf): Draw your signature and place it on a PDF on iPhone, iPad or Android. ProperPDF signs documents offline, with no account.
+- [Fill PDF forms on your phone](https://tryproperpdf.app/fill-pdf): Type into fillable PDF forms on iPhone, iPad or Android with ProperPDF, offline, and save the completed copy.
+- [Turn photos into a PDF on your phone](https://tryproperpdf.app/image-to-pdf): Combine photos, screenshots and scans into one PDF on iPhone, iPad or Android with ProperPDF, offline. Free to use.
+- [Scan documents to PDF on your phone](https://tryproperpdf.app/scan-to-pdf): Scan paper documents into PDFs with your phone camera on iPhone, iPad or Android. ProperPDF finds the page edges and saves offline.
+- [The best PDF apps that work offline on iPhone and Android](https://tryproperpdf.app/best-offline-pdf-apps): Six PDF apps compared for working offline, without uploads: ProperPDF, PDFgear, Apple Preview, Files by Google, Foxit and Xodo. Prices and limits included.
+- [Adobe Acrobat Reader alternatives for iPhone and Android](https://tryproperpdf.app/acrobat-alternatives): Alternatives to Adobe Acrobat Reader on mobile for merging, compressing and signing PDFs: ProperPDF, PDFgear, PDF Expert, Apple Preview, Foxit and Xodo.
+- [iLovePDF and Smallpdf alternatives that don't upload your files](https://tryproperpdf.app/ilovepdf-smallpdf-alternatives): iLovePDF and Smallpdf process PDFs on their servers. These alternatives merge, compress and sign PDFs on your phone instead, offline.
+- [ProperPDF vs Adobe Acrobat Reader on mobile](https://tryproperpdf.app/properpdf-vs-adobe-acrobat): ProperPDF vs Adobe Acrobat Reader for iPhone and Android: which tools are free, offline use, accounts, ads and what each one can't do.
+- [ProperPDF vs PDF Expert on iPhone and iPad](https://tryproperpdf.app/properpdf-vs-pdf-expert): ProperPDF vs PDF Expert by Readdle: free tools, Premium prices, offline use, Android support and what each app can't do.
+- [How to merge PDFs on iPhone without an app](https://tryproperpdf.app/merge-pdf-iphone-without-app): Combine PDFs on iPhone with Apple's built-in Preview app (iOS 26 and later), step by step, and what to use on older iOS versions.

@@ -50,7 +50,13 @@ D1 saves requests; it does not send campaigns or verify email ownership. Before 
 
 ## Content
 
-The homepage is maintained in `public/index.html`. Edit the `features`, `guides`, and `article_mockups` lists in `generate.py` for content pages. The generator writes the articles, route aliases, sitemap, security headers, analytics path allowlist. `public/site-data.js` handles signups and site events on all canonical pages.
+The homepage is maintained in `public/index.html`. Edit the `features`, `guides`, `comparisons` and `article_mockups` lists in `generate.py` for content pages. The generator writes the articles, `/pricing`, `llms.txt`, route aliases, sitemap (with `<lastmod>`), security headers, the IndexNow key file and the analytics path allowlist. `public/site-data.js` handles signups and site events on all canonical pages.
+
+Product facts (which tools are Free or Pro per platform, watermarks, prices, OS requirements) live once in the `TOOLS`, `PRICES` and `REQUIREMENTS` constants; pages, the pricing table and `llms.txt` all read from them. When the apps change a paywall or price, update those constants and bump `UPDATED`/`UPDATED_LABEL`.
+
+Content pages open with a direct answer, then a facts table, numbered steps, short sections and a FAQ (with `Article`, `BreadcrumbList` and `FAQPage` JSON-LD). Comparison pages (`comparisons`) may only state competitor facts that are linked in their `sources`; re-check those sources and bump `CHECKED_LABEL` before editing them.
+
+After each deploy, run `npm run indexnow` to notify Bing and other IndexNow engines (pass paths such as `/pricing` to submit only those).
 
 The app Privacy Policy and Terms of Service remain in `legal-source/`. A separate website-specific data notice is generated on the privacy page. Pricing lists reference USD amounts for weekly, monthly, yearly, and lifetime Pro plans; actual offers are shown in the app.
 
