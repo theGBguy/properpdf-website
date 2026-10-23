@@ -58,6 +58,10 @@ Content pages open with a direct answer, then a facts table, numbered steps, sho
 
 After each deploy, run `npm run indexnow` to notify Bing and other IndexNow engines (pass paths such as `/pricing` to submit only those).
 
+Each page has its own 1200×630 share card in `public/og/`, rendered locally by `scripts/og_images.py` with headless Edge (set `OG_BROWSER` for another Chromium browser). The Cloudflare build can't render them, so the PNGs are committed. After adding a page or changing a title, run `npm run og` (add `--all` to the script to re-render existing cards) and commit the new PNGs. Pages without a card fall back to `assets/home.jpg`.
+
+The `/guides` hub lists every page under a task in `GUIDE_GROUPS`; the build fails if a new page isn't assigned to a group. Article screenshots use the 480px WebP next to each PNG mockup (`cwebp -q 80 -resize 480 0 in.png -o in-480.webp`).
+
 The app Privacy Policy and Terms of Service remain in `legal-source/`. A separate website-specific data notice is generated on the privacy page. Pricing lists reference USD amounts for weekly, monthly, yearly, and lifetime Pro plans; actual offers are shown in the app.
 
 

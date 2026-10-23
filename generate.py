@@ -79,6 +79,15 @@ def software_schema() -> dict:
     }, {"@type": "Organization", "@id": f"{BASE}/#org", "name": SITE_NAME, "url": f"{BASE}/", "logo": f"{BASE}/assets/icon.png", "email": "hello@tryproperpdf.app"}]}
 
 
+OG_PAGES: dict[str, dict] = {}
+
+
+def share_image(path: str) -> str:
+    """Per-page social card from scripts/og_images.py when it exists, else the site image."""
+    slug = path.strip("/") or "home"
+    return f"{BASE}/og/{slug}.png" if (PUBLIC / "og" / f"{slug}.png").exists() else SITE_IMAGE
+
+
 def schema_script(data: dict) -> str:
     return f'<script type="application/ld+json">{json.dumps(data, separators=(",", ":"))}</script>'
 
@@ -88,7 +97,7 @@ def article_schema(title: str, description: str, path: str, section: str, faq: l
     url = f"{BASE}{path}"
     graph = [
         {"@type": "Article", "headline": title, "description": description, "url": url, "mainEntityOfPage": url,
-         "datePublished": PUBLISHED, "dateModified": UPDATED, "image": SITE_IMAGE,
+         "datePublished": PUBLISHED, "dateModified": UPDATED, "image": share_image(path),
          "author": {"@id": f"{BASE}/#org"}, "publisher": {"@id": f"{BASE}/#org"}, "about": {"@id": f"{BASE}/#app"}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{BASE}/"},
@@ -105,14 +114,17 @@ def page(title: str, description: str, path: str, content: str, extra_schema: li
     e_title, e_description = escape(title), escape(description)
     path = {"/privacy": "/privacy-policy", "/terms": "/terms-of-service", "/blog": "/guides"}.get(path, path)
     og_type = "article" if extra_schema else "website"
+    image = share_image(path)
+    if path not in {"/privacy-policy", "/terms-of-service"}:
+        OG_PAGES[path.strip("/")] = {"title": title}
     schemas = "".join(schema_script(data) for data in [software_schema()] + (extra_schema or []))
     return f'''<!doctype html>
 <html lang="en"><head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f8f7f3"><meta name="description" content="{e_description}"><meta name="robots" content="index, follow"><meta name="apple-itunes-app" content="app-id=6760956540, app-argument={BASE}{path}">
     <meta property="og:type" content="{og_type}"><meta property="og:site_name" content="{SITE_NAME}"><meta property="og:title" content="{e_title}">
-    <meta property="og:description" content="{e_description}"><meta property="og:url" content="{BASE}{path}"><meta property="og:image" content="{SITE_IMAGE}">
-        <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e_title}"><meta name="twitter:description" content="{e_description}"><meta name="twitter:image" content="{SITE_IMAGE}">
+    <meta property="og:description" content="{e_description}"><meta property="og:url" content="{BASE}{path}"><meta property="og:image" content="{image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+        <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e_title}"><meta name="twitter:description" content="{e_description}"><meta name="twitter:image" content="{image}">
     {schemas}
   <link rel="canonical" href="{BASE}{path}"><link rel="icon" href="/assets/icon.png" type="image/png">
   <link rel="stylesheet" href="/styles.css"><title>{e_title} — ProperPDF</title>
@@ -250,7 +262,7 @@ article_mockups = {
     "merge-pdf": (0, "android/1merge-portrait.png", "Merge PDF on Android", "The Merge PDF screen in ProperPDF for Android."),
     "split-pdf": (0, "android/2split-portrait.png", "Split PDF on Android", "The Split PDF screen in ProperPDF for Android."),
     "compress-pdf": (0, "android/3compress-portrait.png", "PDF compression settings on Android", "Adjust image resolution in the Android compression screen. Results depend on the source PDF."),
-    "pdf-to-image": (0, "ios/home-portrait.png", "ProperPDF iPhone tools menu with PDF to Image", "Open PDF to Image from the iPhone tools menu shown here."),
+    "pdf-to-image": (0, "ios/pdf-to-image-portrait.png", "PDF to Image screen in ProperPDF on iPhone, with PNG selected and four pages chosen", "Pick PNG or JPEG, tick the pages you want, then convert. Here 4 pages of a 1,153-page PDF are selected."),
     "offline-pdf-editor-iphone": (1, "ios/merge-portrait.png", "Selected PDFs and merge order on iPhone", "The iPhone Merge PDF screen shows the selected files and their order before merging."),
     "private-pdf-workflow": (1, "ios/lock-portrait.png", "PDF password protection screen on iPhone", "The Lock PDF screen in ProperPDF for iPhone."),
     "offline-pdf-editor-android": (1, "android/1merge-portrait.png", "Merge PDF screen in ProperPDF for Android", "Combine documents using Merge PDF in the Android app."),
@@ -259,7 +271,7 @@ article_mockups = {
     "lock-pdf": (0, "ios/lock-portrait.png", "Lock PDF screen on iPhone", "Password protection in the iPhone app. The Android screen looks different."),
     "sign-pdf": (0, "ios/sign-portrait.png", "Sign PDF screen on iPhone", "The Sign PDF screen in ProperPDF for iPhone. The Android screen looks different."),
     "fill-pdf": (0, "ios/fill-portrait.png", "Fill PDF screen on iPhone", "The Fill PDF screen in ProperPDF for iPhone. The Android screen looks different."),
-    "image-to-pdf": (0, "ios/home-portrait.png", "iPhone tools menu showing Image to PDF", "Choose Image to PDF from the iPhone tools menu shown here."),
+    "image-to-pdf": (0, "ios/image-to-pdf-portrait.png", "Image to PDF screen in ProperPDF on iPhone with two images in page order", "Drag the handle to reorder images. Each image becomes one page of the PDF."),
     "scan-to-pdf": (0, "ios/home-portrait.png", "iPhone tools menu showing Scan Document", "Choose Scan Document from the iPhone tools menu shown here."),
 }
 
@@ -270,9 +282,11 @@ def mockup_figure(image: str, alt: str, caption: str) -> str:
     header = asset.read_bytes()[:24]
     width = int.from_bytes(header[16:20], "big")
     height = int.from_bytes(header[20:24], "big")
-    src = f"/assets/mockups/{image}"
-    return f'''<figure class="article-mockup"><a href="{escape(src)}" target="_blank" rel="noopener" aria-label="{escape('View full-size screenshot: ' + alt)}"><img src="{escape(src)}" alt="{escape(alt)}" width="{width}" height="{height}" loading="lazy" decoding="async"></a><figcaption>{escape(caption)} <a href="{escape(src)}" target="_blank" rel="noopener">View full-size screenshot</a></figcaption></figure>'''
-
+    full = f"/assets/mockups/{image}"
+    # Show the 480px WebP (about 25 KB) and link the full-size PNG.
+    small = image.removesuffix(".png") + "-480.webp"
+    src = f"/assets/mockups/{small}" if (PUBLIC / "assets" / "mockups" / small).exists() else full
+    return f'''<figure class="article-mockup"><a href="{escape(full)}" target="_blank" rel="noopener" aria-label="{escape('View full-size screenshot: ' + alt)}"><img src="{escape(src)}" alt="{escape(alt)}" width="480" height="{round(height * 480 / width)}" loading="lazy" decoding="async"></a><figcaption>{escape(caption)} <a href="{escape(full)}" target="_blank" rel="noopener">View full-size screenshot</a></figcaption></figure>'''
 
 def article_body(item: dict) -> str:
     """Answer first, then the facts, numbered steps, supporting sections and FAQ."""
@@ -489,7 +503,7 @@ SRC = {
 }
 
 comparisons = [
-    dict(slug="best-offline-pdf-apps", kicker="COMPARISON",
+    dict(slug="best-offline-pdf-apps", shot=('ios/home-portrait.png', 'ProperPDF tools on iPhone', 'ProperPDF on iPhone. Every tool here works in airplane mode.'), kicker="COMPARISON",
          title="The best PDF apps that work offline on iPhone and Android",
          description="Six PDF apps compared for working offline, without uploads: ProperPDF, PDFgear, Apple Preview, Files by Google, Foxit and Xodo. Prices and limits included.",
          lead="Which PDF apps keep working in airplane mode, what they cost, and what each one can't do.",
@@ -519,7 +533,7 @@ comparisons = [
          ],
          sources=["pdfgear", "pdfgear_android", "pdfgear_play", "preview_start", "preview_pages", "preview_export", "preview_lock", "preview_fill", "files_scan", "files_edit", "files_topics", "foxit_play", "foxit_sub", "xodo_plans", "xodo_ios"],
          related=["acrobat-alternatives", "ilovepdf-smallpdf-alternatives", "merge-pdf-iphone-without-app"]),
-    dict(slug="acrobat-alternatives", kicker="ALTERNATIVES",
+    dict(slug="acrobat-alternatives", shot=('ios/merge-portrait.png', 'Merge PDF screen in ProperPDF on iPhone', 'Merging is free in ProperPDF, with a watermark unless you have Pro.'), kicker="ALTERNATIVES",
          title="Adobe Acrobat Reader alternatives for iPhone and Android",
          description="Alternatives to Adobe Acrobat Reader on mobile for merging, compressing and signing PDFs: ProperPDF, PDFgear, PDF Expert, Apple Preview, Foxit and Xodo.",
          lead="Acrobat Reader is free for reading and signing. Merging, compressing and organizing pages are paid. Here are the alternatives.",
@@ -548,7 +562,7 @@ comparisons = [
          ],
          sources=["acrobat_ios", "acrobat_play", "acrobat_faq", "acrobat_scan", "pdfgear", "pdfexpert_ios", "pdfexpert_pricing", "pdfexpert_privacy", "preview_start", "preview_pages", "foxit_play", "foxit_sub"],
          related=["properpdf-vs-adobe-acrobat", "best-offline-pdf-apps", "merge-pdf"]),
-    dict(slug="ilovepdf-smallpdf-alternatives", kicker="ALTERNATIVES",
+    dict(slug="ilovepdf-smallpdf-alternatives", shot=('ios/compress-portrait.png', 'Compress PDF screen in ProperPDF on iPhone', 'ProperPDF compresses on the phone and shows the estimated size before you save.'), kicker="ALTERNATIVES",
          title="iLovePDF and Smallpdf alternatives that don't upload your files",
          description="iLovePDF and Smallpdf process PDFs on their servers. These alternatives merge, compress and sign PDFs on your phone instead, offline.",
          lead="Both services process files on their servers. These apps do the work on your phone.",
@@ -575,7 +589,7 @@ comparisons = [
          ],
          sources=["smallpdf_play", "smallpdf_pricing", "ilovepdf_pricing", "ilovepdf_faq", "ilovepdf_privacy", "pdfgear", "pdfgear_android", "preview_start", "preview_export"],
          related=["private-pdf-workflow", "private-pdf-compressor", "best-offline-pdf-apps"]),
-    dict(slug="properpdf-vs-adobe-acrobat", kicker="COMPARISON",
+    dict(slug="properpdf-vs-adobe-acrobat", shot=('android/1merge-portrait.png', 'Merge PDF screen in ProperPDF on Android', 'Merge on Android: free in ProperPDF, paid in Acrobat Reader.'), kicker="COMPARISON",
          title="ProperPDF vs Adobe Acrobat Reader on mobile",
          description="ProperPDF vs Adobe Acrobat Reader for iPhone and Android: which tools are free, offline use, accounts, ads and what each one can't do.",
          lead="Acrobat Reader gives away signing; ProperPDF gives away merging and splitting. The rest depends on what you need.",
@@ -606,7 +620,7 @@ comparisons = [
          ],
          sources=["acrobat_ios", "acrobat_play", "acrobat_faq", "acrobat_scan"],
          related=["acrobat-alternatives", "properpdf-vs-pdf-expert", "pricing"]),
-    dict(slug="properpdf-vs-pdf-expert", kicker="COMPARISON",
+    dict(slug="properpdf-vs-pdf-expert", shot=('android/8home1-portrait.png', 'ProperPDF tools on Android', 'ProperPDF also runs on Android, which PDF Expert does not.'), kicker="COMPARISON",
          title="ProperPDF vs PDF Expert on iPhone and iPad",
          description="ProperPDF vs PDF Expert by Readdle: free tools, Premium prices, offline use, Android support and what each app can't do.",
          lead="PDF Expert is the fuller editor. ProperPDF is the cheaper, offline, cross-platform toolkit.",
@@ -634,7 +648,7 @@ comparisons = [
          ],
          sources=["pdfexpert_ios", "pdfexpert_pricing", "pdfexpert_privacy"],
          related=["acrobat-alternatives", "properpdf-vs-adobe-acrobat", "offline-pdf-editor-iphone"]),
-    dict(slug="merge-pdf-iphone-without-app", kicker="GUIDE",
+    dict(slug="merge-pdf-iphone-without-app", shot=('ios/merge-portrait.png', 'Merge PDF screen in ProperPDF on iPhone', 'ProperPDF merges several files at once: pick them, drag them into order, save.'), kicker="GUIDE",
          title="How to merge PDFs on iPhone without an app",
          description="Combine PDFs on iPhone with Apple's built-in Preview app (iOS 26 and later), step by step, and what to use on older iOS versions.",
          lead="On iOS 26 and later, the Preview app can do it. On older versions, you'll need an app.",
@@ -667,11 +681,14 @@ def comparison_html(item: dict) -> str:
     sections = list(item["sections"])
     if item.get("steps"):
         sections.insert(0, (item["steps_title"], {"steps": item["steps"]}))
-    for title, paragraphs in sections:
+    shot_index = 0 if item.get("steps") else min(1, len(sections) - 1)
+    for index, (title, paragraphs) in enumerate(sections):
         if isinstance(paragraphs, dict):
             html = '<ol class="steps">' + "".join(f"<li>{escape(step)}</li>" for step in paragraphs["steps"]) + "</ol>"
         else:
             html = "".join(map(paragraph, paragraphs))
+        if item.get("shot") and index == shot_index:
+            html += mockup_figure(*item["shot"])
         blocks.append(f"<section><h2>{escape(title)}</h2>{html}</section>")
     blocks.append(faq_html(item["faq"]))
     sources = "".join(f'<li><a href="{escape(SRC[key][1])}" rel="nofollow noopener" target="_blank">{escape(SRC[key][0])}</a></li>' for key in item["sources"])
@@ -784,12 +801,30 @@ for item in comparisons:
     content = f'''{hero(item["kicker"], item)}<div class="container content-layout"><article class="article-body">{comparison_html(item)}{cta()}</article><aside class="related-links"><p class="kicker">KEEP EXPLORING</p>{links}<a href="/pricing">Free vs Pro <span aria-hidden="true">↗</span></a><a href="/guides">All guides <span aria-hidden="true">↗</span></a></aside></div>'''
     write(item["slug"], item["title"], item["description"], content, article_schema(item["title"], item["description"], f"/{item['slug']}", "Guides", item["faq"]))
 
-compare_cards = "".join(f'''<a class="guide-card" href="/{item["slug"]}"><span>{item["kicker"]}</span><h2>{escape(item["title"])}</h2><p>{escape(item["description"])}</p><strong>Read <span aria-hidden="true">↗</span></strong></a>''' for item in comparisons)
-guide_cards = "".join(f'''<a class="guide-card" href="/{item["slug"]}"><span>GUIDE</span><h2>{escape(item["title"])}</h2><p>{escape(item["description"])}</p><strong>Read guide <span aria-hidden="true">↗</span></strong></a>''' for item in guides)
-tool_cards = "".join(f'''<a class="guide-card" href="/{item["slug"]}"><span>TOOL</span><h2>{escape(item["title"])}</h2><p>{escape(item["description"])}</p><strong>Explore tool <span aria-hidden="true">↗</span></strong></a>''' for item in features)
-write("features", "PDF tools for iPhone, iPad, and Android", "Every ProperPDF tool, what it does and whether it's free or Pro on iPhone, iPad and Android. All tools work offline.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">THE PROPERPDF TOOLKIT</p><h1>Offline PDF tools for iPhone and Android</h1><p>Merge, split, compress, sign, scan, convert, and organize documents on your phone.</p></div></div><section class="container guide-index"><h2>Free and Pro tools</h2>{tools_table()}<h2>Explore PDF tools</h2><div class="guide-list">{tool_cards}</div>{cta()}</section>''')
-write("guides", "PDF guides and offline tips", "Step-by-step guides to merging, compressing, signing, scanning, and converting PDFs on iPhone and Android with ProperPDF.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">LEARN WITH PROPERPDF</p><h1>PDF guides for iPhone and Android</h1><p>Learn how to merge, compress, sign, and convert PDFs in ProperPDF.</p></div></div><section class="container guide-index"><h2>Comparisons and alternatives</h2><div class="guide-list">{compare_cards}</div><h2>PDF guides</h2><div class="guide-list">{guide_cards}</div><h2>Explore PDF tools</h2><div class="guide-list">{tool_cards}</div></section>''')
-write("blog", "The ProperPDF blog", "Practical advice for private, offline PDF workflows on mobile.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">THE PROPERPDF BLOG</p><h1>PDF guides for iPhone and Android</h1><p>Short, practical articles about working with documents on your phone.</p></div></div><section class="container guide-index"><h2>Articles</h2><div class="guide-list">{compare_cards}{guide_cards}</div></section>''')
+# Guides hub: grouped by task as plain lists, so a reader finds the job, not a card wall.
+GUIDE_GROUPS = [
+    ("Merge and split", ["merge-pdf", "split-pdf", "offline-pdf-merger-android", "merge-pdf-iphone-without-app"]),
+    ("Compress", ["compress-pdf", "private-pdf-compressor"]),
+    ("Sign, fill and protect", ["sign-pdf", "fill-pdf", "lock-pdf"]),
+    ("Scan and convert", ["scan-to-pdf", "image-to-pdf", "pdf-to-image"]),
+    ("Choosing a PDF app", ["best-offline-pdf-apps", "acrobat-alternatives", "ilovepdf-smallpdf-alternatives", "properpdf-vs-adobe-acrobat", "properpdf-vs-pdf-expert"]),
+    ("Offline and privacy", ["how-offline-works", "private-pdf-workflow", "offline-pdf-editor-iphone", "offline-pdf-editor-android"]),
+]
+page_lookup["how-offline-works"] = {"title": "How ProperPDF works offline", "description": "What runs on your phone, what uses the internet, and how to check it yourself."}
+listed = {slug for _, slugs_ in GUIDE_GROUPS for slug in slugs_}
+missing = [item["slug"] for item in features + guides + comparisons if item["slug"] not in listed]
+assert not missing, f"Add these pages to GUIDE_GROUPS: {missing}"
+
+
+def link_list(slugs_: list[str]) -> str:
+    return '<ul class="link-list">' + "".join(f'<li><a href="/{slug}">{escape(page_lookup[slug]["title"])}</a><p>{escape(page_lookup[slug]["description"])}</p></li>' for slug in slugs_) + "</ul>"
+
+
+groups_html = "".join(f'<section><h2>{escape(name)}</h2>{link_list(slugs_)}</section>' for name, slugs_ in GUIDE_GROUPS)
+hub = f'<div class="container guide-groups">{groups_html}</div>'
+write("features", "PDF tools for iPhone, iPad, and Android", "Every ProperPDF tool, what it does and whether it's free or Pro on iPhone, iPad and Android. All tools work offline.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">THE PROPERPDF TOOLKIT</p><h1>Offline PDF tools for iPhone and Android</h1><p>Merge, split, compress, sign, scan, convert, and organize documents on your phone.</p></div></div><section class="container guide-index"><h2>Free and Pro tools</h2>{tools_table()}<h2>How each tool works</h2>{link_list([item["slug"] for item in features] + ["sign-pdf", "fill-pdf", "lock-pdf", "scan-to-pdf", "image-to-pdf"])}{cta()}</section>''')
+write("guides", "PDF guides and offline tips", "Step-by-step guides to merging, compressing, signing, scanning and converting PDFs on iPhone and Android, plus comparisons of PDF apps.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">GUIDES</p><h1>PDF guides for iPhone and Android</h1><p>How to do each PDF job on your phone, and how ProperPDF compares with other apps.</p></div></div>{hub}''')
+write("blog", "The ProperPDF blog", "Practical advice for private, offline PDF workflows on mobile.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">GUIDES</p><h1>PDF guides for iPhone and Android</h1><p>How to do each PDF job on your phone, and how ProperPDF compares with other apps.</p></div></div>{hub}''')
 
 price_rows = "".join(f'<tr><th scope="row">{escape(plan)}</th><td>{escape(price)}</td></tr>' for plan, price in PRICES)
 pricing_faq_items = "".join(f"<h3>{escape(q)}</h3><p>{escape(a)}</p>" for q, a in pricing_faq)
@@ -844,6 +879,9 @@ page_lines = "\n".join(f"- [{item['title']}]({BASE}/{item['slug']}): {item['desc
 paths = ["/", "/features", "/guides", "/pricing", "/how-offline-works", "/changelog", "/about", "/support", "/privacy-policy", "/terms-of-service"] + [f"/{item['slug']}" for item in features + guides + comparisons]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{xml_escape(BASE + path)}</loc><lastmod>{UPDATED}</lastmod></url>\n" for path in paths) + "</urlset>\n"
 (PUBLIC / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+# Titles for scripts/og_images.py, which renders /og/<slug>.png locally (it needs a browser,
+# so it isn't part of the Cloudflare build). Re-run it after adding pages or changing titles.
+(Path(__file__).parent / "scripts" / "og-pages.json").write_text(json.dumps(dict(sorted(OG_PAGES.items())), indent=1) + "\n", encoding="utf-8")
 print(f"Generated {len(paths)} pages and sitemap.xml")
 
 # A bounded path list keeps arbitrary URLs and personal query data out of D1.

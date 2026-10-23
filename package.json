@@ -12,7 +12,8 @@
     "db:migrate:remote": "wrangler d1 migrations apply properpdf-site-data --remote",
     "check:functions": "npm run check:worker",
     "check:worker": "wrangler deploy --dry-run --outdir=.wrangler/worker",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "og": "python3 generate.py && python3 scripts/og_images.py && python3 generate.py"
   },
   "devDependencies": {
     "wrangler": "^4.137.0"

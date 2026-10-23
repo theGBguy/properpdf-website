@@ -1051,52 +1051,6 @@ h3 {
     margin-top: 64px
 }
 
-.guide-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px
-}
-
-.guide-card {
-    display: block;
-    background: #fff;
-    border: 1px solid #dfe7e6;
-    border-radius: 13px;
-    padding: 27px;
-    min-height: 215px
-}
-
-.guide-card:hover {
-    border-color: #9dc6db;
-    background: #fafdff
-}
-
-.guide-card>span {
-    font-size: 10px;
-    letter-spacing: .14em;
-    color: #2381b6;
-    font-weight: 800
-}
-
-.guide-card h2 {
-    font-size: 22px;
-    line-height: 1.25;
-    letter-spacing: -.045em;
-    margin: 13px 0 9px
-}
-
-.guide-card p {
-    font-size: 13px;
-    line-height: 1.6;
-    color: #64747c;
-    margin: 0 0 19px
-}
-
-.guide-card strong {
-    font-size: 12px;
-    color: #1671c4
-}
-
 .support-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1176,18 +1130,9 @@ h3 {
         padding: 65px 0
     }
 
-    .guide-list,
-    .support-grid {
-        grid-template-columns: 1fr
-    }
-
     .guide-index {
         padding-top: 55px;
         padding-bottom: 75px
-    }
-
-    .guide-card {
-        min-height: 0
     }
 
     .support-grid {
@@ -1518,11 +1463,7 @@ body {
 }
 
 .article-mockup {
-    margin: 32px 0;
-    padding: clamp(16px, 4vw, 30px);
-    border: 1px solid #dce6e7;
-    border-radius: 12px;
-    background: #edf5f8;
+    margin: 36px 0;
     text-align: center
 }
 
@@ -1995,4 +1936,60 @@ body {
     text-decoration: underline;
     text-decoration-color: #b9d3e6;
     text-underline-offset: 3px
+}
+
+.guide-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px 80px;
+    padding-top: 72px;
+    padding-bottom: 100px
+}
+
+.guide-groups h2 {
+    font-size: 22px;
+    letter-spacing: -.03em;
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #cfdadb
+}
+
+.link-list {
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 0
+}
+
+.link-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid #e3e9e8
+}
+
+.link-list a {
+    font-weight: 700;
+    font-size: 16px;
+    color: #17242d
+}
+
+.link-list a:hover {
+    color: #166ca9
+}
+
+.link-list p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #6a7b82
+}
+
+.guide-index .link-list {
+    max-width: 900px
+}
+
+@media (max-width: 760px) {
+    .guide-groups {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-top: 48px
+    }
 }
