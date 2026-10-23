@@ -135,7 +135,7 @@ def page(title: str, description: str, path: str, content: str, extra_schema: li
     <a class="nav-cta smart-download" href="{IOS_UTM}" data-ios-href="{IOS_UTM}" data-android-href="{ANDROID_UTM}">Download on iPhone <span aria-hidden="true">↗</span></a>
 </div></header>
 <main id="main">{content}</main>
-<footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="/"><img src="/assets/icon.png" alt="" width="34" height="34"><span>ProperPDF</span></a><p>Offline PDF tools for iPhone and Android.</p></div><div class="footer-links"><a href="/guides">Guides</a><a href="/pricing">Pricing</a><a href="/support">Support</a><a href="/how-offline-works">How offline works</a><a href="/changelog">Changelog</a><a href="/about">About</a><a href="/privacy-policy">Privacy policy</a><a href="/terms-of-service">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 ProperPDF</span><span>PDF processing on your device.</span></div></footer>
+<footer class="site-footer"><div class="container footer-main"><div><a class="brand" href="/"><img src="/assets/icon.png" alt="" width="34" height="34"><span>ProperPDF</span></a><p>Offline PDF tools for iPhone and Android.</p></div><div class="footer-links"><a href="/guides">Guides</a><a href="/pricing">Pricing</a><a href="/support">Support</a><a href="/how-offline-works">How offline works</a><a href="/changelog">Changelog</a><a href="/about">About</a><a href="/press">Press</a><a href="/privacy-policy">Privacy policy</a><a href="/terms-of-service">Terms</a></div></div><div class="container footer-bottom"><span>© 2026 ProperPDF</span><span>PDF processing on your device.</span></div></footer>
 <script>(function () {{ var ua = navigator.userAgent; var platform = /Android/i.test(ua) ? 'android' : /iPhone|iPad|iPod/i.test(ua) ? 'ios' : 'desktop'; document.body.dataset.platform = platform; document.querySelectorAll('.smart-download').forEach(function (link) {{ if (platform === 'android') {{ link.href = link.dataset.androidHref; link.innerHTML = 'Get it on Google Play <span aria-hidden="true">↗</span>'; }} }}); }}());</script>
 <script src="/site-data.js?v=1" defer></script>
 </body></html>'''
@@ -719,7 +719,7 @@ pricing_faq = [
     ("Do I need an account?", "No. ProperPDF doesn't have accounts. Purchases go through your Apple or Google account."),
 ]
 
-slugs = ["features", "guides", "support", "pricing", "privacy-policy", "terms-of-service", "how-offline-works", "changelog", "about"] + [item["slug"] for item in features + guides + comparisons]
+slugs = ["features", "guides", "support", "pricing", "privacy-policy", "terms-of-service", "how-offline-works", "changelog", "about", "press"] + [item["slug"] for item in features + guides + comparisons]
 write_static_files(slugs)
 
 
@@ -789,6 +789,49 @@ info_page("about", "ABOUT", "About ProperPDF",
 <section><h2>How it's built</h2><p>There are two native apps rather than one shared codebase. The iPhone and iPad app is written in Swift with Apple's PDFKit. The Android app is written in Kotlin with Jetpack Compose and the PDFBox library. They share a design and a feature list, so a tool works the same way on both.</p></section>
 <section><h2>How it makes money</h2><p>Pro unlocks compress, sign, fill forms and password protection, and removes the watermark from free exports. That's the only income: no ads, and no selling of data. You can pay once for lifetime access instead of subscribing.</p></section>
 <section><h2>Contact</h2><p>Bug reports, feature requests and questions go to <a href="mailto:hello@tryproperpdf.app">hello@tryproperpdf.app</a>, and a person reads every one.</p></section>''')
+
+# Press kit: copy-ready descriptions, facts, and downloadable assets.
+APP_LANGUAGES = "English, Arabic, Chinese (Simplified and Traditional), German, Hindi, Japanese, Korean, Portuguese, Russian, Spanish and Turkish"
+PRESS_SHOTS = [
+    # (file under assets/mockups, label)
+    ("ios/home-portrait.png", "iPhone: tools"), ("ios/merge-portrait.png", "iPhone: merge"), ("ios/split-portrait.png", "iPhone: split"),
+    ("ios/compress-portrait.png", "iPhone: compress"), ("ios/sign-portrait.png", "iPhone: sign"), ("ios/fill-portrait.png", "iPhone: fill forms"),
+    ("ios/lock-portrait.png", "iPhone: lock"), ("ios/image-to-pdf-portrait.png", "iPhone: images to PDF"), ("ios/pdf-to-image-portrait.png", "iPhone: PDF to images"),
+    ("android/8home1-portrait.png", "Android: tools"), ("android/1merge-portrait.png", "Android: merge"), ("android/3compress-portrait.png", "Android: compress"),
+    ("android/4sign-portrait.png", "Android: sign"), ("android/5lock-portrait.png", "Android: lock"), ("android/7chatwithai-portrait.png", "Android: AI chat"),
+]
+press_short = "ProperPDF is an offline PDF app for iPhone, iPad and Android. It merges, splits, compresses, signs, fills, locks, scans and converts PDFs on the device, with no uploads, no account and no ads."
+press_long = ("Most phone PDF tools upload your document to a server before they work on it. ProperPDF does the same everyday jobs on the phone itself: merging and splitting files, "
+              "compressing large scans, signing and filling forms, adding passwords, scanning paper, and converting between PDF and images. Every tool works in airplane mode, "
+              "and the app has no accounts and no ads. Scanning, merging, splitting and converting are free; Pro adds compression, signing, form filling and password protection "
+              "for $3.99 a month, $19.99 a year or $29.99 once (US prices, with regional pricing elsewhere). ProperPDF is made by an independent developer, with native apps "
+              "written in Swift for iPhone and iPad and in Kotlin for Android.")
+press_facts = [
+    ("Name", "ProperPDF"), ("Made by", "An independent developer"), ("Platforms", REQUIREMENTS),
+    ("First released", "Android: December 2025. iPhone and iPad: April 2026"), ("Current version", "1.4.2 on both platforms"),
+    ("Price", "Free download. Pro: " + ", ".join(f"{plan.lower()} {price}" for plan, price in PRICES) + " (US prices)"),
+    ("App languages", APP_LANGUAGES), ("Website", "tryproperpdf.app"), ("Press contact", "hello@tryproperpdf.app"),
+]
+press_fact_rows = "".join(f'<tr><th scope="row">{escape(k)}</th><td>{escape(v)}</td></tr>' for k, v in press_facts)
+def png_size(image: str) -> tuple[int, int]:
+    header = (PUBLIC / "assets" / "mockups" / image).read_bytes()[:24]
+    return int.from_bytes(header[16:20], "big"), int.from_bytes(header[20:24], "big")
+
+
+press_shots = "".join(
+    f'<li><a href="/assets/mockups/{escape(image)}" download><img src="/assets/mockups/{escape(image.removesuffix(".png"))}-480.webp" alt="{escape(label)}" width="480" height="{round(png_size(image)[1] * 480 / png_size(image)[0])}" loading="lazy" decoding="async"><span>{escape(label)}</span></a></li>'
+    for image, label in PRESS_SHOTS)
+info_page("press", "PRESS", "ProperPDF press kit",
+          "Descriptions, facts, the app icon, screenshots and a demo video for writing about ProperPDF, the offline PDF app for iPhone, iPad and Android.",
+          "Descriptions, facts and images you're free to use when writing about ProperPDF.",
+          f'''<p class="answer">{escape(press_short)}</p>
+<section><h2>Descriptions</h2><h3 class="press-label">One paragraph</h3><p>{escape(press_long)}</p><h3 class="press-label">One sentence</h3><p>{escape(press_short)}</p></section>
+<section><h2>Facts</h2><table class="facts-table"><tbody>{press_fact_rows}</tbody></table></section>
+<section><h2>Worth getting right</h2><ul class="press-notes"><li>Files are processed on the device. ProperPDF is not a web service and has no server that receives documents.</li><li>It doesn't edit the existing text in a PDF or convert PDF to Word.</li><li>Signing places a drawn signature on the page; it is not a certificate-based digital signature.</li><li>Some free exports carry a ProperPDF watermark; Pro removes it.</li></ul><p>More detail: <a href="/how-offline-works">how offline works</a>, <a href="/pricing">pricing</a> and <a href="/changelog">changelog</a>.</p></section>
+<section><h2>App icon</h2><p><a href="/press/properpdf-icon-1024.png" download>1024 × 1024 PNG</a> · <a href="/press/properpdf-icon-512.png" download>512 × 512 PNG</a>. Square artwork; the App Store and Google Play apply their own rounded mask, so please do the same or show it unmasked.</p></section>
+<section><h2>Screenshots</h2><p>Real app screens in a device frame. Click one to download the full-size PNG.</p><ul class="press-shots">{press_shots}</ul></section>
+<section><h2>Video</h2><p><a href="/assets/sign-pdf-demo.mp4" download>Signing a PDF on iPhone</a> (33 seconds, MP4).</p></section>
+<section><h2>Contact</h2><p>For interviews, review access or questions, email <a href="mailto:hello@tryproperpdf.app?subject=Press">hello@tryproperpdf.app</a>. Pro access for reviewers is available on request.</p></section>''')
 
 for item in features:
     write(item["slug"], item["title"], item["description"], feature_html(item), article_schema(item["title"], item["description"], f"/{item['slug']}", "PDF tools", item.get("faq")))
@@ -873,10 +916,11 @@ page_lines = "\n".join(f"- [{item['title']}]({BASE}/{item['slug']}): {item['desc
 - [How ProperPDF works offline]({BASE}/how-offline-works): what runs on the device and what uses the internet.
 - [Changelog]({BASE}/changelog): release history for iPhone and Android.
 - [About]({BASE}/about): who makes ProperPDF and how it makes money.
+- [Press kit]({BASE}/press): descriptions, facts, icon and screenshots.
 {page_lines}
 """, encoding="utf-8")
 
-paths = ["/", "/features", "/guides", "/pricing", "/how-offline-works", "/changelog", "/about", "/support", "/privacy-policy", "/terms-of-service"] + [f"/{item['slug']}" for item in features + guides + comparisons]
+paths = ["/", "/features", "/guides", "/pricing", "/how-offline-works", "/changelog", "/about", "/press", "/support", "/privacy-policy", "/terms-of-service"] + [f"/{item['slug']}" for item in features + guides + comparisons]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f"  <url><loc>{xml_escape(BASE + path)}</loc><lastmod>{UPDATED}</lastmod></url>\n" for path in paths) + "</urlset>\n"
 (PUBLIC / "sitemap.xml").write_text(sitemap, encoding="utf-8")
 # Titles for scripts/og_images.py, which renders /og/<slug>.png locally (it needs a browser,

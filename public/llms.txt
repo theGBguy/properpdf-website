@@ -33,6 +33,7 @@
 - [How ProperPDF works offline](https://tryproperpdf.app/how-offline-works): what runs on the device and what uses the internet.
 - [Changelog](https://tryproperpdf.app/changelog): release history for iPhone and Android.
 - [About](https://tryproperpdf.app/about): who makes ProperPDF and how it makes money.
+- [Press kit](https://tryproperpdf.app/press): descriptions, facts, icon and screenshots.
 - [Merge PDFs on iPhone and Android without uploading](https://tryproperpdf.app/merge-pdf): Combine PDF files into one on iPhone, iPad or Android. ProperPDF merges them on your phone, offline, with no account. Free to use.
 - [Split a PDF on iPhone and Android without uploading](https://tryproperpdf.app/split-pdf): Extract pages from a PDF on iPhone, iPad or Android. Split by page range or every few pages, offline, with no account. Free to use.
 - [Compress a PDF on iPhone and Android without uploading](https://tryproperpdf.app/compress-pdf): Reduce PDF file size on iPhone, iPad or Android. ProperPDF compresses on the device, offline, so the document is never uploaded.

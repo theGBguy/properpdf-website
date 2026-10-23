@@ -1993,3 +1993,39 @@ body {
         padding-top: 48px
     }
 }
+
+.press-label {
+    font-size: 13px;
+    letter-spacing: .04em;
+    color: #6a7b82;
+    margin: 18px 0 6px
+}
+
+.press-notes {
+    padding-left: 20px;
+    color: #52636c;
+    font-size: 15px;
+    line-height: 1.75
+}
+
+.press-shots {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 24px 18px
+}
+
+.press-shots img {
+    display: block;
+    width: 100%;
+    height: auto
+}
+
+.press-shots span {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #52636c
+}
