@@ -203,7 +203,7 @@ def write_static_files(slugs: list[str]) -> None:
         encoding="utf-8",
     )
     aliases = {"privacy": "privacy-policy", "terms": "terms-of-service", "blog": "guides"}
-    redirects = ["/index.html / 301"] + [f"/{code}/index.html /{code}/ 301" for code, *_ in LOCALES]
+    redirects = ["/index.html / 301"] + [f"/{code}/index.html /{code} 301" for code, *_ in LOCALES]
     redirects += [f"/{slug}.html /{slug} 301" for slug in slugs]
     for alias, target in aliases.items():
         redirects += [f"/{alias} /{target} 301", f"/{alias}/ /{target} 301", f"/{alias}.html /{target} 301"]
@@ -804,11 +804,11 @@ def load_locales() -> None:
         if not source.exists():
             continue
         data = json.loads(source.read_text(encoding="utf-8"))
-        ui = {**EN_UI, **data["ui"], "lang": hreflang, "home": f"/{code}/",
+        ui = {**EN_UI, **data["ui"], "lang": hreflang, "home": f"/{code}",
               "google_badge": f"https://play.google.com/intl/en_us/badges/static/images/badges/{badge}_badge_web_generic.png"}
         data["ui"] = ui
         data["code"] = code
-        data["paths"] = {"/": f"/{code}/", "/pricing": f"/{code}/{data['pricing']['slug']}"}
+        data["paths"] = {"/": f"/{code}", "/pricing": f"/{code}/{data['pricing']['slug']}"}
         data["paths"].update({f"/{en_slug}": f"/{code}/{item['slug']}" for en_slug, item in data["pages"].items()})
         LOCALE_DATA[code] = data
         LOCALE_NAMES[hreflang] = ui["lang_name"]
@@ -817,7 +817,7 @@ def load_locales() -> None:
 
 
 load_locales()
-LOCALE_SLUGS = [path.strip("/") for data in LOCALE_DATA.values() for path in data["paths"].values() if path.count("/") > 1 and not path.endswith("/")]
+LOCALE_SLUGS = [path.strip("/") for data in LOCALE_DATA.values() for path in data["paths"].values() if path.count("/") > 1]
 write_static_files(slugs + LOCALE_SLUGS)
 
 
