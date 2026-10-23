@@ -5,7 +5,7 @@
 - Platforms: iOS 17 or later on iPhone and iPad; Android 8.0 or later.
 - App Store: https://apps.apple.com/app/id6760956540
 - Google Play: https://play.google.com/store/apps/details?id=io.github.thegbguy.pdfmate
-- Price: free download, no ads. Pro: Weekly $1.99 a week, Monthly $3.99 a month, Yearly $29.99 a year, Lifetime $29.99 once (US prices; regional pricing makes Pro cheaper in many countries).
+- Price: free download, no ads. Pro: Weekly $1.99 a week, Monthly $3.99 a month, Yearly $19.99 a year, Lifetime $29.99 once (US prices; regional pricing makes Pro cheaper in many countries).
 - Limits: does not edit existing PDF text, convert PDF to Word, or add highlights/annotations.
 - Contact: hello@tryproperpdf.app
 

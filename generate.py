@@ -31,7 +31,7 @@ INDEXNOW_KEY = "8ad089f0da123f2a9ee15d44dcb7e3cc"
 # with the shipped apps (iOS Route.isPremium, Android HomeScreen isPremium and the
 # addWatermark view models) and the live store listings.
 REQUIREMENTS = "iOS 17 or later on iPhone and iPad; Android 8.0 or later"
-PRICES = [("Weekly", "$1.99 a week"), ("Monthly", "$3.99 a month"), ("Yearly", "$29.99 a year"), ("Lifetime", "$29.99 once")]
+PRICES = [("Weekly", "$1.99 a week"), ("Monthly", "$3.99 a month"), ("Yearly", "$19.99 a year"), ("Lifetime", "$29.99 once")]
 # US reference prices. Both stores use regional pricing, so most countries pay less.
 REGIONAL_NOTE = "These are US prices. ProperPDF uses regional pricing, so Pro costs less in many countries, and the App Store or Google Play shows the price in your currency before you buy."
 FREE = "Free"
@@ -216,12 +216,13 @@ features = [
          steps=["Open ProperPDF and tap Compress PDF.", "Select the PDF.", "Move the image resolution slider. Lower means a smaller file and softer images. The app shows the current size and an estimate of the new one.", "Save. ProperPDF writes a new, smaller copy and keeps the original.", "Open the copy and zoom in on small text and signatures before you send it."],
          sections=[
              ("Why compress on the device", ["Online compressors have to receive your file before they can shrink it. That is fine for a flyer, less fine for a payslip, a medical letter or a signed contract. ProperPDF does the same job without the upload."]),
-             ("Getting a smaller file", ["Compression works by resampling the images inside the PDF. A 20-page phone scan has a lot to give; a 20-page text export from Word has very little. If the file is still too big, split off or delete the pages the recipient doesn't need, which shrinks it without touching quality."]),
+             ("Getting a smaller file", ["Scans and photo-heavy PDFs shrink the most; a 20-page text export from Word has very little to give. If the file is still too big, split off or delete the pages the recipient doesn't need, which cuts size without touching quality.", "On iPhone, stronger compression turns each page into an image. Text in the copy can no longer be selected or searched, and form fields and links are removed, so keep the original if you need those."]),
          ],
          faq=[
              ("Is PDF compression free in ProperPDF?", "No. Compress PDF is part of Pro on both iPhone and Android."),
              ("How much smaller will my PDF get?", "It depends on the file. Scans and photo-heavy PDFs often shrink a lot; text-only PDFs may hardly change. The app shows an estimated size before you save."),
              ("Will compression make my PDF blurry?", "Lower resolutions soften images and scanned text. Save, zoom in on the smallest text, and pick a higher setting if it's hard to read."),
+             ("Will I still be able to select text after compressing?", "On Android, yes. On iPhone, stronger compression turns pages into images, so text can't be selected and form fields and links are removed. ProperPDF keeps your original file."),
          ], related=["split-pdf", "merge-pdf"]),
     dict(slug="pdf-to-image", title="Convert PDF pages to images offline",
          description="Export PDF pages as PNG or JPEG images on iPhone, iPad or Android, offline and without uploading the document.",
@@ -358,7 +359,7 @@ guides = [
          steps=["Open ProperPDF and tap Compress PDF.", "Select the PDF.", "Lower the image resolution until the estimated size is small enough.", "Save the copy, then zoom in on small text and signatures to check them."],
          sections=[
              ("Why not an online compressor?", ["Sites like Smallpdf and iLovePDF process your file on their servers. Smallpdf says it deletes uploads after one hour, and for most documents that's fine. For a payslip, a medical letter or a signed contract, skipping the upload removes the question."]),
-             ("If the file is still too big", ["Text-heavy PDFs have little to compress. Remove the pages the recipient doesn't need with Split PDF or Organize Pages, which cuts size without touching quality."]),
+             ("If the file is still too big", ["Text-heavy PDFs have little to compress. Remove the pages the recipient doesn't need with Split PDF or Organize Pages, which cuts size without touching quality.", "On iPhone, stronger compression turns pages into images, so the copy loses selectable text, form fields and links. Keep the original if you need them."]),
          ],
          faq=[
              ("Can I compress a PDF offline?", "Yes. ProperPDF compresses PDFs on iPhone, iPad and Android without an internet connection."),
@@ -503,7 +504,7 @@ comparisons = [
          ]),
          disclosure=True,
          sections=[
-             ("1. ProperPDF: everyday PDF jobs, no account", ["ProperPDF processes every file on the device and has no accounts and no ads. Scan, merge, split, organize and convert are free; merge and split add a watermark unless you have Pro, and on Android most free tools do. Compress, sign, fill forms and password protection need Pro ($3.99 a month, $29.99 a year or $29.99 once in the US, less in many countries).", "Limits: it can't edit the existing text in a PDF, convert to Word, or add highlights and comments."]),
+             ("1. ProperPDF: everyday PDF jobs, no account", ["ProperPDF processes every file on the device and has no accounts and no ads. Scan, merge, split, organize and convert are free; merge and split add a watermark unless you have Pro, and on Android most free tools do. Compress, sign, fill forms and password protection need Pro ($3.99 a month, $19.99 a year or $29.99 once in the US, less in many countries).", "Limits: it can't edit the existing text in a PDF, convert to Word, or add highlights and comments."]),
              ("2. PDFgear: free, and it edits text", ["PDFgear says it is completely free, with no sign-up, ads or watermark, and it edits text and images and converts PDF to Word, Excel and PowerPoint. Its Android FAQ says editing and page management work offline, but the Copilot AI needs an internet connection because it uses OpenAI's ChatGPT API. Scanning is in a separate app, PDFgear Scan.", "Limits: PDFgear's mobile listings don't mention password protection, and its Android page notes that some advanced options could cost money in the future."]),
              ("3. Apple Preview: built into iPhone", ["iOS 26 added Preview to iPhone. It scans documents, fills and signs forms, inserts pages from another PDF (which is how you merge), rotates and reorders pages, locks a PDF with a password, and exports a smaller copy with a file-size slider. It's free and needs no account.", "Limits: iPhone and iPad only, iOS 26 or later. Merging means inserting one file at a time into another, and Apple doesn't say how much the size slider shrinks a PDF."]),
              ("4. Files by Google: scanning on Android", ["Files by Google scans pages into searchable PDFs saved on the phone, and lets you draw and highlight on a PDF. It's free.", "Limits: Google's help pages list no merge, split, compress, password or signature tool. Saving an annotated copy uploads it to Google Drive."]),
@@ -555,7 +556,7 @@ comparisons = [
          table=(["", "Where files are processed", "Free tier", "Paid"], [
              ["Smallpdf", "Smallpdf's servers; deleted after one hour", "1 task a day in the Android app", "$7.99 a month on Google Play"],
              ["iLovePDF", "iLovePDF's servers", "Limited files per task", "$9 a month, or $60 a year"],
-             ["ProperPDF", "On your phone", "Merge, split, scan, convert (some with watermark)", "$3.99 a month, $29.99 a year or $29.99 once (US; regional prices lower)"],
+             ["ProperPDF", "On your phone", "Merge, split, scan, convert (some with watermark)", "$3.99 a month, $19.99 a year or $29.99 once (US; regional prices lower)"],
              ["PDFgear", "Android app works offline except the AI assistant", "Everything", "None"],
              ["Apple Preview (iOS 26+)", "On your iPhone", "Everything it does", "None"],
          ]),
@@ -609,7 +610,7 @@ comparisons = [
          title="ProperPDF vs PDF Expert on iPhone and iPad",
          description="ProperPDF vs PDF Expert by Readdle: free tools, Premium prices, offline use, Android support and what each app can't do.",
          lead="PDF Expert is the fuller editor. ProperPDF is the cheaper, offline, cross-platform toolkit.",
-         answer="PDF Expert is the better editor: it edits text, converts to Office formats and annotates well, and reading, annotating, filling and signing are free. Its merge, compress and convert tools are Premium at $79.99 a year. ProperPDF merges, splits and scans for free, sells Pro for $29.99 a year or the same $29.99 once for lifetime access (US prices), has no account, and also runs on Android. PDF Expert has no Android app.",
+         answer="PDF Expert is the better editor: it edits text, converts to Office formats and annotates well, and reading, annotating, filling and signing are free. Its merge, compress and convert tools are Premium at $79.99 a year. ProperPDF merges, splits and scans for free, sells Pro for $19.99 a year or $29.99 once for lifetime access (US prices), has no account, and also runs on Android. PDF Expert has no Android app.",
          table=(["", "ProperPDF", "PDF Expert"], [
              ["Platforms", "iPhone, iPad, Android", "iPhone, iPad, Mac"],
              ["Merge, split, organize", "Free (merge and split with watermark)", "Premium"],
@@ -619,7 +620,7 @@ comparisons = [
              ["Edit text, convert to Word", "No", "Premium"],
              ["Scan with the camera", "Free", "Not listed"],
              ["AI", "On-device chat, free on iPhone", "AI Copilot, Premium; can use OpenAI or Azure OpenAI"],
-             ["Yearly price (US)", "$29.99", "$79.99"],
+             ["Yearly price (US)", "$19.99", "$79.99"],
              ["One-time purchase", "$29.99 lifetime (US)", "Not listed for iPhone"],
          ]),
          disclosure=True,
@@ -695,8 +696,8 @@ def write(slug: str, title: str, description: str, content: str, extra_schema: l
 
 pricing_faq = [
     ("Is ProperPDF free?", "Yes, the app is free to download on the App Store and Google Play. Scan, merge, split, organize and convert are free. Some free exports carry a ProperPDF watermark. Compress, sign, fill forms and lock need Pro."),
-    ("How much does ProperPDF Pro cost?", "In the US: $1.99 a week, $3.99 a month, $29.99 a year, or $29.99 once for lifetime access. ProperPDF uses regional pricing, so it costs less in many countries; the store shows your local price before you buy."),
-    ("Is there a one-time purchase?", "Yes. Lifetime Pro is a single payment of $29.99 in the US, the same as one year of the yearly plan, and less in many countries. There is no subscription to cancel."),
+    ("How much does ProperPDF Pro cost?", "In the US: $1.99 a week, $3.99 a month, $19.99 a year, or $29.99 once for lifetime access. ProperPDF uses regional pricing, so it costs less in many countries; the store shows your local price before you buy."),
+    ("Is there a one-time purchase?", "Yes. Lifetime Pro is a single payment of $29.99 in the US, about a year and a half of the yearly plan, and less in many countries. There is no subscription to cancel."),
     ("Does ProperPDF have ads?", "No. The free version adds a watermark to files saved with some tools instead of showing ads."),
     ("Do I need an account?", "No. ProperPDF doesn't have accounts. Purchases go through your Apple or Google account."),
 ]
@@ -726,7 +727,7 @@ price_rows = "".join(f'<tr><th scope="row">{escape(plan)}</th><td>{escape(price)
 pricing_faq_items = "".join(f"<h3>{escape(q)}</h3><p>{escape(a)}</p>" for q, a in pricing_faq)
 write("pricing", "ProperPDF pricing: what's free and what's Pro",
       "ProperPDF is free to download. See which tools are free on iPhone and Android, which need Pro, and Pro prices: weekly, monthly, yearly or lifetime.",
-      f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">PRICING</p><h1>What's free and what's Pro</h1><p>ProperPDF is free to download. Pro unlocks compress, sign, fill and lock, and removes watermarks.</p>{download_buttons("pricing")}<p class="updated">Updated {UPDATED_LABEL}</p></div></div><div class="container content-layout"><article class="article-body"><p class="answer">ProperPDF is free on the App Store and Google Play, with no ads and no account. Scanning, merging, splitting, organizing pages and converting between PDF and images are free; some free exports carry a ProperPDF watermark. Pro costs $3.99 a month, $29.99 a year or $29.99 once for lifetime access (US prices; lower in many countries), and unlocks compress, sign, fill forms and password protection.</p><section><h2>Tools by platform</h2>{tools_table()}</section><section><h2>Pro plans</h2><table class="facts-table"><tbody>{price_rows}</tbody></table><p>{escape(REGIONAL_NOTE)} Subscriptions renew through your Apple or Google account until you cancel.</p></section><section class="article-faq"><h2>Questions</h2>{pricing_faq_items}</section>{cta()}</article><aside class="related-links"><p class="kicker">KEEP EXPLORING</p><a href="/features">All PDF tools <span aria-hidden="true">↗</span></a><a href="/guides">Guides <span aria-hidden="true">↗</span></a><a href="/support">Support <span aria-hidden="true">↗</span></a></aside></div>''',
+      f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">PRICING</p><h1>What's free and what's Pro</h1><p>ProperPDF is free to download. Pro unlocks compress, sign, fill and lock, and removes watermarks.</p>{download_buttons("pricing")}<p class="updated">Updated {UPDATED_LABEL}</p></div></div><div class="container content-layout"><article class="article-body"><p class="answer">ProperPDF is free on the App Store and Google Play, with no ads and no account. Scanning, merging, splitting, organizing pages and converting between PDF and images are free; some free exports carry a ProperPDF watermark. Pro costs $3.99 a month, $19.99 a year or $29.99 once for lifetime access (US prices; lower in many countries), and unlocks compress, sign, fill forms and password protection.</p><section><h2>Tools by platform</h2>{tools_table()}</section><section><h2>Pro plans</h2><table class="facts-table"><tbody>{price_rows}</tbody></table><p>{escape(REGIONAL_NOTE)} Subscriptions renew through your Apple or Google account until you cancel.</p></section><section class="article-faq"><h2>Questions</h2>{pricing_faq_items}</section>{cta()}</article><aside class="related-links"><p class="kicker">KEEP EXPLORING</p><a href="/features">All PDF tools <span aria-hidden="true">↗</span></a><a href="/guides">Guides <span aria-hidden="true">↗</span></a><a href="/support">Support <span aria-hidden="true">↗</span></a></aside></div>''',
       [{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in pricing_faq]}])
 
 write("support", "Support and contact", "Get help with ProperPDF, including app downloads, purchases, and PDF tools.", f'''<div class="content-hero guide-hero"><div class="container"><p class="kicker">HERE TO HELP</p><h1>ProperPDF support</h1><p>Find the right place to get help with the app.</p>{download_buttons("support")}</div></div><div class="container support-grid"><div><h2>Contact us</h2><p>For a bug, purchase question, or feature request, email the ProperPDF team. Please include your device model, app version, and a short description of what happened.</p><p>Do not send sensitive PDFs unless you choose to share them for troubleshooting.</p><a class="button button-dark" href="mailto:hello@tryproperpdf.app?subject=ProperPDF%20support">hello@tryproperpdf.app <span aria-hidden="true">↗</span></a></div><div><h2>Quick links</h2><div class="support-links"><a href="{IOS_UTM}">ProperPDF on the App Store <span aria-hidden="true">↗</span></a><a href="{ANDROID_UTM}">ProperPDF on Google Play <span aria-hidden="true">↗</span></a><a href="/pricing">Free vs Pro <span aria-hidden="true">↗</span></a><a href="/#faq">Frequently asked questions <span aria-hidden="true">↗</span></a><a href="/guides">PDF guides <span aria-hidden="true">↗</span></a></div></div></div>''')
